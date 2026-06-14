@@ -4,6 +4,8 @@ import { ArrowRight } from 'lucide-react'
 import { products } from '@/lib/products-data'
 
 export function Products() {
+  const homepageProducts = [products[2], products[1], products[4], products[0], products[3], products[5]]
+
   return (
     <section id="products" className="py-20 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -18,7 +20,7 @@ export function Products() {
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((product) => (
+          {homepageProducts.map((product) => (
             <Card
               key={product.id}
               className="group overflow-hidden border-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
@@ -27,13 +29,13 @@ export function Products() {
                 <div className="relative aspect-[4/3] overflow-hidden bg-white">
                   <img
                     src={product.image}
-                    alt={product.title}
+                    alt={product.titleEn ?? product.title}
                     className="absolute inset-0 block h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/90 to-transparent p-4 pt-12">
                     <div className="flex items-center gap-2 text-white">
                       <product.icon className="h-6 w-6 shrink-0" />
-                      <span className="text-lg font-bold leading-tight">{product.title}</span>
+                      <span className="text-lg font-bold leading-tight">{product.titleEn ?? product.title}</span>
                     </div>
                   </div>
                 </div>

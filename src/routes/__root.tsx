@@ -20,7 +20,7 @@ const organizationSchema = {
   legalName: "Shandong Wenze Electric Co., Ltd.",
   alternateName: ["文则电气", "Wenzepower"],
   url: "https://www.wenzepower.com",
-  logo: "https://www.wenzepower.com/placeholder-logo.svg",
+  logo: "https://www.wenzepower.com/wenze-logo-mark.png",
   description:
     "Professional power transformer manufacturer in Shandong, China. Products include oil immersed transformers, dry type transformers, distribution transformers, high voltage power transformers, [...]",
   foundingDate: "2009",
@@ -133,7 +133,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", type: "image/svg+xml", href: "/icon.svg" },
+      { rel: "icon", type: "image/png", sizes: "64x64", href: "/wenze-favicon.png" },
       { rel: "apple-touch-icon", href: "/apple-icon.png" },
     ],
     scripts: [

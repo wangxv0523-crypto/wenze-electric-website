@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react'
+import { BrandLogo } from '@/components/site/brand-logo'
 
 const navigation = {
   products: [
@@ -43,12 +44,8 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <a href="/" className="flex items-center mb-4">
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-n2GL5TaXQSDwwTPZmdjvvT0y5cX8oN.png"
-                alt="Wenze Electric - Transformer Manufacturer Shandong China"
-                className="h-12 w-auto brightness-0 invert"
-              />
+            <a href="/" className="inline-flex mb-4" aria-label="Wenze Electric home">
+              <BrandLogo inverse footer />
             </a>
             <p className="text-white/50 text-xs mb-1">山东文则电气有限公司</p>
             <p className="text-white/70 leading-relaxed mb-6 max-w-sm text-sm">

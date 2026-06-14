@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { BrandLogo } from '@/components/site/brand-logo'
 
 interface UnifiedHeaderProps {
   currentPage?: string
@@ -27,14 +27,8 @@ export function UnifiedHeader({ currentPage }: UnifiedHeaderProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Brand */}
-          <a href="/" className="flex items-center gap-3 shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-white font-bold text-sm">WE</span>
-            </div>
-            <div className="hidden sm:flex flex-col gap-0">
-              <span className="text-sm font-bold text-primary leading-none">WENZE</span>
-              <span className="text-xs text-muted-foreground leading-none">ELECTRIC</span>
-            </div>
+          <a href="/" className="min-w-0 shrink-0" aria-label="Wenze Electric home">
+            <BrandLogo />
           </a>
 
           {/* Desktop Navigation */}
