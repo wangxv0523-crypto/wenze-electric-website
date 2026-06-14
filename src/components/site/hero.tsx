@@ -16,16 +16,15 @@ Thank you.`
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-28 pb-16 overflow-hidden">
+    <section className="relative flex min-h-[720px] items-center overflow-hidden pb-16 pt-28 lg:h-[720px]">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E7%BD%91%E7%AB%99%E7%AC%AC%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87-aoXskClX6ojrlf6kS8yYf2h66cKMzv.jpg')`,
-          }}
+        <img
+          src="/images/substation-hero.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full scale-[1.15] object-cover object-[62%_72%] md:scale-100 md:object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061a36]/95 via-[#0a2a55]/75 to-[#061a36]/50" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
