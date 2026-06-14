@@ -12,9 +12,10 @@ export function UnifiedHeader({ currentPage }: UnifiedHeaderProps) {
   const [language, setLanguage] = useState<'zh' | 'en'>('zh')
 
   const navItems = [
-    { label: language === 'zh' ? '首页' : 'Home', href: '/', id: 'home' },
+    { label: language === 'zh' ? '网站首页' : 'Home', href: '/', id: 'home' },
+    { label: language === 'zh' ? '核心产品' : 'Products', href: '/#products', id: 'products' },
+    { label: language === 'zh' ? '工厂实力' : 'Factory', href: '/#capabilities', id: 'factory' },
     { label: language === 'zh' ? '关于我们' : 'About Us', href: '/#about', id: 'about' },
-    { label: language === 'zh' ? '产品' : 'Products', href: '/#products', id: 'products' },
     { label: language === 'zh' ? '联系我们' : 'Contact Us', href: '/#contact', id: 'contact' },
   ]
 
@@ -25,19 +26,23 @@ export function UnifiedHeader({ currentPage }: UnifiedHeaderProps) {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex h-[72px] items-center justify-between md:h-[76px]">
           {/* Logo & Brand */}
-          <a href="/" className="min-w-0 shrink-0" aria-label="Wenze Electric home">
+          <a
+            href="/"
+            className="min-w-0 shrink-0 [&>span]:gap-3 [&>span>span:first-child]:h-11 [&>span>span:first-child]:w-11 md:[&>span>span:first-child]:h-12 md:[&>span>span:first-child]:w-12 [&>span>span:last-child>span:first-child]:text-sm md:[&>span>span:last-child>span:first-child]:text-base [&>span>span:last-child>span:last-child]:text-[9px] md:[&>span>span:last-child>span:last-child]:text-[11px]"
+            aria-label="Wenze Electric home"
+          >
             <BrandLogo />
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden items-center gap-9 lg:flex xl:gap-11">
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={item.href}
-                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+                className="text-base font-semibold text-foreground/75 transition-colors hover:text-primary"
               >
                 {item.label}
               </a>
@@ -49,20 +54,21 @@ export function UnifiedHeader({ currentPage }: UnifiedHeaderProps) {
             {/* Language Switcher */}
             <button
               onClick={toggleLanguage}
-              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors hidden sm:block"
+              className="hidden px-2 py-2 text-base font-semibold text-foreground/75 transition-colors hover:text-primary sm:block"
             >
-              {language === 'zh' ? 'English' : '中文'}
+              {language === 'zh' ? '英语' : '中文'}
             </button>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors"
+              className="rounded-lg p-2.5 transition-colors hover:bg-secondary lg:hidden"
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             >
               {mobileMenuOpen ? (
-                <X className="w-5 h-5" />
+                <X className="h-6 w-6" />
               ) : (
-                <Menu className="w-5 h-5" />
+                <Menu className="h-6 w-6" />
               )}
             </button>
           </div>
@@ -70,12 +76,12 @@ export function UnifiedHeader({ currentPage }: UnifiedHeaderProps) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <nav className="md:hidden pb-4 space-y-2">
+          <nav className="space-y-2 pb-5 lg:hidden">
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={item.href}
-                className="block px-3 py-2 text-sm font-medium text-foreground/70 hover:text-primary hover:bg-secondary rounded-lg transition-colors"
+                className="block rounded-lg px-4 py-3 text-base font-semibold text-foreground/75 transition-colors hover:bg-secondary hover:text-primary"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
@@ -83,9 +89,9 @@ export function UnifiedHeader({ currentPage }: UnifiedHeaderProps) {
             ))}
             <button
               onClick={toggleLanguage}
-              className="w-full text-left px-3 py-2 text-sm font-medium text-foreground/70 hover:text-primary hover:bg-secondary rounded-lg transition-colors"
+              className="w-full rounded-lg px-4 py-3 text-left text-base font-semibold text-foreground/75 transition-colors hover:bg-secondary hover:text-primary sm:hidden"
             >
-              {language === 'zh' ? 'English' : '中文'}
+              {language === 'zh' ? '英语' : '中文'}
             </button>
           </nav>
         )}
