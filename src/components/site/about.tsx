@@ -116,18 +116,6 @@ export function About() {
           </div>
         </div>
 
-        {/* Production Workshop Image */}
-        <div className="relative rounded-xl overflow-hidden bg-black shadow-lg">
-          <img
-            src="/images/workshop.jpg"
-            alt="Wenze Electric Production Workshop - Transformer Assembly Line Shandong China"
-            className="w-full object-cover aspect-[21/9]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            <p className="text-white font-medium text-lg">Production Workshop – Transformer Assembly & Testing</p>
-          </div>
-        </div>
       </div>
     </section>
   )

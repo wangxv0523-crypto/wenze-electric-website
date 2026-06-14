@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Hero } from '@/components/site/hero'
 import { Products } from '@/components/site/products'
-import { Gallery } from '@/components/site/gallery'
 import { About } from '@/components/site/about'
 import { Capabilities } from '@/components/site/capabilities'
 import { FAQ } from '@/components/site/faq'
@@ -19,7 +18,6 @@ function HomePage() {
       <main>
         <Hero />
         <Products />
-        <Gallery />
         <About />
         <Capabilities />
         <FAQ />
