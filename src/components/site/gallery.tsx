@@ -1,15 +1,15 @@
 const galleryItems = [
   {
     title: 'Manufacturing Workshop',
-    image: '/images/workshop.jpg',
+    image: '/images/dry-transformer-workshop.jpg',
   },
   {
     title: 'Dry Type Transformer',
-    image: '/dry-type-transformer-2026.jpg',
+    image: '/images/three-dry-type-transformers.jpg',
   },
   {
     title: 'Oil Immersed Distribution Transformer',
-    image: '/distribution-transformer-2026.jpg',
+    image: '/images/outdoor-distribution-transformers.jpg',
   },
   {
     title: 'Power Transformer',
@@ -38,7 +38,7 @@ export function Gallery() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {galleryItems.map((item) => (
             <figure key={item.title} className="overflow-hidden rounded-lg border border-border bg-white shadow-sm">
               <div className="aspect-[4/3] overflow-hidden bg-muted">
