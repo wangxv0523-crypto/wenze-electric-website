@@ -71,7 +71,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
               <img
                 src={product.detailImage ?? product.image}
                 alt={product.title}
-                className="w-full rounded-lg object-cover aspect-[4/3]"
+                className="aspect-[4/3] w-full rounded-lg bg-white object-contain object-center p-6"
               />
 
               {/* Product Description */}
@@ -124,7 +124,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
                 <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center">
                   <Icon className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">Power Transformer</span>
+                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">{product.titleEn ?? product.title}</span>
               </div>
 
               {/* Title with English translation */}

@@ -2,9 +2,12 @@ import { createFileRoute, notFound } from '@tanstack/react-router'
 import { Footer } from '@/components/site/footer'
 import { WhatsAppButton } from '@/components/site/whatsapp-button'
 import { ProductDetail } from '@/components/site/product-detail'
-import { products } from '@/lib/products-data'
+import { getProductBySlug } from '@/lib/products-data'
 
 const iconNameMap: Record<string, 'droplets' | 'wind' | 'zap' | 'box' | 'radio' | 'sun'> = {
+  'oil-immersed-distribution-transformer': 'droplets',
+  'power-transformer': 'zap',
+  'compact-substation': 'box',
   'oil-immersed-transformer': 'droplets',
   'dry-type-transformer': 'wind',
   'distribution-transformer': 'zap',
@@ -15,12 +18,12 @@ const iconNameMap: Record<string, 'droplets' | 'wind' | 'zap' | 'box' | 'radio' 
 
 export const Route = createFileRoute('/products/$slug')({
   loader: ({ params }) => {
-    const product = products.find((p) => p.id === params.slug)
+    const product = getProductBySlug(params.slug)
     if (!product) throw notFound()
-    return { slug: params.slug }
+    return { slug: product.id }
   },
   head: ({ params }) => {
-    const product = products.find((p) => p.id === params.slug)
+    const product = getProductBySlug(params.slug)
     if (!product) return { meta: [] }
     return {
       meta: [
@@ -44,7 +47,7 @@ export const Route = createFileRoute('/products/$slug')({
 
 function ProductPage() {
   const { slug } = Route.useLoaderData()
-  const product = products.find((p) => p.id === slug)!
+  const product = getProductBySlug(slug)!
   const { icon, ...data } = product
   return (
     <>
