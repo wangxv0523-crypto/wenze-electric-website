@@ -16,8 +16,11 @@ interface ProductData {
   specs: {
     voltage: string
     capacity: string
+    secondaryVoltage?: string
     frequency: string
+    phase?: string
     cooling: string
+    vectorGroup?: string
     standards: string
   }
   features: Array<{ zh: string; en: string }>
@@ -124,7 +127,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
                 <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center">
                   <Icon className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">{product.titleEn ?? product.title}</span>
+                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">{product.titleEn}</span>
               </div>
 
               {/* Title with English translation */}
@@ -145,12 +148,15 @@ export function ProductDetail({ product }: { product: ProductData }) {
                 </div>
                 <div className="divide-y divide-border">
                   {[
-                    { label: 'Voltage', value: product.specs.voltage },
-                    { label: 'Capacity', value: product.specs.capacity },
+                    { label: product.id === 'power-transformer' ? 'Rated Voltage' : product.id === 'high-voltage-power-transformer' ? 'Voltage Class' : 'Voltage', value: product.specs.voltage },
+                    { label: product.id === 'power-transformer' ? 'Rated Capacity' : 'Capacity', value: product.specs.capacity },
+                    { label: 'Secondary Voltage', value: product.specs.secondaryVoltage },
                     { label: 'Frequency', value: product.specs.frequency },
-                    { label: 'Cooling Method', value: product.specs.cooling },
+                    { label: 'Phase', value: product.specs.phase },
+                    { label: product.id === 'compact-substation' ? 'Transformer Cooling' : 'Cooling Method', value: product.specs.cooling },
+                    { label: 'Vector Group', value: product.specs.vectorGroup },
                     { label: 'Standard', value: product.specs.standards },
-                  ].map((row, i) => (
+                  ].filter(row => row.value).map((row, i) => (
                     <div key={row.label} className={`flex items-center px-5 py-2.5 ${i % 2 === 0 ? 'bg-white' : 'bg-secondary/30'}`}>
                       <span className="w-32 shrink-0 text-xs font-semibold text-muted-foreground">{row.label}</span>
                       <span className="text-sm font-semibold text-foreground">{row.value}</span>
@@ -210,7 +216,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
       {product.detailedSpecTable && product.detailedSpecTable.rows.length > 0 && (
         <section className="py-16 bg-white border-t border-border">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-primary mb-8">Standard Specification Parameters</h2>
+            <h2 className="text-2xl font-bold text-primary mb-8">Typical Reference Specifications / 典型参考参数</h2>
             <div className="overflow-x-auto">
               <table className="w-full min-w-max">
                 <thead>
@@ -238,7 +244,10 @@ export function ProductDetail({ product }: { product: ProductData }) {
             {product.detailedSpecTable.note && (
               <p className="text-sm text-muted-foreground mt-4">{product.detailedSpecTable.note}</p>
             )}
-            <p className="text-sm text-muted-foreground mt-2">可根据项目技术要求定制规格。</p>
+            <p className="text-sm text-muted-foreground mt-2">
+              The above data is for reference only. Final technical parameters, losses, dimensions and weights are subject to the approved technical agreement and drawings.<br />
+              以上数据仅供选型参考，最终技术参数、损耗、外形尺寸和重量以双方确认的技术协议及图纸为准。
+            </p>
           </div>
         </section>
       )}

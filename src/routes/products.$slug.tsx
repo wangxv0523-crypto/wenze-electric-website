@@ -6,14 +6,11 @@ import { getProductBySlug } from '@/lib/products-data'
 
 const iconNameMap: Record<string, 'droplets' | 'wind' | 'zap' | 'box' | 'radio' | 'sun'> = {
   'oil-immersed-distribution-transformer': 'droplets',
-  'power-transformer': 'zap',
-  'compact-substation': 'box',
-  'oil-immersed-transformer': 'droplets',
   'dry-type-transformer': 'wind',
-  'distribution-transformer': 'zap',
-  'high-voltage-power-transformer': 'box',
   'pole-mounted-transformer': 'radio',
-  'renewable-energy-transformer': 'sun',
+  'power-transformer': 'zap',
+  'high-voltage-power-transformer': 'box',
+  'compact-substation': 'box',
 }
 
 export const Route = createFileRoute('/products/$slug')({
