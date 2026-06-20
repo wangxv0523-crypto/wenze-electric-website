@@ -38,7 +38,12 @@ export interface Product {
   fullDescription: string
   standardSizes: string[]
   image: string
+  cardImage?: string
   detailImage?: string
+  galleryImages?: Array<{
+    src: string
+    alt: string
+  }>
   specs: {
     voltage: string
     capacity: string
@@ -127,7 +132,14 @@ export const products: Product[] = [
     fullDescription: '油浸式配电变压器专为公用电力配电网络设计，广泛应用于住宅区、商业开发项目、工业园区和城市配电系统。',
     standardSizes: ['30 kVA', '50 kVA', '100 kVA', '160 kVA', '250 kVA', '400 kVA', '630 kVA', '1000 kVA', '2500 kVA'],
     image: '/images/products/oil-immersed-distribution-transformer.webp',
+    cardImage: '/images/products/oil-immersed-distribution-transformer.webp',
     detailImage: '/images/products/oil-immersed-distribution-transformer.webp',
+    galleryImages: [
+      {
+        src: '/images/gallery-07.jpg',
+        alt: 'Oil-immersed distribution transformers in the finished product yard',
+      },
+    ],
     specs: {
       voltage: '6–11 kV',
       capacity: '30–2500 kVA',
@@ -221,7 +233,18 @@ export const products: Product[] = [
     fullDescription: '干式变压器采用空气作为冷却介质，无需使用油液。适用于商业建筑、医院和数据中心等室内应用场所。',
     standardSizes: ['125 kVA', '250 kVA', '500 kVA', '1000 kVA', '1600 kVA', '2500 kVA'],
     image: '/images/products/dry-type-transformer.webp',
+    cardImage: '/images/products/dry-type-transformer.webp',
     detailImage: '/images/products/dry-type-transformer.webp',
+    galleryImages: [
+      {
+        src: '/images/dry-transformer-workshop.jpg',
+        alt: 'Dry-type transformers arranged in the production workshop',
+      },
+      {
+        src: '/images/three-dry-type-transformers.jpg',
+        alt: 'Three dry-type transformers on the factory floor',
+      },
+    ],
     specs: {
       voltage: '6–11 kV',
       capacity: '125–2500 kVA',
@@ -311,6 +334,7 @@ export const products: Product[] = [
     fullDescription: '单相柱上式配电变压器用于架空配电线路、农村电气化和末端供电，在用电点实现中压至低压的可靠降压。',
     standardSizes: ['5 kVA', '10 kVA', '25 kVA', '50 kVA', '75 kVA', '100 kVA', '167 kVA'],
     image: '/images/products/pole-mounted-transformer.webp',
+    cardImage: '/images/products/pole-mounted-transformer.webp',
     detailImage: '/images/products/pole-mounted-transformer.webp',
     specs: {
       voltage: 'Project-specific primary / 120/240 V secondary',
@@ -382,7 +406,14 @@ export const products: Product[] = [
     fullDescription: '电力变压器广泛应用于工业工厂、公用电网、变电站和新能源项目。油浸式绝缘与冷却结构适合中高容量连续运行场景。',
     standardSizes: [],
     image: '/images/products/power-transformer.webp',
+    cardImage: '/images/products/power-transformer.webp',
     detailImage: '/images/products/power-transformer.webp',
+    galleryImages: [
+      {
+        src: '/images/gallery-04.jpg',
+        alt: 'Large oil-immersed power transformers inside the workshop',
+      },
+    ],
     specs: {
       voltage: 'Customized according to project requirements',
       capacity: 'Customized according to project requirements',
@@ -437,7 +468,14 @@ export const products: Product[] = [
     fullDescription: '本产品页面展示 110 kV 三绕组有载调压电力变压器的典型参考范围，最终配置以项目技术协议和确认图纸为准。',
     standardSizes: ['6.3 MVA', '10 MVA', '16 MVA', '25 MVA', '40 MVA', '63 MVA'],
     image: '/images/products/high-voltage-power-transformer.webp',
+    cardImage: '/images/products/high-voltage-power-transformer.webp',
     detailImage: '/images/products/high-voltage-power-transformer.webp',
+    galleryImages: [
+      {
+        src: '/images/high-voltage.jpg',
+        alt: 'Installed high-voltage power transformer with radiators and bushings',
+      },
+    ],
     specs: {
       voltage: '110 kV',
       capacity: '6.3–63 MVA',
@@ -507,7 +545,14 @@ export const products: Product[] = [
     fullDescription: '箱式变电站将高压开关设备、配电变压器和低压配电系统集成在紧凑的户外防护外壳内，安装快捷、占地面积小，适用于工业园区、商业建筑、基础设施和新能源项目。',
     standardSizes: ['315 kVA', '500 kVA', '630 kVA', '800 kVA', '1000 kVA', '1250 kVA', '1600 kVA'],
     image: '/images/products/compact-substation.webp',
+    cardImage: '/images/products/compact-substation.webp',
     detailImage: '/images/products/compact-substation.webp',
+    galleryImages: [
+      {
+        src: '/images/gallery-05.jpg',
+        alt: 'Compact substations lined up in the production workshop',
+      },
+    ],
     specs: {
       voltage: '6–35 kV / 0.4 kV',
       capacity: '315–2500 kVA',

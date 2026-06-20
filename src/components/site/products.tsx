@@ -39,7 +39,7 @@ export function Products() {
               <a href={`/products/${product.id}`} className="flex h-full flex-col">
                 <div className="relative aspect-[4/3] overflow-hidden bg-white p-2">
                   <img
-                    src={product.image}
+                    src={product.cardImage ?? product.image}
                     alt={product.titleEn ?? product.title}
                     className="block h-full w-full object-contain object-center transition-transform duration-300 group-hover:scale-105"
                   />

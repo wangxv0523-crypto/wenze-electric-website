@@ -14,8 +14,11 @@ import {
   Settings,
   Sun,
   Wind,
+  X,
   Zap,
+  ZoomIn,
 } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { ProductInquiryForm } from '@/components/site/product-inquiry-form'
 import { getProductBySlug, type Product } from '@/lib/products-data'
@@ -30,6 +33,15 @@ const iconMap = {
   box: Box,
   radio: Radio,
   sun: Sun,
+}
+
+const primaryImageAlt: Record<string, string> = {
+  'oil-immersed-distribution-transformer': 'Oil-immersed distribution transformer front view',
+  'dry-type-transformer': 'Dry-type transformer front view with resin-cast windings',
+  'pole-mounted-transformer': 'Single-phase pole-mounted transformer front view',
+  'power-transformer': 'Oil-immersed power transformer front and side view',
+  'high-voltage-power-transformer': 'High-voltage power transformer with bushings and radiator bank',
+  'compact-substation': 'Compact substation exterior and transformer compartment view',
 }
 
 function getWhatsAppMessage(productName: string): string {
@@ -55,19 +67,101 @@ export function ProductDetail({ product }: { product: ProductData }) {
     .map((slug) => getProductBySlug(slug))
     .filter((related): related is Product => Boolean(related && related.id !== product.id))
     .slice(0, 3)
+  const mainImage = {
+    src: product.detailImage ?? product.image,
+    alt: primaryImageAlt[product.id] ?? `${productName} product view`,
+  }
+  const productImages = [mainImage, ...(product.galleryImages ?? [])]
+    .filter((image, index, images) => images.findIndex((candidate) => candidate.src === image.src) === index)
+    .slice(0, 6)
+  const [selectedImage, setSelectedImage] = useState(mainImage)
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false)
+
+  useEffect(() => {
+    setSelectedImage(mainImage)
+    setIsLightboxOpen(false)
+  }, [mainImage.src, mainImage.alt])
+
+  useEffect(() => {
+    if (!isLightboxOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsLightboxOpen(false)
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isLightboxOpen])
 
   return (
     <main className="min-h-screen bg-background">
-      {/* Hero: existing 40/60 two-column layout */}
+      {/* Hero: balanced image and product information columns */}
       <section className="py-10 md:py-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-start gap-10 lg:flex-row">
-            <div className="w-full shrink-0 space-y-6 lg:w-[40%]">
-              <img
-                src={product.detailImage ?? product.image}
-                alt={productName}
-                className="aspect-[4/3] w-full rounded-lg bg-white object-contain object-center p-6"
-              />
+        <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,48fr)_minmax(0,52fr)]">
+            <div className="w-full min-w-0 space-y-6">
+              <div className="mx-auto w-full max-w-[680px]">
+                <button
+                  type="button"
+                  onClick={() => setIsLightboxOpen(true)}
+                  className="group relative block aspect-[4/3] w-full overflow-hidden rounded-lg border border-border bg-white shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  aria-label={`Open larger view of ${selectedImage.alt}`}
+                >
+                  <img
+                    src={selectedImage.src}
+                    alt={selectedImage.alt}
+                    width={1600}
+                    height={1200}
+                    decoding="async"
+                    fetchPriority="high"
+                    className="h-full w-full object-contain object-center"
+                  />
+                  <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-md bg-primary/90 px-3 py-2 text-xs font-semibold text-white opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                    <ZoomIn className="h-4 w-4" />
+                    Enlarge
+                  </span>
+                </button>
+
+                {productImages.length > 1 && (
+                  <div
+                    className="mt-3 flex max-w-full gap-3 overflow-x-auto px-0.5 pb-2"
+                    aria-label={`${productName} image gallery`}
+                  >
+                    {productImages.map((image, index) => {
+                      const isSelected = image.src === selectedImage.src
+
+                      return (
+                        <button
+                          key={image.src}
+                          type="button"
+                          onClick={() => setSelectedImage(image)}
+                          className={`aspect-[4/3] w-24 shrink-0 overflow-hidden rounded-md border-2 bg-white p-1 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:w-28 ${
+                            isSelected ? 'border-primary' : 'border-border hover:border-primary/50'
+                          }`}
+                          aria-label={`Show image ${index + 1}: ${image.alt}`}
+                          aria-pressed={isSelected}
+                        >
+                          <img
+                            src={image.src}
+                            alt=""
+                            width={160}
+                            height={120}
+                            loading="lazy"
+                            decoding="async"
+                            className="h-full w-full object-contain object-center"
+                          />
+                        </button>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
 
               {product.productDescription && (
                 <div>
@@ -94,7 +188,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
               )}
             </div>
 
-            <div className="w-full space-y-5 lg:w-[60%]">
+            <div className="w-full min-w-0 space-y-5">
               <nav className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground" aria-label="Breadcrumb">
                 <a href="/" className="transition-colors hover:text-primary">Home</a>
                 <span>/</span>
@@ -292,7 +386,15 @@ export function ProductDetail({ product }: { product: ProductData }) {
                   className="group overflow-hidden rounded-xl border border-border bg-background transition-shadow hover:shadow-md"
                 >
                   <div className="aspect-[4/3] bg-white p-4">
-                    <img src={related.image} alt={related.titleEn ?? related.title} className="h-full w-full object-contain object-center" />
+                    <img
+                      src={related.cardImage ?? related.image}
+                      alt={`${related.titleEn ?? related.title} product view`}
+                      width={1600}
+                      height={1200}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-contain object-center"
+                    />
                   </div>
                   <div className="p-5">
                     <h3 className="font-bold text-primary">{related.titleEn ?? related.title}</h3>
@@ -351,6 +453,40 @@ export function ProductDetail({ product }: { product: ProductData }) {
           </div>
         </div>
       </section>
+
+      {isLightboxOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/90 p-4 sm:p-8"
+          onClick={() => setIsLightboxOpen(false)}
+          role="presentation"
+        >
+          <div
+            className="relative flex max-h-full w-full max-w-6xl items-center justify-center"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${productName} enlarged image`}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setIsLightboxOpen(false)}
+              autoFocus
+              className="absolute right-0 top-0 z-10 inline-flex h-11 w-11 -translate-y-2 items-center justify-center rounded-full bg-white text-primary shadow-lg outline-none hover:bg-secondary focus-visible:ring-2 focus-visible:ring-white sm:right-2 sm:top-2 sm:translate-y-0"
+              aria-label="Close enlarged image"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              width={1600}
+              height={1200}
+              decoding="async"
+              className="max-h-[88vh] max-w-full rounded-lg bg-white object-contain object-center shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
     </main>
   )
 }
