@@ -4,31 +4,31 @@ import { ChevronDown, HelpCircle } from 'lucide-react'
 const faqs = [
   {
     question: 'What types of power transformers does Wenze Electric manufacture?',
-    answer: 'Wenze Electric manufactures six main types of power transformers: oil immersed transformers (S13 series, 30–2500kVA), dry type transformers (SCB12/SCB13 series, 125–2500kVA), distribution transformers (10kV–35kV), high voltage power transformers (110kV–220kV, 6.3–63MVA), pole mounted transformers (5–167kVA), and renewable energy transformers for solar PV and wind power applications.',
+    answer: 'The current product range includes oil immersed distribution transformers, dry type transformers, pole mounted transformers, power transformers, high voltage power transformers and compact substations. Final ratings and configurations are project-specific.',
   },
   {
-    question: 'What international standards do your transformers comply with?',
-    answer: 'All Wenze Electric transformers comply with IEC 60076 (power transformers), IEC 60076-11 (dry type transformers), and ANSI/IEEE C57 standards. We also comply with Chinese national standard GB/T 6451. Third-party inspection by SGS, Bureau Veritas (BV), or TÜV is available upon request.',
+    question: 'Which standards can be applied to a transformer project?',
+    answer: 'Products can be designed according to applicable IEC, ANSI / IEEE, GB/T or customer requirements. The final standards, deviations and test scope must be confirmed in the approved technical agreement.',
   },
   {
     question: 'What is the voltage and capacity range available?',
-    answer: 'Our standard voltage range is 0.4kV to 220kV. Capacity ranges from 30kVA (distribution transformers) up to 100MVA (high voltage power transformers). Custom voltage ratios and non-standard capacities are available for special projects.',
+    answer: 'Voltage and capacity depend on the selected product and project requirements. Please provide the required primary voltage, secondary voltage, capacity, frequency and installation conditions for review.',
   },
   {
     question: 'Do you offer customized transformer solutions?',
-    answer: 'Yes. We offer full custom engineering for non-standard applications including special tap ranges (±2×2.5% to ±8×1.25%), tropical insulation for humid climates, altitude derating for installations above 1,000m, ONAN/ONAF/OFAF cooling configurations, special impedance values, and dual-voltage secondary windings.',
+    answer: 'Project-specific voltage ratios, tap ranges, winding conductors, cooling methods, enclosure requirements and accessories can be reviewed. The final configuration is subject to technical confirmation.',
   },
   {
-    question: 'Which countries do you export transformers to?',
-    answer: 'Wenze Electric exports to over 30 countries, with active markets in Southeast Asia (Vietnam, Indonesia, Philippines, Malaysia, Thailand), Middle East (Saudi Arabia, UAE, Iraq, Jordan), Africa (Nigeria, Kenya, Ethiopia, South Africa), and South America (Brazil, Peru, Chile). We handle all export documentation including certificates of origin, packing lists, and HS code declarations.',
+    question: 'What information is needed for an export project?',
+    answer: 'Please provide the destination country, transport conditions, packing requirements and any required shipping documents. The final documentation scope is subject to contract requirements.',
   },
   {
     question: 'What is your typical lead time and minimum order quantity?',
-    answer: 'Standard lead time for distribution transformers is 4–6 weeks. High voltage transformers typically require 8–12 weeks. There is no strict minimum order quantity — we supply single units for replacement orders as well as bulk orders for large projects. Please contact us with your specifications for an accurate delivery schedule.',
+    answer: 'Lead time and order quantity depend on the product configuration, material requirements, testing scope and production schedule. Please submit the project specification and required delivery date for review.',
   },
   {
     question: 'What quality tests are performed before shipment?',
-    answer: 'Every transformer undergoes factory acceptance testing (FAT) including: winding resistance measurement, voltage ratio and polarity test, no-load loss and current measurement, load loss and impedance voltage test, induced voltage test, and dielectric withstand test. Type tests (lightning impulse, temperature rise, short-circuit withstand) are available on request.',
+    answer: 'Routine and additional test items are defined by the applicable standard, product design and approved inspection plan. The required witness or third-party inspection scope should be stated in the inquiry.',
   },
 ]
 
@@ -60,7 +60,7 @@ export function FAQ() {
             Frequently Asked Questions
           </h2>
           <p className="text-muted-foreground text-lg">
-            Common questions about our power transformers, certifications, and ordering process
+            Common questions about transformer selection, standards and the inquiry process
           </p>
         </div>
 

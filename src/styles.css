@@ -87,3 +87,19 @@
   * { @apply border-border outline-ring/50; }
   body { @apply bg-background text-foreground antialiased; font-family: var(--font-sans); }
 }
+
+@keyframes gallery-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 0.625rem)); }
+}
+
+.gallery-marquee {
+  animation: gallery-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-marquee {
+    animation: none;
+  }
+}

@@ -3,17 +3,17 @@ import { BrandLogo } from '@/components/site/brand-logo'
 
 const navigation = {
   products: [
-    { name: 'Oil Immersed Transformers', href: '/products/oil-immersed-transformer' },
-    { name: 'Dry Type Transformers', href: '/products/dry-type-transformer' },
-    { name: 'Distribution Transformers', href: '/products/distribution-transformer' },
-    { name: 'High Voltage Power Transformers', href: '/products/high-voltage-power-transformer' },
-    { name: 'Pole Mounted Transformers', href: '/products/pole-mounted-transformer' },
-    { name: 'Renewable Energy Transformers', href: '/products/renewable-energy-transformer' },
+    { name: 'Oil Immersed Distribution Transformer', href: '/products/oil-immersed-distribution-transformer' },
+    { name: 'Dry Type Transformer', href: '/products/dry-type-transformer' },
+    { name: 'Pole Mounted Transformer', href: '/products/pole-mounted-transformer' },
+    { name: 'Power Transformer', href: '/products/power-transformer' },
+    { name: 'High Voltage Power Transformer', href: '/products/high-voltage-power-transformer' },
+    { name: 'Compact Substation', href: '/products/compact-substation' },
   ],
   company: [
     { name: 'About Us', href: '#about' },
     { name: 'Manufacturing Capability', href: '#about' },
-    { name: 'Quality & Certifications', href: '#capabilities' },
+    { name: 'Quality & Standards', href: '#capabilities' },
     { name: 'Contact Us', href: '#contact' },
   ],
   markets: [
@@ -49,7 +49,7 @@ export function Footer() {
             </a>
             <p className="text-white/50 text-xs mb-1">山东文则电气有限公司</p>
             <p className="text-white/70 leading-relaxed mb-6 max-w-sm text-sm">
-              Professional power transformer manufacturer in Shandong, China. Oil immersed, dry type, distribution, high voltage and renewable energy transformers. IEC & ANSI certified. Exported to 30+ countries.
+              Power transformer manufacturer in Shandong, China. Products are configured according to approved project specifications and applicable technical requirements.
             </p>
 
             <div className="space-y-3">
@@ -86,7 +86,7 @@ export function Footer() {
                 <MessageCircle className="w-5 h-5" />
                 Chat on WhatsApp
               </a>
-              <p className="text-white/50 text-xs mt-2">Response within 24 hours</p>
+              <p className="text-white/50 text-xs mt-2">Send product and project requirements for review</p>
             </div>
           </div>
 
@@ -128,22 +128,22 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Certifications */}
+          {/* Standards */}
           <div>
-            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Certifications</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Standards & Requirements</h3>
             <ul className="space-y-2 text-white/70 text-sm">
-              <li>IEC 60076 (Power Transformers)</li>
-              <li>IEC 60076-11 (Dry Type)</li>
-              <li>ANSI / IEEE C57</li>
-              <li>ISO 9001 Quality System</li>
-              <li>GB/T 6451 (China Standard)</li>
-              <li>3rd Party: SGS / BV / TÜV</li>
+              <li>Applicable IEC 60076 requirements</li>
+              <li>Applicable IEC 60076-11 requirements</li>
+              <li>Applicable ANSI / IEEE C57 requirements</li>
+              <li>Project-specific technical agreement</li>
+              <li>Inspection scope by agreed test plan</li>
             </ul>
             <h3 className="font-semibold text-white mb-4 mt-8 text-sm uppercase tracking-wide">Quick Links</h3>
             <ul className="space-y-2">
               <li><a href="#contact" className="text-white/70 hover:text-white transition-colors text-sm">Request a Quote</a></li>
               <li><a href="#products" className="text-white/70 hover:text-white transition-colors text-sm">Technical Specs</a></li>
               <li><a href="#capabilities" className="text-white/70 hover:text-white transition-colors text-sm">Engineering Support</a></li>
+              <li><a href="/privacy-policy" className="text-white/70 hover:text-white transition-colors text-sm">Privacy Policy</a></li>
             </ul>
           </div>
         </div>
@@ -152,7 +152,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/50 text-sm">
             <p>© {new Date().getFullYear()} 文则电气 Wenze Electric (Shandong Wenze Electric Co., Ltd.). All rights reserved.</p>
-            <p>Power Transformer Manufacturer · Shandong, China · IEC & ANSI Certified</p>
+            <p>Power Transformer Manufacturer · Shandong, China · Project-Specific Engineering</p>
           </div>
         </div>
       </div>

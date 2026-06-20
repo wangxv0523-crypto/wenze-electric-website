@@ -1,11 +1,11 @@
 import { Award, CheckCircle, Shield, FileCheck } from 'lucide-react'
 
-const certifications = [
+const standards = [
   {
     name: 'IEC 60076',
     fullName: 'Power Transformers',
     body: 'International Electrotechnical Commission',
-    description: 'International standard for power transformers covering rating, testing, and performance requirements.',
+    description: 'Reference standard for power transformer rating, testing and performance requirements when applicable to the project.',
     icon: Shield,
     color: 'bg-blue-50 border-blue-200',
     iconColor: 'text-blue-600',
@@ -14,7 +14,7 @@ const certifications = [
     name: 'IEC 60076-11',
     fullName: 'Dry-Type Transformers',
     body: 'International Electrotechnical Commission',
-    description: 'Standard for dry-type power transformers covering fire-safe cast resin and open wound designs.',
+    description: 'Reference standard for dry-type transformer requirements when specified in the approved project documents.',
     icon: Shield,
     color: 'bg-blue-50 border-blue-200',
     iconColor: 'text-blue-600',
@@ -23,16 +23,16 @@ const certifications = [
     name: 'ANSI / IEEE C57',
     fullName: 'Power Transformers',
     body: 'American National Standards Institute',
-    description: 'North American standard for power transformers, widely required for US and Middle East projects.',
+    description: 'North American transformer requirements can be reviewed when they are included in the project specification.',
     icon: Award,
     color: 'bg-red-50 border-red-200',
     iconColor: 'text-red-600',
   },
   {
-    name: 'ISO 9001',
-    fullName: 'Quality Management System',
-    body: 'International Organization for Standardization',
-    description: 'Quality management system certification covering design, production, testing and after-sales service.',
+    name: 'Project Specification',
+    fullName: 'Approved Technical Agreement',
+    body: 'Customer and Project Requirements',
+    description: 'Final design, inspection and document scope is defined by the approved technical agreement and contract.',
     icon: CheckCircle,
     color: 'bg-green-50 border-green-200',
     iconColor: 'text-green-600',
@@ -48,9 +48,9 @@ const certifications = [
   },
   {
     name: '3rd Party Inspection',
-    fullName: 'SGS / BV / TÜV Available',
+    fullName: 'Contract-Specified Inspection',
     body: 'Independent Testing Bodies',
-    description: 'Third-party factory inspection and testing available upon request. SGS, Bureau Veritas, and TÜV accepted.',
+    description: 'Independent inspection requirements may be reviewed when they are included in the agreed contract scope.',
     icon: CheckCircle,
     color: 'bg-purple-50 border-purple-200',
     iconColor: 'text-purple-600',
@@ -81,16 +81,16 @@ export function Certifications() {
             <span className="text-sm text-muted-foreground font-medium uppercase tracking-wide">Quality Assurance</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-            Certifications & Standards
+            Standards & Testing
           </h2>
           <p className="text-muted-foreground text-lg">
-            All Wenze Electric transformers are manufactured and tested in compliance with international standards
+            Products can be designed and tested against applicable standards and the approved project specification
           </p>
         </div>
 
         {/* Certification Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {certifications.map((cert) => (
+          {standards.map((cert) => (
             <div key={cert.name} className={`rounded-xl border p-6 ${cert.color}`}>
               <div className="flex items-start gap-4">
                 <div className={`w-10 h-10 rounded-lg bg-white flex items-center justify-center shrink-0 shadow-sm`}>
@@ -122,8 +122,7 @@ export function Certifications() {
             ))}
           </div>
           <p className="text-xs text-muted-foreground mt-6 pt-4 border-t border-border">
-            * Type tests (lightning impulse, temperature rise, short-circuit withstand) are available upon request at additional cost.
-            Third-party witness inspection by SGS, Bureau Veritas, or TÜV can be arranged.
+            * Test items, witness requirements and any additional test scope must be confirmed in the technical agreement and contract.
           </p>
         </div>
       </div>

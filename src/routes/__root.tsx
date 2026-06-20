@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { UnifiedHeader } from "../components/site/unified-header";
+import { absoluteUrl, serializeJsonLd, siteConfig } from "../lib/site-config";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -19,11 +20,10 @@ const organizationSchema = {
   name: "Wenze Electric",
   legalName: "Shandong Wenze Electric Co., Ltd.",
   alternateName: ["文则电气", "Wenzepower"],
-  url: "https://www.wenzepower.com",
-  logo: "https://www.wenzepower.com/wenze-logo-mark.png",
+  url: siteConfig.url,
+  logo: absoluteUrl(siteConfig.logoPath),
   description:
-    "Professional power transformer manufacturer in Shandong, China. Products include oil immersed transformers, dry type transformers, distribution transformers, high voltage power transformers, [...]",
-  foundingDate: "2009",
+    "Power transformer manufacturer in Shandong, China, supplying project-specific transformer and compact substation solutions.",
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -40,17 +40,6 @@ const organizationSchema = {
   },
   sameAs: ["https://wa.me/8615905342475"],
 };
-
-/**
- * Safely serialize JSON to prevent XSS attacks
- * Escapes HTML special characters that could break out of JSON context
- */
-function safeJsonStringify(obj: unknown): string {
-  return JSON.stringify(obj)
-    .replace(/</g, "\\u003c")
-    .replace(/>/g, "\\u003e")
-    .replace(/&/g, "\\u0026");
-}
 
 function NotFoundComponent() {
   return (
@@ -118,7 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Power Transformer Manufacturer China | Wenze Electric | 文则电气" },
-      { name: "description", content: "Wenze Electric (Shandong China) manufactures oil immersed, dry type, distribution, high voltage and renewable energy transformers. IEC 60076 & ANSI C57 certified." },
+      { name: "description", content: "Wenze Electric manufactures oil immersed, dry type, pole mounted and power transformers, plus compact substations, for project-specific requirements." },
       { name: "author", content: "Wenze Electric" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Wenze Electric" },
@@ -139,7 +128,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       {
         type: "application/ld+json",
-        children: safeJsonStringify(organizationSchema),
+        children: serializeJsonLd(organizationSchema),
       },
     ],
   }),

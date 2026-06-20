@@ -36,7 +36,7 @@ export function TrustStatement() {
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-5">
               <div className="text-accent font-bold text-xl mb-1">Global Reach</div>
-              <p className="text-white/70 text-sm">Export experience to 30+ countries worldwide</p>
+              <p className="text-white/70 text-sm">Project documentation and packing reviewed by destination</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-5">
               <div className="text-accent font-bold text-xl mb-1">Long-term Support</div>

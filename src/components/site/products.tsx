@@ -30,14 +30,14 @@ export function Products() {
           </p>
         </div>
 
-        <div className="mx-auto grid max-w-[1080px] gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-[1248px] gap-6 md:grid-cols-2 lg:grid-cols-3">
           {homepageProducts.map((product) => (
             <Card
               key={product.id}
-              className="group mx-auto flex h-full w-full max-w-[320px] overflow-hidden border-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg md:max-w-[330px] lg:max-w-[340px]"
+              className="group mx-auto flex h-full w-full max-w-[360px] overflow-hidden border-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg md:max-w-[380px] lg:max-w-[400px]"
             >
               <a href={`/products/${product.id}`} className="flex h-full flex-col">
-                <div className="relative aspect-[4/3] overflow-hidden bg-white p-4">
+                <div className="relative aspect-[4/3] overflow-hidden bg-white p-2">
                   <img
                     src={product.image}
                     alt={product.titleEn ?? product.title}

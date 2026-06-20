@@ -1,121 +1,123 @@
 import { Button } from '@/components/ui/button'
-import { MessageCircle, FileText, CheckCircle } from 'lucide-react'
+import { CheckCircle, FileText, MessageCircle } from 'lucide-react'
 
 const whatsappMessage = encodeURIComponent(
-`Hello, I'm interested in your transformer products.
+  `Hello, I'm interested in your transformer products.
 
 Please provide a quote for:
-1. Transformer Type: 
-2. Voltage (kV): 
-3. Capacity (kVA): 
-4. Quantity: 
-5. Country/Project Location: 
+1. Transformer Type:
+2. Voltage (kV):
+3. Capacity (kVA):
+4. Quantity:
+5. Country/Project Location:
 
-Thank you.`
+Thank you.`,
 )
+
+const trustPoints = [
+  'Designed according to applicable IEC or ANSI requirements',
+  'Voltage and capacity configured to project specifications',
+  'Inspection and testing scope confirmed for each project',
+]
+
+const specifications = [
+  ['Voltage', 'Project-specific'],
+  ['Capacity', 'Project-specific'],
+  ['Frequency', '50 Hz / 60 Hz options'],
+  ['Standard', 'Applicable IEC / ANSI requirements'],
+]
+
+const statistics = [
+  ['6', 'Product Categories'],
+  ['50/60 Hz', 'Frequency Options'],
+  ['IEC / ANSI', 'Project Requirements'],
+  ['FAT', 'By Agreed Test Plan'],
+]
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[720px] items-center overflow-hidden pb-16 pt-28 lg:h-[720px]">
-      {/* Background Image with Overlay */}
+    <section className="relative min-h-[780px] overflow-hidden py-12 sm:py-14 lg:flex lg:h-[780px] lg:items-center lg:py-10">
       <div className="absolute inset-0 z-0">
         <img
           src="/images/substation-hero.jpg"
           alt=""
-          className="absolute inset-0 h-full w-full scale-[1.15] object-cover object-[62%_72%] md:scale-100 md:object-center"
+          className="absolute inset-0 h-full w-full scale-[1.15] object-cover object-[62%_72%] md:scale-[1.06] md:object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061a36]/95 via-[#0a2a55]/75 to-[#061a36]/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061a36]/95 via-[#0a2a55]/78 to-[#061a36]/45" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded bg-white/15 backdrop-blur-sm border border-white/20 text-white text-sm font-medium mb-6">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl">
+          <div className="mb-5 inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
             China Power Transformer Manufacturer & Exporter
           </div>
 
-          {/* H1 - SEO optimized */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight text-balance">
+          <h1 className="max-w-4xl text-balance text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
             Reliable Power Transformer Manufacturer from China
           </h1>
 
-          {/* Subheading */}
-          <p className="mt-6 text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl text-pretty">
-            Wenze Electric manufactures and exports oil immersed transformers, dry type transformers, distribution transformers, and high voltage power transformers. IEC & ANSI certified. Shipped to 30+ countries.
+          <p className="mt-5 max-w-3xl text-pretty text-base leading-relaxed text-white/85 sm:text-lg">
+            Wenze Electric supplies oil immersed transformers, dry type transformers, pole mounted transformers,
+            power transformers and compact substations for utility, industrial and infrastructure projects.
           </p>
 
-          {/* Key trust points */}
-          <div className="mt-6 flex flex-col gap-2">
-            {[
-              'IEC 60076 & ANSI C57 certified transformer manufacturer',
-              'Voltage range: 0.4kV – 220kV | Capacity: 30kVA – 100MVA',
-              'Factory acceptance testing (FAT) for every unit',
-            ].map((point) => (
-              <div key={point} className="flex items-center gap-2 text-white/90 text-sm">
-                <CheckCircle className="w-4 h-4 text-green-400 shrink-0" />
+          <div className="mt-5 grid gap-2 sm:grid-cols-2">
+            {trustPoints.map((point) => (
+              <div key={point} className="flex items-center gap-2 text-sm font-medium text-white/90">
+                <CheckCircle className="h-4 w-4 shrink-0 text-emerald-400" />
                 <span>{point}</span>
               </div>
             ))}
           </div>
 
-          {/* Key Specs */}
-          <div className="mt-8 inline-flex flex-wrap gap-x-6 gap-y-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-5 py-3">
-            <div className="flex items-center gap-2 text-white text-sm">
-              <span className="text-white/50 font-medium">Voltage:</span>
-              <span className="font-semibold">0.4kV – 220kV</span>
-            </div>
-            <div className="w-px h-4 bg-white/20 self-center hidden sm:block" />
-            <div className="flex items-center gap-2 text-white text-sm">
-              <span className="text-white/50 font-medium">Capacity:</span>
-              <span className="font-semibold">30kVA – 100MVA</span>
-            </div>
-            <div className="w-px h-4 bg-white/20 self-center hidden sm:block" />
-            <div className="flex items-center gap-2 text-white text-sm">
-              <span className="text-white/50 font-medium">Frequency:</span>
-              <span className="font-semibold">50Hz / 60Hz</span>
-            </div>
-            <div className="w-px h-4 bg-white/20 self-center hidden sm:block" />
-            <div className="flex items-center gap-2 text-white text-sm">
-              <span className="text-white/50 font-medium">Standard:</span>
-              <span className="font-semibold">IEC 60076 / ANSI C57</span>
-            </div>
+          <div className="mt-6 grid overflow-hidden rounded-xl border border-white/25 bg-white/10 shadow-lg backdrop-blur-md sm:grid-cols-2 lg:grid-cols-4">
+            {specifications.map(([label, value], index) => (
+              <div
+                key={label}
+                className={`px-5 py-3.5 ${index > 0 ? 'border-t border-white/15 sm:border-t-0 sm:border-l' : ''}`}
+              >
+                <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/55">{label}</div>
+                <div className="mt-1 text-sm font-bold text-white">{value}</div>
+              </div>
+            ))}
           </div>
 
-          {/* CTA Buttons */}
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-base px-8 h-12">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 bg-accent px-8 text-base font-semibold text-accent-foreground hover:bg-accent/90"
+            >
               <a href="#contact">
-                <FileText className="w-5 h-5 mr-2" />
+                <FileText className="mr-2 h-5 w-5" />
                 Get a Free Quote
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20 font-semibold text-base px-8 h-12 backdrop-blur-sm">
-              <a href={`https://wa.me/8615905342475?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="w-5 h-5 mr-2" />
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="h-12 border-white/30 bg-white/10 px-8 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/20"
+            >
+              <a
+                href={`https://wa.me/8615905342475?text=${whatsappMessage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageCircle className="mr-2 h-5 w-5" />
                 WhatsApp Us Now
               </a>
             </Button>
           </div>
 
-          {/* Trust Indicators */}
-          <div className="mt-12 pt-8 border-t border-white/20">
-            <div className="flex flex-wrap gap-8 items-center">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">15+</div>
-                <div className="text-white/70 text-sm">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">1,000+</div>
-                <div className="text-white/70 text-sm">Units/Year</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">30+</div>
-                <div className="text-white/70 text-sm">Countries Served</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">IEC</div>
-                <div className="text-white/70 text-sm">& ANSI Certified</div>
-              </div>
+          <div className="mt-6 border-t border-white/20 pt-5">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:flex sm:items-center sm:gap-10">
+              {statistics.map(([value, label]) => (
+                <div key={value} className="min-w-[110px] text-left">
+                  <div className="text-2xl font-bold leading-none text-white sm:text-3xl">{value}</div>
+                  <div className="mt-1 text-xs font-medium text-white/65 sm:text-sm">{label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

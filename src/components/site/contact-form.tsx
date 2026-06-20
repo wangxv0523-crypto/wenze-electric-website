@@ -6,13 +6,12 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Send, Mail, Phone, MapPin, MessageCircle, Clock, AlertCircle } from 'lucide-react'
+import { products } from '@/lib/products-data'
 
 const productTypes = [
-  'Oil-Immersed Transformer',
-  'Dry-Type Transformer',
-  'Distribution Transformer',
-  'Custom Solution',
-  'Other',
+  ...products.map((product) => ({ label: product.titleEn ?? product.title, value: product.id })),
+  { label: 'Custom Solution', value: 'custom-solution' },
+  { label: 'Other', value: 'other' },
 ]
 
 const countries = [
@@ -110,7 +109,11 @@ export function ContactForm() {
       // Get form ID from environment variable
       const formId = import.meta.env.VITE_FORMSPREE_ID
       if (!formId || formId === 'YOUR_FORM_ID') {
-        setErrorMessage('Form configuration error. Please contact support.')
+        setErrorMessage(
+          import.meta.env.DEV
+            ? 'Development notice: VITE_FORMSPREE_ID is not configured. Please use WhatsApp or email for this preview.'
+            : 'The inquiry form is temporarily unavailable. Please use WhatsApp or email instead.',
+        )
         console.error('VITE_FORMSPREE_ID not configured')
         setIsSubmitting(false)
         return
@@ -150,13 +153,13 @@ export function ContactForm() {
             <div className="text-center md:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 text-accent text-sm font-semibold mb-3">
                 <Clock className="w-4 h-4" />
-                Quick Response Promise
+                Project Inquiry Support
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                Send us your project requirements and receive a quotation within 24 hours.
+                Send us your project requirements for technical and commercial review.
               </h3>
               <p className="text-white/70 text-sm">
-                Our technical team reviews each inquiry and provides detailed pricing and specifications.
+                Each inquiry is reviewed against the information and specifications provided.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
@@ -237,7 +240,7 @@ export function ContactForm() {
                   </div>
                   <div>
                     <p className="font-medium text-foreground text-sm">Response Time</p>
-                    <p className="text-muted-foreground">Within 24 hours</p>
+                    <p className="text-muted-foreground">Based on project scope</p>
                   </div>
                 </div>
 
@@ -304,7 +307,7 @@ export function ContactForm() {
           <div className="lg:col-span-3">
             <div className="bg-background rounded-2xl p-8 border border-border">
               <h3 className="text-xl font-semibold text-foreground mb-2">Submit Your Inquiry</h3>
-              <p className="text-sm text-muted-foreground mb-6">Fill in your project details and our team will respond within 24 hours.</p>
+              <p className="text-sm text-muted-foreground mb-6">Fill in your project details so the technical and commercial requirements can be reviewed.</p>
               
               {submitted ? (
                 <div className="text-center py-12">
@@ -315,7 +318,7 @@ export function ContactForm() {
                   </div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">Thank You!</h3>
                   <p className="text-muted-foreground mb-6">
-                    Your inquiry has been received. Our team will contact you within 24 hours.
+                    Your inquiry has been received and will be reviewed using the information provided.
                   </p>
                   <div className="space-y-3">
                     <Button onClick={() => setSubmitted(false)} variant="outline" className="w-full">
@@ -384,8 +387,8 @@ export function ContactForm() {
                         </SelectTrigger>
                         <SelectContent>
                           {productTypes.map((product) => (
-                            <SelectItem key={product} value={product.toLowerCase().replace(/\s+/g, '-')}>
-                              {product}
+                            <SelectItem key={product.value} value={product.value}>
+                              {product.label}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -427,7 +430,10 @@ export function ContactForm() {
                   </Button>
 
                   <p className="text-xs text-muted-foreground text-center">
-                    By submitting this form, you agree to our privacy policy. We will never share your information with third parties.
+                    By submitting this form, you acknowledge our{' '}
+                    <a href="/privacy-policy" className="font-medium text-primary underline-offset-4 hover:underline">
+                      privacy policy
+                    </a>.
                   </p>
 
                   {/* Secondary WhatsApp CTA */}

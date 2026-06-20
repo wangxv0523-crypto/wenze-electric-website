@@ -3,6 +3,7 @@ import { Footer } from '@/components/site/footer'
 import { WhatsAppButton } from '@/components/site/whatsapp-button'
 import { ProductDetail } from '@/components/site/product-detail'
 import { getProductBySlug } from '@/lib/products-data'
+import { absoluteUrl, serializeJsonLd, siteConfig } from '@/lib/site-config'
 
 const iconNameMap: Record<string, 'droplets' | 'wind' | 'zap' | 'box' | 'radio' | 'sun'> = {
   'oil-immersed-distribution-transformer': 'droplets',
@@ -22,16 +23,43 @@ export const Route = createFileRoute('/products/$slug')({
   head: ({ params }) => {
     const product = getProductBySlug(params.slug)
     if (!product) return { meta: [] }
+    const productName = product.titleEn ?? product.title
+    const productUrl = absoluteUrl(`/products/${product.id}`)
+    const imageUrl = absoluteUrl(product.detailImage ?? product.image)
+    const productSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: productName,
+      description: product.seoDescription,
+      image: imageUrl,
+      brand: { '@type': 'Brand', name: siteConfig.name },
+      category: 'Power transformer and electrical distribution equipment',
+      url: productUrl,
+    }
+    const breadcrumbSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+        { '@type': 'ListItem', position: 2, name: 'Products', item: absoluteUrl('/#products') },
+        { '@type': 'ListItem', position: 3, name: productName, item: productUrl },
+      ],
+    }
     return {
       meta: [
-        { title: `${product.titleEn ?? product.title} Manufacturer China | Wenze Electric` },
-        { name: 'description', content: product.fullDescription },
-        { property: 'og:title', content: `${product.titleEn ?? product.title} | Wenze Electric` },
-        { property: 'og:description', content: product.fullDescription },
-        { property: 'og:image', content: product.detailImage ?? product.image },
-        { property: 'og:url', content: `/products/${product.id}` },
+        { title: `${productName} Manufacturer China | Wenze Electric` },
+        { name: 'description', content: product.seoDescription },
+        { property: 'og:type', content: 'product' },
+        { property: 'og:title', content: `${productName} | Wenze Electric` },
+        { property: 'og:description', content: product.seoDescription },
+        { property: 'og:image', content: imageUrl },
+        { property: 'og:url', content: productUrl },
       ],
-      links: [{ rel: 'canonical', href: `/products/${product.id}` }],
+      links: [{ rel: 'canonical', href: productUrl }],
+      scripts: [
+        { type: 'application/ld+json', children: serializeJsonLd(productSchema) },
+        { type: 'application/ld+json', children: serializeJsonLd(breadcrumbSchema) },
+      ],
     }
   },
   component: ProductPage,
