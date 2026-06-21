@@ -41,7 +41,7 @@ const primaryImageAlt: Record<string, string> = {
   'pole-mounted-transformer': 'Single-phase pole-mounted transformer front view',
   'power-transformer': 'Oil-immersed power transformer front and side view',
   'high-voltage-power-transformer': 'High-voltage power transformer with bushings and radiator bank',
-  'compact-substation': 'Compact substation exterior and transformer compartment view',
+  'compact-substation': 'Compact substations on the factory production line',
 }
 
 function getWhatsAppMessage(productName: string): string {

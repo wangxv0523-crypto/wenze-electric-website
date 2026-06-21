@@ -544,9 +544,9 @@ export const products: Product[] = [
     shortDescription: '集成高压开关、变压器和低压配电单元的一体化箱式变电站。',
     fullDescription: '箱式变电站将高压开关设备、配电变压器和低压配电系统集成在紧凑的户外防护外壳内，安装快捷、占地面积小，适用于工业园区、商业建筑、基础设施和新能源项目。',
     standardSizes: ['315 kVA', '500 kVA', '630 kVA', '800 kVA', '1000 kVA', '1250 kVA', '1600 kVA'],
-    image: '/images/products/compact-substation.webp',
-    cardImage: '/images/products/compact-substation.webp',
-    detailImage: '/images/products/compact-substation.webp',
+    image: '/images/products/compact-substation-workshop.jpg',
+    cardImage: '/images/products/compact-substation-workshop.jpg',
+    detailImage: '/images/products/compact-substation-workshop.jpg',
     galleryImages: [
       {
         src: '/images/gallery-05.jpg',
