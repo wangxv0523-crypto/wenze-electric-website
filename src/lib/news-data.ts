@@ -156,55 +156,67 @@ export const newsItems: NewsItem[] = [
       "Explore aerial views and the site layout of a 100 MW / 200 MWh battery energy storage station designed to support grid stability and energy management.",
   },
   {
-    slug: "100mw-200mwh-battery-energy-storage-station-video",
-    title: "100 MW / 200 MWh Battery Energy Storage Station Video",
+    slug: "220kv-step-up-substation-120mva-main-transformer-energization",
+    title: "220 kV Step-Up Substation 120 MVA Main Transformer Energization",
     excerpt:
-      "Aerial video presenting the overall layout of a utility-scale battery energy storage station, including containerized storage units, electrical equipment areas, internal roads and grid interconnection facilities.",
+      "Video footage captures the energization moment of a 120 MVA main transformer at a 220 kV step-up substation, showing the transformer installation and surrounding high-voltage equipment.",
     publishedAt: "2026-06-21",
     modifiedAt: "2026-06-21",
-    coverImage: "/images/news/100mw-200mwh-battery-energy-storage-station.jpg",
-    coverAlt: "Aerial view of the battery energy storage station featured in the project video",
+    coverImage: "/images/news/220kv-step-up-substation-120mva-main-transformer-energization.jpg",
+    coverAlt: "120 MVA main transformer at a 220 kV step-up substation",
+    coverCaption:
+      "View of the 220 kV step-up substation and the installed 120 MVA main transformer before energization.",
     category: "Project Highlight",
     content: [
       {
         type: "heading",
-        text: "Project Video",
+        text: "Main Transformer Energization Video",
       },
       {
         type: "paragraph",
-        text: "This aerial video provides an overview of the battery energy storage station and its centralized site arrangement.",
+        text: "This video records the moment a 120 MVA main transformer at a 220 kV step-up substation receives power and is energized.",
+      },
+      {
+        type: "list",
+        items: [
+          "Substation Voltage Level: 220 kV",
+          "Main Transformer Capacity: 120 MVA",
+          "Project Stage: Main transformer energization",
+          "Equipment Shown: Main transformer and high-voltage substation equipment",
+        ],
       },
       {
         type: "video",
-        videoUrl: "/videos/news/100mw-200mwh-battery-energy-storage-station.mp4",
-        poster: "/images/news/100mw-200mwh-battery-energy-storage-station.jpg",
-        title: "100 MW / 200 MWh Battery Energy Storage Station Aerial View",
+        videoUrl: "/videos/news/220kv-step-up-substation-120mva-main-transformer-energization.mp4",
+        poster: "/images/news/220kv-step-up-substation-120mva-main-transformer-energization.jpg",
+        title: "220 kV Step-Up Substation 120 MVA Main Transformer Energization",
         description:
-          "Aerial video showing the containerized storage units, electrical equipment areas and grid interconnection facilities at the battery energy storage station.",
+          "Video showing the energization moment of a 120 MVA main transformer at a 220 kV step-up substation.",
         transcript:
-          "The aerial footage presents the overall station arrangement, including rows of containerized battery energy storage units, supporting electrical equipment, internal access roads and the grid interconnection area.",
+          "The footage shows the 220 kV step-up substation, its installed 120 MVA main transformer and surrounding high-voltage equipment during the transformer energization process.",
         uploadDate: "2026-06-21",
-        contentUrl: "/videos/news/100mw-200mwh-battery-energy-storage-station.mp4",
+        contentUrl:
+          "/videos/news/220kv-step-up-substation-120mva-main-transformer-energization.mp4",
+      },
+      {
+        type: "heading",
+        text: "Project Context",
       },
       {
         type: "paragraph",
-        text: "Actual operating functions and performance depend on the final system design, control strategy, grid requirements and project configuration.",
+        text: "Main transformer energization is a key stage in substation commissioning. The operating sequence, protection settings and acceptance requirements are determined by the approved project procedures and grid requirements.",
       },
     ],
-    relatedProductSlugs: [
-      "power-transformer",
-      "high-voltage-power-transformer",
-      "compact-substation",
-    ],
+    relatedProductSlugs: ["high-voltage-power-transformer", "power-transformer"],
     cardButtonLabel: "Watch Video",
-    relatedSectionTitle: "Related Solutions",
+    relatedSectionTitle: "Related Transformer Solutions",
     relatedSectionDescription:
-      "Explore transformer and electrical equipment solutions for battery energy storage, renewable energy and utility power projects.",
+      "Explore power transformer solutions for utility substations, step-up stations and high-voltage power projects.",
     relatedSectionButtonLabel: "View Transformer Solutions",
     inquiryButtonLabel: "Discuss Your Project",
-    seoTitle: "Battery Energy Storage Station Aerial Video | Wenze Electric",
+    seoTitle: "220 kV Substation 120 MVA Transformer Energization | Wenze Electric",
     seoDescription:
-      "Watch an aerial overview of a utility-scale battery energy storage station and its containerized equipment layout and grid interconnection facilities.",
+      "Watch the energization moment of a 120 MVA main transformer at a 220 kV step-up substation and view the installed high-voltage equipment.",
   },
 ];
 
