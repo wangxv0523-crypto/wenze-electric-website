@@ -147,38 +147,6 @@ export function ContactForm() {
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Quick Response Promise Banner */}
-        <div className="bg-primary rounded-xl p-6 md:p-8 mb-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 text-accent text-sm font-semibold mb-3">
-                <Clock className="w-4 h-4" />
-                Project Inquiry Support
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                Send us your project requirements for technical and commercial review.
-              </h3>
-              <p className="text-white/70 text-sm">
-                Each inquiry is reviewed against the information and specifications provided.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-12 px-6">
-                <a href={`https://wa.me/8615905342475?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  WhatsApp Now
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20 font-semibold h-12 px-6">
-                <a href="mailto:sales@wenzepower.com">
-                  <Mail className="w-5 h-5 mr-2" />
-                  Send Email
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-primary tracking-tight text-balance">
