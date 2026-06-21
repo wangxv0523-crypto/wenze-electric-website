@@ -6,6 +6,7 @@ import { Gallery } from '@/components/site/gallery'
 import { Capabilities } from '@/components/site/capabilities'
 import { FAQ } from '@/components/site/faq'
 import { ContactForm } from '@/components/site/contact-form'
+import { CompanyUpdates } from '@/components/site/company-updates'
 import { WhatsAppButton } from '@/components/site/whatsapp-button'
 import { Footer } from '@/components/site/footer'
 
@@ -22,6 +23,7 @@ function HomePage() {
         <About />
         <Gallery />
         <Capabilities />
+        <CompanyUpdates />
         <FAQ />
         <ContactForm />
       </main>
