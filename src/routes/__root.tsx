@@ -17,9 +17,9 @@ import { absoluteUrl, serializeJsonLd, siteConfig } from "../lib/site-config";
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Wenze Electric",
-  legalName: "Shandong Wenze Electric Co., Ltd.",
-  alternateName: ["文则电气", "Wenzepower"],
+  name: siteConfig.name,
+  legalName: siteConfig.legalName,
+  alternateName: ["Wenzepower"],
   url: siteConfig.url,
   logo: absoluteUrl(siteConfig.logoPath),
   description:
@@ -27,9 +27,9 @@ const organizationSchema = {
   contactPoint: [
     {
       "@type": "ContactPoint",
-      telephone: "+86-159-0534-2475",
+      telephone: siteConfig.phone,
       contactType: "sales",
-      email: "sales@wenzepower.com",
+      email: siteConfig.email,
       availableLanguage: ["English", "Chinese"],
     },
   ],
@@ -44,6 +44,8 @@ const organizationSchema = {
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <title>Page Not Found | Wenze Electric</title>
+      <meta name="robots" content="noindex,follow" />
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
@@ -106,8 +108,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Power Transformer Manufacturer China | Wenze Electric | 文则电气" },
-      { name: "description", content: "Wenze Electric manufactures oil immersed, dry type, pole mounted and power transformers, plus compact substations, for project-specific requirements." },
+      { title: "Power Transformer Manufacturer China | Wenze Electric" },
+      {
+        name: "description",
+        content:
+          "Wenze Electric manufactures oil immersed, dry type, pole mounted and power transformers, plus compact substations, for project-specific requirements.",
+      },
       { name: "author", content: "Wenze Electric" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Wenze Electric" },
