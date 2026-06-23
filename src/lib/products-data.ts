@@ -915,6 +915,12 @@ export const products: Product[] = [
     image: "/images/products/pole-mounted-transformer.webp",
     cardImage: "/images/products/pole-mounted-transformer.webp",
     detailImage: "/images/products/pole-mounted-transformer.webp",
+    galleryImages: [
+      {
+        src: "/images/products/pole-mounted-transformers-workshop.jpg",
+        alt: "Pole-mounted transformers arranged in the workshop",
+      },
+    ],
     specs: {
       voltage: "Subject to project specification",
       capacity: "5–167 kVA",
