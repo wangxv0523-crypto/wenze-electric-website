@@ -26,6 +26,7 @@ import {
   getQuickSpecifications,
   type DetailedSpecTable,
   type Product,
+  type QuickSpecification,
 } from "@/lib/products-data";
 
 type IconName = "droplets" | "wind" | "zap" | "box" | "radio" | "sun";
@@ -39,6 +40,35 @@ const iconMap = {
   radio: Radio,
   sun: Sun,
 };
+
+function QuickSpecificationsCard({ rows }: { rows: QuickSpecification[] }) {
+  return (
+    <div className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+      <div className="bg-primary px-4 py-2.5">
+        <h2 className="text-sm font-bold tracking-wider text-white">Quick Specifications</h2>
+      </div>
+      <dl className="grid sm:grid-cols-2 xl:grid-cols-3">
+        {rows.map((row, index) => (
+          <div
+            key={row.label}
+            className={[
+              "border-t border-border px-4 py-2.5 sm:border-r",
+              "sm:[&:nth-child(2n)]:border-r-0 xl:[&:nth-child(2n)]:border-r xl:[&:nth-child(3n)]:border-r-0",
+              index % 2 === 0 ? "bg-white" : "bg-secondary/30",
+            ].join(" ")}
+          >
+            <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              {row.label}
+            </dt>
+            <dd className="mt-1 text-sm font-semibold leading-snug text-foreground">
+              {row.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
 
 const primaryImageAlt: Record<string, string> = {
   "oil-immersed-distribution-transformer": "Oil-immersed distribution transformer front view",
@@ -175,9 +205,60 @@ export function ProductDetail({ product }: { product: ProductData }) {
                   </div>
                 )}
               </div>
+
+              <div className="hidden space-y-5 pt-2 lg:block">
+                <div>
+                  <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    Key Features
+                  </h3>
+                  <ul className="grid gap-2 sm:grid-cols-2">
+                    {product.features.map((feature) => (
+                      <li key={feature.en} className="flex items-start gap-2.5 text-sm">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                        <span className="font-medium text-foreground">{feature.en}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="h-12 bg-accent px-6 font-semibold text-accent-foreground hover:bg-accent/90"
+                  >
+                    <a
+                      href={`https://wa.me/8615905342475?text=${whatsappMessage}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="mr-2 h-5 w-5" />
+                      WhatsApp
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="h-12 border-primary px-6 font-semibold text-primary hover:bg-primary hover:text-white"
+                  >
+                    <a href={emailHref}>
+                      <Mail className="mr-2 h-5 w-5" />
+                      Email Inquiry
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    className="h-12 bg-primary px-6 font-semibold text-white hover:bg-primary/90"
+                  >
+                    <a href="#product-inquiry">Get a Quote</a>
+                  </Button>
+                </div>
+              </div>
             </div>
 
-            <div className="w-full min-w-0 space-y-5">
+            <div className="w-full min-w-0 space-y-4">
               <nav
                 className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground"
                 aria-label="Breadcrumb"
@@ -213,36 +294,15 @@ export function ProductDetail({ product }: { product: ProductData }) {
                 <p className="leading-relaxed text-muted-foreground">{product.fullDescriptionEn}</p>
               </div>
 
-              <div className="overflow-hidden rounded-xl border border-border">
-                <div className="bg-primary px-5 py-3">
-                  <h2 className="text-sm font-bold tracking-wider text-white">
-                    Quick Specifications
-                  </h2>
-                </div>
-                <div className="divide-y divide-border">
-                  {quickSpecifications.map((row, index) => (
-                    <div
-                      key={row.label}
-                      className={`grid gap-1 px-5 py-3 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-4 ${index % 2 === 0 ? "bg-white" : "bg-secondary/30"}`}
-                    >
-                      <span className="text-xs font-semibold text-muted-foreground">
-                        {row.label}
-                      </span>
-                      <span className="min-w-0 text-sm font-semibold text-foreground">
-                        {row.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <QuickSpecificationsCard rows={quickSpecifications} />
 
-              <div>
+              <div className="lg:hidden">
                 <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                   Key Features
                 </h3>
-                <ul className="space-y-2">
+                <ul className="grid gap-2 sm:grid-cols-2">
                   {product.features.map((feature) => (
-                    <li key={feature.en} className="flex items-start gap-3 text-sm">
+                    <li key={feature.en} className="flex items-start gap-2.5 text-sm">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                       <span className="font-medium text-foreground">{feature.en}</span>
                     </li>
@@ -250,7 +310,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
                 </ul>
               </div>
 
-              <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:flex-wrap">
+              <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:flex-wrap lg:hidden">
                 <Button
                   asChild
                   size="lg"
@@ -286,6 +346,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
