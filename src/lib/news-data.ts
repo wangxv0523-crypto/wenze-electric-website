@@ -18,6 +18,8 @@ export type NewsContentBlock =
       src: string;
       alt: string;
       caption?: string;
+      width?: number;
+      height?: number;
     }
   | {
       type: "video";
@@ -55,6 +57,214 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
+  {
+    slug: "overtime-production-export-transformer-shipment-preparation",
+    title: "Overtime Production for Export Transformer Shipment Preparation",
+    excerpt:
+      "Factory photos show overtime production and shipment preparation for export transformer equipment, including transformer assembly areas, winding materials, compact substation sections and finished units organized before packing and delivery coordination.",
+    publishedAt: "2026-06-23",
+    modifiedAt: "2026-06-23",
+    coverImage: "/images/news/overtime-production-export-transformer-shipment-preparation.jpg",
+    coverAlt:
+      "Transformer workshop during overtime production and export shipment preparation",
+    coverCaption:
+      "Workshop view during overtime production and export transformer shipment preparation.",
+    category: "Factory Update",
+    content: [
+      {
+        type: "paragraph",
+        text: "This factory update records overtime production and shipment preparation for export transformer equipment inside the Wenze Electric workshop.",
+      },
+      {
+        type: "paragraph",
+        text: "The images show transformer assembly areas, winding materials, compact substation enclosure sections, finished units and workstations arranged for final checking, packing preparation and delivery coordination.",
+      },
+      {
+        type: "paragraph",
+        text: "These photos are factory media only. They do not identify a customer, destination country, order quantity or confirmed scope of supply. Final shipment information depends on the approved contract and logistics plan.",
+      },
+      {
+        type: "heading",
+        text: "Factory Shipment Preparation",
+      },
+      {
+        type: "paragraph",
+        text: "During peak production periods, equipment and materials are organized by workshop zone to support final inspection preparation, accessory confirmation, packing coordination and outgoing logistics planning.",
+      },
+      {
+        type: "heading",
+        text: "Equipment and Workshop Areas Shown",
+      },
+      {
+        type: "list",
+        items: [
+          "Oil-immersed distribution transformer assembly and finished units",
+          "Dry-type transformer winding and assembly areas",
+          "Winding materials, cable reels and production tooling",
+          "Compact substation enclosure sections",
+          "Workshop lanes arranged for material movement and shipment preparation",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Factory Photo Gallery",
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-01.jpg",
+        alt: "Oil-immersed transformer top cover and bushings during workshop preparation",
+        caption: "Oil-immersed transformer unit prepared in the workshop before shipment coordination.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-02.jpg",
+        alt: "Finished transformer units arranged along a workshop aisle",
+        caption: "Finished transformer units arranged in the workshop production aisle.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-03.jpg",
+        alt: "Rows of oil-immersed transformer units prepared in the workshop",
+        caption: "Oil-immersed transformer units organized for final preparation.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-04.jpg",
+        alt: "Workshop staff working near transformer assembly equipment",
+        caption: "Assembly work area during overtime production preparation.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-05.jpg",
+        alt: "Compact substation enclosure section on the workshop floor",
+        caption: "Compact substation enclosure section prepared in the workshop.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-06.jpg",
+        alt: "Oil-immersed transformer with radiator fins and top bushings",
+        caption: "Oil-immersed transformer unit shown during workshop preparation.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-07.jpg",
+        alt: "Compact substation enclosure sections arranged in the workshop",
+        caption: "Compact substation enclosure sections arranged for production workflow.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-08.jpg",
+        alt: "Transformer tank components and metal structures in the production area",
+        caption: "Transformer tank components and metal structures in the production area.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-09.jpg",
+        alt: "Transformer winding and assembly materials in the workshop",
+        caption: "Winding and assembly materials arranged in the workshop.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-10.jpg",
+        alt: "Workshop production lane with winding equipment and materials",
+        caption: "Production lane with winding equipment and materials.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-11.jpg",
+        alt: "Transformer production workshop with equipment and organized work zones",
+        caption: "Transformer production workshop showing organized work zones.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-12.jpg",
+        alt: "Wide transformer workshop view during production preparation",
+        caption: "Wide workshop view during production and shipment preparation.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-13.jpg",
+        alt: "Dry-type transformer coil components arranged in the workshop",
+        caption: "Dry-type transformer coil components arranged for production.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-14.jpg",
+        alt: "Cable reels and winding materials prepared in the transformer workshop",
+        caption: "Cable reels and winding materials prepared in the workshop.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-15.jpg",
+        alt: "Workshop material storage area with coils and production components",
+        caption: "Material storage area with coils and production components.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "image",
+        src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-16.jpg",
+        alt: "Transformer workshop overview during overtime production",
+        caption: "Transformer workshop overview during overtime production preparation.",
+        width: 1440,
+        height: 1920,
+      },
+      {
+        type: "heading",
+        text: "Production and Shipment Readiness",
+      },
+      {
+        type: "paragraph",
+        text: "Before shipment, transformer products and related electrical equipment are checked against the approved technical documents, packing requirements and delivery plan. Accessories, labels, packing marks and documentation are coordinated according to the contract scope.",
+      },
+      {
+        type: "paragraph",
+        text: "For export transformer inquiries, customers can provide the required transformer type, capacity, voltage ratio, frequency, quantity, destination country, applicable standard and any special technical requirements for quotation review.",
+      },
+    ],
+    relatedProductSlugs: [
+      "oil-immersed-distribution-transformer",
+      "dry-type-transformer",
+      "compact-substation",
+    ],
+    cardButtonLabel: "Read Factory Update",
+    relatedSectionTitle: "Related Transformer Products",
+    relatedSectionDescription:
+      "Explore transformer and compact substation products commonly reviewed for export power distribution projects.",
+    relatedSectionButtonLabel: "View Transformer Products",
+    inquiryButtonLabel: "Discuss Export Transformer Requirements",
+    seoTitle: "Export Transformer Shipment Preparation During Overtime Production | Wenze Electric",
+    seoDescription:
+      "View factory photos from overtime production and export transformer shipment preparation, including transformer assembly areas, winding materials and compact substation sections.",
+  },
   {
     slug: "100mw-200mwh-battery-energy-storage-station",
     title: "100 MW / 200 MWh Battery Energy Storage Station",

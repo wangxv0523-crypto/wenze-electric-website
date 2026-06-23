@@ -225,8 +225,8 @@ export function NewsArticle({ item }: { item: NewsItem }) {
                     <img
                       src={block.src}
                       alt={block.alt}
-                      width={1600}
-                      height={900}
+                      width={block.width ?? 1600}
+                      height={block.height ?? 900}
                       loading="lazy"
                       decoding="async"
                       className="h-auto w-full rounded-xl border border-border bg-white object-contain shadow-sm"
