@@ -40,8 +40,11 @@ export function Gallery() {
                     <img
                       src={item.src}
                       alt={item.title}
+                      width={680}
+                      height={510}
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                      loading="eager"
                     />
                   </div>
                   <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/95 via-primary/70 to-transparent px-5 pb-4 pt-12 text-left text-base font-semibold text-white">

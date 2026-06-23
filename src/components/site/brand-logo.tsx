@@ -16,6 +16,9 @@ export function BrandLogo({ inverse = false, footer = false }: BrandLogoProps) {
         <img
           src="/wenze-logo-mark.png"
           alt="Wenze Electric logo"
+          width={96}
+          height={96}
+          decoding="async"
           className="block h-full w-full object-contain"
         />
       </span>

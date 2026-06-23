@@ -9,13 +9,24 @@ import { ContactForm } from "@/components/site/contact-form";
 import { CompanyUpdates } from "@/components/site/company-updates";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { Footer } from "@/components/site/footer";
-import { absoluteUrl, siteConfig } from "@/lib/site-config";
+import { absoluteUrl, serializeJsonLd, siteConfig } from "@/lib/site-config";
 
 const pageTitle = "Power Transformer Manufacturer China | Wenze Electric";
 const pageDescription =
   "Wenze Electric supplies oil-immersed, dry-type, pole-mounted and power transformers, plus compact substations, for approved project requirements.";
 const pageUrl = siteConfig.url;
 const socialImage = absoluteUrl("/images/opengraph.jpg");
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  publisher: {
+    "@type": "Organization",
+    name: siteConfig.legalName,
+    url: siteConfig.url,
+  },
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,6 +44,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: socialImage },
     ],
     links: [{ rel: "canonical", href: pageUrl }],
+    scripts: [{ type: "application/ld+json", children: serializeJsonLd(websiteSchema) }],
   }),
   component: HomePage,
 });

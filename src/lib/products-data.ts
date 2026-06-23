@@ -250,7 +250,9 @@ export const products: Product[] = [
     technicalDocuments: [...technicalDocuments],
     technicalNotes: [...lossTechnicalNotes],
     detailedSpecTable: {
-      publicationStatus: "published",
+      publicationStatus: "technical-review",
+      reviewNote:
+        "Detailed loss, sound level, dimension and weight values are under technical review before public quotation use.",
       columns: [
         { key: "capacity_kva", label: "Rated Capacity", unit: "kVA" },
         { key: "hv_kv", label: "High Voltage", unit: "kV" },
@@ -524,6 +526,18 @@ export const products: Product[] = [
         },
       ],
       note: "Typical reference data for 6–11 kV oil-immersed distribution transformers with a 0.4 kV secondary voltage and Dyn11 / Yyn0 vector group.",
+      applicability: {
+        productSeriesModelBasis:
+          "6–11 kV oil-immersed distribution transformer reference range; final model by approved project datasheet",
+        applicableStandard: "IEC 60076 and approved project requirements",
+        windingConductor: "To be confirmed in the approved technical datasheet",
+        lossReferenceTemperature: "To be confirmed in the approved technical datasheet",
+        tappingRange: "To be confirmed in the approved technical datasheet",
+        vectorGroup: "Dyn11 / Yyn0 reference options; final value by approved datasheet",
+        energyEfficiencyBasis: "To be confirmed against the approved loss evaluation basis",
+        soundMeasurementBasis: "To be confirmed in the approved datasheet or test plan",
+        dimensionsAndWeight: "Approximate only and subject to approved drawings",
+      },
     },
   },
   {
@@ -567,22 +581,28 @@ export const products: Product[] = [
       standards: "IEC 60076-11",
     },
     features: [
-      { zh: "无火灾危险", en: "Fire-Safe" },
+      { zh: "降低火灾风险", en: "Reduced Fire Risk Compared with Liquid-Filled Transformers" },
       { zh: "环保无污染", en: "Eco-Friendly" },
       { zh: "低维护成本", en: "Low Maintenance Cost" },
       { zh: "适合室内安装", en: "Suitable for Indoor Installation" },
-      { zh: "自熄绝缘", en: "Self-Extinguishing Insulation" },
+      { zh: "防火等级按项目确认", en: "Fire Behaviour Class Subject to the Approved Specification" },
     ],
     productDescription:
       "适用于室内变电站、数据中心、医院等对防火要求高的场所，符合 IEC 60076-11 标准。",
     descriptionBullets: [
-      { zh: "F级/H级环氧树脂绝缘，防火安全", en: "F/H Class Epoxy Resin Insulation, Fire-Safe" },
+      {
+        zh: "F级/H级环氧树脂绝缘，防火性能按项目确认",
+        en: "F/H class epoxy resin insulation; fire behaviour class subject to the approved specification",
+      },
       { zh: "防护等级 IP20/IP23 可选", en: "Protection Grade IP20/IP23 Optional" },
       {
         zh: "优化低噪音设计，实际声级取决于额定容量、外壳和冷却配置。",
         en: "Optimized low-noise design; actual sound level depends on rated capacity, enclosure and cooling configuration.",
       },
-      { zh: "免维护，无需油液检测或更换", en: "Maintenance-Free, No Oil Testing Required" },
+      {
+        zh: "低维护，无需绝缘油检测",
+        en: "Low maintenance with no insulating-oil testing required",
+      },
     ],
     applications: [
       "Commercial buildings and shopping centers",
@@ -614,7 +634,9 @@ export const products: Product[] = [
     technicalDocuments: [...technicalDocuments],
     technicalNotes: [...lossTechnicalNotes],
     detailedSpecTable: {
-      publicationStatus: "published",
+      publicationStatus: "technical-review",
+      reviewNote:
+        "Detailed SCB12 / SCB13 loss, sound level, dimension and weight values are under technical review before public quotation use.",
       columns: [
         { key: "capacity_kva", label: "Rated Capacity", unit: "kVA" },
         { key: "hv_kv", label: "High Voltage", unit: "kV" },
@@ -902,7 +924,7 @@ export const products: Product[] = [
       cooling: "ONAN",
       insulationMedium: "Transformer oil",
       tappingRange: "To be confirmed in the approved technical datasheet",
-      standards: "ANSI / IEEE",
+      standards: "IEEE C57.12.20 / applicable utility requirements",
     },
     features: [
       { zh: "紧凑轻便", en: "Compact and Lightweight" },
@@ -918,8 +940,8 @@ export const products: Product[] = [
       { zh: "容量范围 5–167 kVA", en: "Capacity Range: 5–167 kVA" },
       { zh: "60 Hz 单相配电应用", en: "60 Hz Single-Phase Distribution Application" },
       {
-        zh: "可选完全自保护配置，集成断路器和避雷器",
-        en: "Optional Full Self-Protection, Integrated Circuit Breaker & Arrester",
+        zh: "保护附件按项目要求确认",
+        en: "Protection accessories subject to the approved utility specification",
       },
     ],
     applications: [
@@ -937,12 +959,12 @@ export const products: Product[] = [
       "Tank finish and corrosion protection",
       "Mounting brackets and terminal arrangement",
       "Protection accessories where required",
-      "Applicable ANSI / IEEE project requirements",
+      "Applicable IEEE C57.12.20 or utility project requirements",
     ],
     quotationRequirements: [...quotationRequirements],
     faq: createProductFaq(
       "Pole Mounted Transformer",
-      "ANSI / IEEE or applicable utility requirements",
+      "IEEE C57.12.20 or applicable utility requirements",
     ),
     relatedProductSlugs: [
       "oil-immersed-distribution-transformer",
@@ -963,13 +985,14 @@ export const products: Product[] = [
         { label: "Frequency", value: "60 Hz" },
         { label: "Phase", value: "Single Phase" },
         { label: "Cooling", value: "ONAN" },
-        { label: "Standard", value: "ANSI / IEEE" },
+        { label: "Standard", value: "IEEE C57.12.20 / applicable utility requirements" },
       ],
       note: "Typical reference configuration for a single-phase pole-mounted distribution transformer.",
       applicability: {
         productSeriesModelBasis:
           "Single-phase pole-mounted distribution transformer; final model by approved project datasheet",
-        applicableStandard: "ANSI / IEEE requirements identified in the project specification",
+        applicableStandard:
+          "IEEE C57.12.20 or applicable utility requirements identified in the project specification",
         windingConductor: "To be confirmed in the approved technical datasheet",
         lossReferenceTemperature: "To be confirmed in the approved technical datasheet",
         tappingRange: "To be confirmed in the approved technical datasheet",
@@ -1186,8 +1209,17 @@ export const products: Product[] = [
     fullDescription:
       "箱式变电站将高压开关设备、配电变压器和低压配电系统集成在紧凑的户外防护外壳内，安装快捷、占地面积小，适用于工业园区、商业建筑、基础设施和新能源项目。",
     fullDescriptionEn:
-      "Compact substations integrate high-voltage switchgear, a transformer section and low-voltage distribution equipment within a protective enclosure. Electrical configuration, transformer type, protection level and enclosure design are selected for the project.",
-    standardSizes: ["315 kVA", "500 kVA", "630 kVA", "800 kVA", "1000 kVA", "1250 kVA", "1600 kVA"],
+      "Compact substations integrate a high-voltage compartment, transformer compartment, low-voltage compartment, protective enclosure and internal connections. Electrical configuration, transformer type, protection level and enclosure design are selected for the project.",
+    standardSizes: [
+      "315 kVA",
+      "500 kVA",
+      "630 kVA",
+      "800 kVA",
+      "1000 kVA",
+      "1250 kVA",
+      "1600 kVA",
+      "2500 kVA",
+    ],
     image: "/images/products/compact-substation-workshop.jpg",
     cardImage: "/images/products/compact-substation-workshop.jpg",
     detailImage: "/images/products/compact-substation-workshop.jpg",
@@ -1240,7 +1272,7 @@ export const products: Product[] = [
       "Frequency: 50 Hz / 60 Hz",
       "Oil-immersed or dry-type transformer section",
       "High-voltage and low-voltage switchgear configuration",
-      "Enclosure material and protection level",
+      "Enclosure material and protection level subject to ventilation, transformer type and project requirements",
       "Metering, protection and auxiliary accessories",
       "Applicable IEC and project-specific requirements",
     ],
@@ -1275,7 +1307,11 @@ export const products: Product[] = [
         { label: "Low-Voltage Side", value: "0.4 kV or project-specific" },
         { label: "Frequency", value: "50 Hz / 60 Hz" },
         { label: "Transformer Type", value: "Oil-immersed or dry-type" },
-        { label: "Protection Class", value: "IP23–IP54 or project-specific" },
+        {
+          label: "Protection Class",
+          value:
+            "Available enclosure protection levels depend on ventilation, transformer type and project requirements.",
+        },
         {
           label: "Enclosure Material",
           value: "Coated steel, stainless steel or composite material",

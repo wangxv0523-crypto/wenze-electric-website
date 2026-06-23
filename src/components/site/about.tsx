@@ -25,6 +25,10 @@ export function About() {
           <img
             src="/factory-gate.png"
             alt="Wenze Electric Manufacturing Facility - Shandong China Transformer Factory"
+            width={1600}
+            height={686}
+            loading="lazy"
+            decoding="async"
             className="w-full object-cover aspect-[21/9]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />

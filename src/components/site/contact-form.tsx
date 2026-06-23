@@ -167,6 +167,10 @@ export function ContactForm() {
                 <img
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-n2GL5TaXQSDwwTPZmdjvvT0y5cX8oN.png"
                   alt="文则电气"
+                  width={96}
+                  height={32}
+                  loading="lazy"
+                  decoding="async"
                   className="h-8 w-auto"
                 />
                 <div>

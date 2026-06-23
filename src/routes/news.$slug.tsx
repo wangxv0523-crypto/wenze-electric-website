@@ -40,7 +40,14 @@ export const Route = createFileRoute("/news/$slug")({
   },
   head: ({ params }) => {
     const item = getNewsBySlug(params.slug);
-    if (!item) return { meta: [] };
+    if (!item) {
+      return {
+        meta: [
+          { title: "Update Not Found | Wenze Electric" },
+          { name: "robots", content: "noindex,follow" },
+        ],
+      };
+    }
 
     const articleUrl = absoluteUrl(`/news/${item.slug}`);
     const imageUrl = absoluteUrl(item.coverImage);
@@ -115,6 +122,8 @@ export const Route = createFileRoute("/news/$slug")({
   component: NewsDetailPage,
   notFoundComponent: () => (
     <main className="flex min-h-screen items-center justify-center px-4">
+      <title>Update Not Found | Wenze Electric</title>
+      <meta name="robots" content="noindex,follow" />
       <div className="text-center">
         <h1 className="text-3xl font-bold text-primary">Update not found</h1>
         <a href="/news" className="mt-5 inline-block font-semibold text-primary underline">

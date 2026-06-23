@@ -593,21 +593,25 @@ function DetailedSpecifications({
   table?: DetailedSpecTable;
   technicalNotes: string[];
 }) {
+  const publicationStatus = table?.publicationStatus ?? "technical-review";
   const hasReferenceTable = Boolean(table && table.rows.length > 0);
+  const hasPublishedReferenceTable = hasReferenceTable && publicationStatus === "published";
   const tableMinWidth = table && table.columns.length > 8 ? "min-w-[1800px]" : "min-w-[760px]";
+  const technicalReviewMessage =
+    "Detailed technical data is currently under technical review. Please contact us for the applicable datasheet based on your project requirements.";
 
   return (
     <section className="border-t border-border bg-white py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-6 text-2xl font-bold text-primary">Typical Reference Specifications</h2>
 
-        {hasReferenceTable && table ? (
+        {hasPublishedReferenceTable && table ? (
           <>
             <p className="mb-3 text-sm font-medium text-muted-foreground md:hidden">
               Swipe horizontally to view all specifications.
             </p>
             <div
-              className="max-w-full overflow-x-auto overscroll-x-contain rounded-xl border border-border outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              className="w-full max-w-full overflow-x-auto overscroll-x-contain rounded-xl border border-border outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               role="region"
               aria-label="Scrollable product specification table"
               tabIndex={0}
@@ -674,9 +678,10 @@ function DetailedSpecifications({
             )}
           </>
         ) : (
-          <p className="rounded-xl border border-border bg-secondary/20 p-5 text-sm leading-relaxed text-foreground/80">
-            Detailed technical data is available based on project requirements.
-          </p>
+          <div className="rounded-xl border border-border bg-secondary/20 p-5 text-sm leading-relaxed text-foreground/80">
+            <p>{table?.reviewNote ?? technicalReviewMessage}</p>
+            {table?.reviewNote && <p className="mt-3">{technicalReviewMessage}</p>}
+          </div>
         )}
 
         <div className="mt-7 rounded-xl border border-border bg-secondary/20 p-5 sm:p-6">

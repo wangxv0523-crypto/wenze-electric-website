@@ -41,6 +41,10 @@ export function Hero() {
         <img
           src="/images/substation-hero.jpg"
           alt=""
+          width={1920}
+          height={1080}
+          decoding="async"
+          fetchPriority="high"
           className="absolute inset-0 h-full w-full scale-[1.15] object-cover object-[62%_72%] md:scale-[1.06] md:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#061a36]/95 via-[#0a2a55]/78 to-[#061a36]/45" />

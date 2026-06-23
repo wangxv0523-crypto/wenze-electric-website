@@ -78,7 +78,7 @@ export const Route = createFileRoute("/products/$slug")({
     <main className="min-h-screen flex items-center justify-center">
       <title>Product Not Found | Wenze Electric</title>
       <meta name="robots" content="noindex,follow" />
-      <p>Product not found.</p>
+      <h1 className="text-3xl font-bold text-primary">Product not found.</h1>
     </main>
   ),
 });

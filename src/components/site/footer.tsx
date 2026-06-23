@@ -10,7 +10,7 @@ const navigation = {
   company: [
     { name: "About Us", href: "/#about" },
     { name: "Company Updates", href: "/news" },
-    { name: "Manufacturing Capability", href: "/#about" },
+    { name: "Manufacturing Capability", href: "/#capabilities" },
     { name: "Quality & Standards", href: "/#capabilities" },
     { name: "Contact Us", href: "/#contact" },
   ],
