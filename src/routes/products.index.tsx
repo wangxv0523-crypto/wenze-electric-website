@@ -3,13 +3,40 @@ import { Footer } from "@/components/site/footer";
 import { ProductCard } from "@/components/site/products";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { products } from "@/lib/products-data";
-import { absoluteUrl } from "@/lib/site-config";
+import {
+  absoluteUrl,
+  serializeJsonLd,
+  siteConfig,
+  southeastAsiaTransformerTopics,
+} from "@/lib/site-config";
 
-const pageTitle = "Transformer and Substation Products | Wenze Electric";
+const pageTitle = "Transformer Products for Southeast Asia | Wenze Electric";
 const pageDescription =
-  "Explore Wenze Electric transformer and compact substation products for utility, industrial and infrastructure project requirements.";
+  "Explore transformer products for Southeast Asia projects, including oil immersed distribution, dry type, pole mounted, power transformers and compact substations.";
 const pageUrl = absoluteUrl("/products");
 const socialImage = absoluteUrl("/images/opengraph.jpg");
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": absoluteUrl("/products#product-list"),
+  name: "Transformer Products",
+  description: "Transformer and compact substation categories for Southeast Asia utility, industrial and infrastructure projects.",
+  about: southeastAsiaTransformerTopics.map((name) => ({ "@type": "Thing", name })),
+  itemListElement: products.map((product, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: product.titleEn ?? product.title,
+    url: absoluteUrl(`/products/${product.id}`),
+  })),
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+    { "@type": "ListItem", position: 2, name: "Products", item: pageUrl },
+  ],
+};
 
 export const Route = createFileRoute("/products/")({
   head: () => ({
@@ -27,6 +54,10 @@ export const Route = createFileRoute("/products/")({
       { name: "twitter:image", content: socialImage },
     ],
     links: [{ rel: "canonical", href: pageUrl }],
+    scripts: [
+      { type: "application/ld+json", children: serializeJsonLd(itemListSchema) },
+      { type: "application/ld+json", children: serializeJsonLd(breadcrumbSchema) },
+    ],
   }),
   component: ProductsPage,
 });

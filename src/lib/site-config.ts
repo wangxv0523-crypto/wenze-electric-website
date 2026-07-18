@@ -3,10 +3,41 @@ export const siteConfig = {
   legalName: 'Shandong Wenze Electric Co., Ltd.',
   url: 'https://www.wenzepower.com',
   email: 'sales@wenzepower.com',
-  phone: '+86 159 0534 2475',
-  whatsappNumber: '8615905342475',
+  phone: '+86 159 0534 2405',
+  whatsappNumber: '8615905342405',
   logoPath: '/wenze-logo-mark.png',
 } as const
+
+export const southeastAsiaMarkets = [
+  'Singapore',
+  'Malaysia',
+  'Indonesia',
+  'Thailand',
+  'Vietnam',
+  'Philippines',
+  'Cambodia',
+  'Laos',
+  'Myanmar',
+  'Brunei',
+] as const
+
+export const southeastAsiaMarketSchema = southeastAsiaMarkets.map((name) => ({
+  '@type': 'Country',
+  name,
+}))
+
+export const southeastAsiaTransformerTopics = [
+  'Southeast Asia transformer projects',
+  '11 kV transformer',
+  '22 kV transformer',
+  '33 kV transformer',
+  '0.4 kV transformer',
+  '0.415 kV transformer',
+  '50 Hz transformer',
+  '60 Hz transformer',
+  'IEC 60076 transformer',
+  'compact substation',
+] as const
 
 export function absoluteUrl(path: string): string {
   return new URL(path, siteConfig.url).toString()

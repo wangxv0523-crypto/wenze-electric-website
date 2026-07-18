@@ -22,7 +22,7 @@ export function BrandLogo({ inverse = false, footer = false }: BrandLogoProps) {
           className="block h-full w-full object-contain"
         />
       </span>
-      <span className="flex min-w-0 flex-col justify-center">
+      <span className="flex min-w-0 flex-col justify-center" translate="no">
         <span
           className={
             footer
@@ -30,7 +30,7 @@ export function BrandLogo({ inverse = false, footer = false }: BrandLogoProps) {
               : 'whitespace-nowrap text-[11px] font-bold leading-none text-primary sm:text-sm'
           }
         >
-          WENZE ELECTRIC
+          文则电气
         </span>
         <span
           className={
@@ -39,7 +39,7 @@ export function BrandLogo({ inverse = false, footer = false }: BrandLogoProps) {
               : 'mt-1 whitespace-nowrap text-[8px] leading-tight text-muted-foreground sm:text-[10px]'
           }
         >
-          Shandong Wenze Electric Co., Ltd.
+          山东文则电气有限公司
         </span>
       </span>
     </span>

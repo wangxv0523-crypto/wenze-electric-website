@@ -2,7 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Footer } from "@/components/site/footer";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { ProductDetail } from "@/components/site/product-detail";
-import { getProductBySlug } from "@/lib/products-data";
+import { getProductBySlug, getQuickSpecifications } from "@/lib/products-data";
 import { absoluteUrl, serializeJsonLd, siteConfig } from "@/lib/site-config";
 
 const iconNameMap: Record<string, "droplets" | "wind" | "zap" | "box" | "radio" | "sun"> = {
@@ -33,15 +33,50 @@ export const Route = createFileRoute("/products/$slug")({
     const productName = product.titleEn ?? product.title;
     const productUrl = absoluteUrl(`/products/${product.id}`);
     const imageUrl = absoluteUrl(product.detailImage ?? product.image);
+    const quickSpecifications = getQuickSpecifications(product);
+    const structuredSpecifications = Array.from(
+      new Map(
+        [...quickSpecifications, ...product.regionalSpecifications].map((specification) => [
+          specification.label,
+          specification,
+        ]),
+      ).values(),
+    );
     const productSchema = {
       "@context": "https://schema.org",
       "@type": "Product",
+      "@id": `${productUrl}#product`,
       name: productName,
       description: product.seoDescription,
       image: imageUrl,
       brand: { "@type": "Brand", name: siteConfig.name },
+      manufacturer: {
+        "@type": "Organization",
+        "@id": absoluteUrl("/#organization"),
+        name: siteConfig.legalName,
+        url: siteConfig.url,
+      },
       category: "Power transformer and electrical distribution equipment",
+      sku: product.id,
       url: productUrl,
+      additionalProperty: [
+        ...structuredSpecifications.map((spec) => ({
+          "@type": "PropertyValue",
+          name: spec.label,
+          value: spec.value,
+        })),
+        {
+          "@type": "PropertyValue",
+          name: "Target region",
+          value: "Southeast Asia projects",
+        },
+        {
+          "@type": "PropertyValue",
+          name: "Common regional grid requirements",
+          value:
+            "11 kV, 22 kV, 33 kV, 0.4/0.415 kV and 50/60 Hz configurations by approved project datasheet",
+        },
+      ],
     };
     const breadcrumbSchema = {
       "@context": "https://schema.org",

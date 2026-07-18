@@ -104,7 +104,7 @@ export function Hero() {
               className="h-12 border-white/30 bg-white/10 px-8 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/20"
             >
               <a
-                href={`https://wa.me/8615905342475?text=${whatsappMessage}`}
+                href={`https://wa.me/8615905342405?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

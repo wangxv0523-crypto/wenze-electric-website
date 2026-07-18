@@ -58,56 +58,56 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
-    slug: "overtime-production-export-transformer-shipment-preparation",
-    title: "Overtime Production for Export Transformer Shipment Preparation",
+    slug: "transformer-stock-available-fast-export-delivery",
+    title: "Transformer Stock Available for Fast Export Delivery",
     excerpt:
-      "Factory photos show overtime production and shipment preparation for export transformer equipment, including transformer assembly areas, winding materials, compact substation sections and finished units organized before packing and delivery coordination.",
+      "Wenze Electric maintains transformer stock and active production capacity for oil-immersed, dry-type and compact substation orders, supporting faster export preparation and delivery.",
     publishedAt: "2026-06-23",
-    modifiedAt: "2026-06-23",
+    modifiedAt: "2026-07-14",
     coverImage: "/images/news/overtime-production-export-transformer-shipment-preparation.jpg",
     coverAlt:
-      "Transformer workshop during overtime production and export shipment preparation",
+      "Transformer stock and production capacity inside the Wenze Electric factory",
     coverCaption:
-      "Workshop view during overtime production and export transformer shipment preparation.",
+      "Transformer inventory, components and organized production areas for export order preparation.",
     category: "Factory Update",
     content: [
       {
         type: "paragraph",
-        text: "This factory update records overtime production and shipment preparation for export transformer equipment inside the Wenze Electric workshop.",
+        text: "Wenze Electric maintains available transformer stock together with active production capacity for standard and project-specific export orders.",
       },
       {
         type: "paragraph",
-        text: "The images show transformer assembly areas, winding materials, compact substation enclosure sections, finished units and workstations arranged for final checking, packing preparation and delivery coordination.",
+        text: "The factory images show finished transformer units, dry-type transformer components, winding materials, compact substation enclosure sections and organized work areas prepared to support efficient inspection, packing and delivery coordination.",
       },
       {
         type: "paragraph",
-        text: "These photos are factory media only. They do not identify a customer, destination country, order quantity or confirmed scope of supply. Final shipment information depends on the approved contract and logistics plan.",
+        text: "Stock availability varies by transformer type, capacity, voltage ratio and quantity. Customers should confirm the current model inventory and delivery schedule against the approved technical specification before placing an order.",
       },
       {
         type: "heading",
-        text: "Factory Shipment Preparation",
+        text: "Transformer Stock and Supply Readiness",
       },
       {
         type: "paragraph",
-        text: "During peak production periods, equipment and materials are organized by workshop zone to support final inspection preparation, accessory confirmation, packing coordination and outgoing logistics planning.",
+        text: "Available inventory is supported by organized material storage, assembly lines and routine production scheduling. This combination helps reduce preparation time for common oil-immersed distribution transformers, dry-type transformers and compact substations.",
       },
       {
         type: "heading",
-        text: "Equipment and Workshop Areas Shown",
+        text: "Transformer Products Available for Export Supply",
       },
       {
         type: "list",
         items: [
-          "Oil-immersed distribution transformer assembly and finished units",
-          "Dry-type transformer winding and assembly areas",
-          "Winding materials, cable reels and production tooling",
-          "Compact substation enclosure sections",
-          "Workshop lanes arranged for material movement and shipment preparation",
+          "Oil-immersed distribution transformers for utility, commercial and industrial networks",
+          "Dry-type transformers for indoor substations, buildings and industrial facilities",
+          "Compact substations for integrated medium-voltage distribution projects",
+          "Transformer winding materials, accessories and production tooling",
+          "Organized inspection, packing and export delivery preparation areas",
         ],
       },
       {
         type: "heading",
-        text: "Factory Photo Gallery",
+        text: "Transformer Inventory and Factory Gallery",
       },
       {
         type: "image",
@@ -137,7 +137,7 @@ export const newsItems: NewsItem[] = [
         type: "image",
         src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-04.jpg",
         alt: "Workshop staff working near transformer assembly equipment",
-        caption: "Assembly work area during overtime production preparation.",
+        caption: "Assembly work area supporting transformer stock and production readiness.",
         width: 1440,
         height: 1920,
       },
@@ -232,22 +232,22 @@ export const newsItems: NewsItem[] = [
       {
         type: "image",
         src: "/images/news/overtime-production-export-transformer-shipment-preparation/factory-overtime-shipment-16.jpg",
-        alt: "Transformer workshop overview during overtime production",
-        caption: "Transformer workshop overview during overtime production preparation.",
+        alt: "Transformer stock and production workshop overview",
+        caption: "Transformer workshop overview showing inventory and active production areas.",
         width: 1440,
         height: 1920,
       },
       {
         type: "heading",
-        text: "Production and Shipment Readiness",
+        text: "Confirm Current Stock and Delivery Time",
       },
       {
         type: "paragraph",
-        text: "Before shipment, transformer products and related electrical equipment are checked against the approved technical documents, packing requirements and delivery plan. Accessories, labels, packing marks and documentation are coordinated according to the contract scope.",
+        text: "Before export delivery, transformer products and related electrical equipment are checked against the approved technical documents, packing requirements and delivery plan. Accessories, labels, packing marks and documentation are coordinated according to the contract scope.",
       },
       {
         type: "paragraph",
-        text: "For export transformer inquiries, customers can provide the required transformer type, capacity, voltage ratio, frequency, quantity, destination country, applicable standard and any special technical requirements for quotation review.",
+        text: "To check current transformer stock and lead time, provide the required product type, rated capacity, voltage ratio, frequency, quantity, destination country, applicable standard and any special technical requirements.",
       },
     ],
     relatedProductSlugs: [
@@ -255,56 +255,56 @@ export const newsItems: NewsItem[] = [
       "dry-type-transformer",
       "compact-substation",
     ],
-    cardButtonLabel: "Read Factory Update",
+    cardButtonLabel: "Check Transformer Stock",
     relatedSectionTitle: "Related Transformer Products",
     relatedSectionDescription:
-      "Explore transformer and compact substation products commonly reviewed for export power distribution projects.",
+      "Review oil-immersed, dry-type and compact substation solutions available for export power distribution projects.",
     relatedSectionButtonLabel: "View Transformer Products",
-    inquiryButtonLabel: "Discuss Export Transformer Requirements",
-    seoTitle: "Export Transformer Shipment Preparation During Overtime Production | Wenze Electric",
+    inquiryButtonLabel: "Check Stock and Delivery Time",
+    seoTitle: "Transformer Stock for Fast Export Delivery | Wenze Electric",
     seoDescription:
-      "View factory photos from overtime production and export transformer shipment preparation, including transformer assembly areas, winding materials and compact substation sections.",
+      "Check Wenze Electric transformer stock and production availability for oil-immersed, dry-type and compact substation orders with export delivery support.",
   },
   {
-    slug: "100mw-200mwh-battery-energy-storage-station",
-    title: "100 MW / 200 MWh Battery Energy Storage Station",
+    slug: "nigeria-100mw-200mwh-bess-project-completed",
+    title: "Nigeria 100 MW / 200 MWh Battery Energy Storage Project Completed",
     excerpt:
-      "Aerial views of a large-scale 100 MW / 200 MWh battery energy storage station featuring containerized energy storage units, power conversion equipment and grid interconnection facilities. The project demonstrates the application of utility-scale energy storage in grid balancing, peak-load management and renewable energy integration.",
+      "The completed 100 MW / 200 MWh battery energy storage project in Nigeria integrates containerized BESS equipment, power conversion systems and grid interconnection facilities.",
     publishedAt: "2026-06-21",
-    modifiedAt: "2026-06-21",
+    modifiedAt: "2026-07-14",
     coverImage: "/images/news/100mw-200mwh-battery-energy-storage-station.jpg",
-    coverAlt: "Aerial view of the 100 MW / 200 MWh battery energy storage station",
+    coverAlt: "Completed 100 MW 200 MWh battery energy storage project in Nigeria",
     coverCaption:
-      "Aerial view of the 100 MW / 200 MWh battery energy storage station, showing the containerized storage units, grid interconnection area, supporting electrical facilities and overall site arrangement.",
+      "Aerial view of the completed Nigeria battery energy storage project, including containerized BESS units and grid interconnection facilities.",
     category: "Project Highlight",
     content: [
       {
         type: "paragraph",
-        text: "This utility-scale battery energy storage station has a rated power of 100 MW and an energy storage capacity of 200 MWh, corresponding to a nominal two-hour storage duration at rated output.",
+        text: "The 100 MW / 200 MWh battery energy storage project in Nigeria has reached completion, marking an important stage in the delivery of utility-scale energy storage and supporting power infrastructure.",
       },
       {
         type: "paragraph",
-        text: "The site integrates containerized battery energy storage units, power conversion and control equipment, supporting electrical systems and grid interconnection facilities within a centralized station layout.",
+        text: "The completed site integrates containerized battery energy storage units, power conversion and control equipment, supporting electrical systems, power transformation equipment and grid interconnection facilities within a centralized station layout.",
       },
       {
         type: "heading",
-        text: "Project Overview",
+        text: "Nigeria Battery Energy Storage Project Overview",
       },
       {
         type: "paragraph",
-        text: "Large-scale battery energy storage systems are increasingly used to improve the flexibility and stability of modern power networks.",
+        text: "Utility-scale battery energy storage systems can improve power network flexibility, support peak-load management and help integrate variable renewable generation.",
       },
       {
         type: "paragraph",
-        text: "By storing electricity during periods of lower demand and releasing it when additional power is required, a 100 MW / 200 MWh energy storage station can support applications such as peak shaving, load shifting, renewable energy integration and grid frequency regulation.",
+        text: "With 100 MW of rated power and 200 MWh of storage capacity, the Nigeria BESS project provides a nominal two-hour storage duration at rated output and can support peak shaving, load shifting, renewable energy integration and grid balancing.",
       },
       {
         type: "paragraph",
-        text: "The aerial photograph provides a clear overview of the station layout, including the organized battery container arrays, electrical equipment areas, internal access roads and grid connection infrastructure.",
+        text: "The aerial project image shows the completed station layout, including organized battery container arrays, electrical equipment areas, internal access roads and grid connection infrastructure.",
       },
       {
         type: "heading",
-        text: "Key Project Information",
+        text: "Nigeria BESS Project Information",
       },
       {
         type: "list",
@@ -314,16 +314,18 @@ export const newsItems: NewsItem[] = [
           "Nominal Storage Duration: 2 hours",
           "System Type: Utility-scale battery energy storage system",
           "Installation Format: Containerized energy storage units",
+          "Project Location: Nigeria",
+          "Project Status: Completed",
           "Typical Applications: Grid balancing, peak shaving, load shifting and renewable energy integration",
         ],
       },
       {
         type: "heading",
-        text: "Site Layout",
+        text: "Completed Site and Grid Connection",
       },
       {
         type: "paragraph",
-        text: "The energy storage units are arranged in multiple organized rows to support equipment access, operation and maintenance.",
+        text: "The containerized energy storage units are arranged in organized rows to support equipment access, operation and maintenance after project completion.",
       },
       {
         type: "paragraph",
@@ -331,19 +333,19 @@ export const newsItems: NewsItem[] = [
       },
       {
         type: "paragraph",
-        text: "This modular arrangement allows the station to integrate a large number of energy storage units within a clearly divided site configuration.",
+        text: "This modular arrangement allows the Nigeria energy storage station to integrate a large number of BESS units within a clearly divided site configuration.",
       },
       {
         type: "heading",
-        text: "Role of Energy Storage in the Power System",
+        text: "Role of Energy Storage in Nigeria's Power System",
       },
       {
         type: "paragraph",
-        text: "A battery energy storage station can absorb excess electrical energy when generation exceeds demand and discharge stored energy when demand increases.",
+        text: "A battery energy storage station can absorb electrical energy when supply exceeds demand and discharge stored energy when additional power is required.",
       },
       {
         type: "paragraph",
-        text: "For renewable energy projects, energy storage can help reduce the impact of fluctuations in solar and wind power generation. It can also provide additional operational flexibility for industrial power systems, utility networks and regional power infrastructure.",
+        text: "For Nigeria power projects, energy storage can help manage fluctuations in solar and wind generation while providing additional operational flexibility for utility networks, industrial power systems and regional infrastructure.",
       },
       {
         type: "paragraph",
@@ -355,43 +357,44 @@ export const newsItems: NewsItem[] = [
       "high-voltage-power-transformer",
       "compact-substation",
     ],
-    cardButtonLabel: "View Project",
-    relatedSectionTitle: "Related Solutions",
+    cardButtonLabel: "View Nigeria Project",
+    relatedSectionTitle: "Related Power Solutions",
     relatedSectionDescription:
-      "Explore transformer and electrical equipment solutions for battery energy storage, renewable energy and utility power projects.",
+      "Explore transformer and compact substation solutions for battery energy storage, renewable energy and utility power projects.",
     relatedSectionButtonLabel: "View Transformer Solutions",
-    inquiryButtonLabel: "Discuss Your Project",
-    seoTitle: "100 MW / 200 MWh Battery Energy Storage Station Project | Wenze Electric",
+    inquiryButtonLabel: "Discuss a Nigeria Power Project",
+    seoTitle: "Nigeria 100 MW / 200 MWh BESS Project Completed | Wenze Electric",
     seoDescription:
-      "Explore aerial views and the site layout of a 100 MW / 200 MWh battery energy storage station designed to support grid stability and energy management.",
+      "See the completed 100 MW / 200 MWh battery energy storage project in Nigeria, including containerized BESS equipment and grid interconnection facilities.",
   },
   {
-    slug: "220kv-step-up-substation-120mva-main-transformer-energization",
-    title: "220 kV Step-Up Substation 120 MVA Main Transformer Energization",
+    slug: "220kv-substation-completion-120mva-transformer-energization-video",
+    title: "220 kV Substation Completion: 120 MVA Transformer Energization Video",
     excerpt:
-      "Video footage captures the energization moment of a 120 MVA main transformer at a 220 kV step-up substation, showing the transformer installation and surrounding high-voltage equipment.",
+      "Watch the completed 220 kV step-up substation begin operation as its 120 MVA main transformer is successfully energized alongside the installed high-voltage equipment.",
     publishedAt: "2026-06-21",
-    modifiedAt: "2026-06-21",
+    modifiedAt: "2026-07-14",
     coverImage: "/images/news/220kv-step-up-substation-120mva-main-transformer-energization.jpg",
-    coverAlt: "120 MVA main transformer at a 220 kV step-up substation",
+    coverAlt: "Completed 220 kV step-up substation with 120 MVA main transformer",
     coverCaption:
-      "View of the 220 kV step-up substation and the installed 120 MVA main transformer before energization.",
+      "Completed 220 kV step-up substation during startup and 120 MVA main transformer energization.",
     category: "Project Highlight",
     content: [
       {
         type: "heading",
-        text: "Main Transformer Energization Video",
+        text: "Substation Completion and Startup Video",
       },
       {
         type: "paragraph",
-        text: "This video records the moment a 120 MVA main transformer at a 220 kV step-up substation receives power and is energized.",
+        text: "This project video records the completed 220 kV step-up substation entering the startup stage as its installed 120 MVA main transformer receives power and is energized.",
       },
       {
         type: "list",
         items: [
           "Substation Voltage Level: 220 kV",
           "Main Transformer Capacity: 120 MVA",
-          "Project Stage: Main transformer energization",
+          "Project Status: Substation completed",
+          "Startup Stage: Main transformer energization",
           "Equipment Shown: Main transformer and high-voltage substation equipment",
         ],
       },
@@ -399,34 +402,42 @@ export const newsItems: NewsItem[] = [
         type: "video",
         videoUrl: "/videos/news/220kv-step-up-substation-120mva-main-transformer-energization.mp4",
         poster: "/images/news/220kv-step-up-substation-120mva-main-transformer-energization.jpg",
-        title: "220 kV Step-Up Substation 120 MVA Main Transformer Energization",
+        title: "220 kV Substation Completion and 120 MVA Transformer Energization",
         description:
-          "Video showing the energization moment of a 120 MVA main transformer at a 220 kV step-up substation.",
+          "Video of a completed 220 kV step-up substation starting operation with successful energization of its 120 MVA main transformer.",
         transcript:
-          "The footage shows the 220 kV step-up substation, its installed 120 MVA main transformer and surrounding high-voltage equipment during the transformer energization process.",
+          "The footage shows the completed 220 kV step-up substation, its installed 120 MVA main transformer and surrounding high-voltage equipment during the startup and transformer energization process.",
         uploadDate: "2026-06-21",
         contentUrl:
           "/videos/news/220kv-step-up-substation-120mva-main-transformer-energization.mp4",
       },
       {
         type: "heading",
-        text: "Project Context",
+        text: "Commissioning and Energization",
       },
       {
         type: "paragraph",
-        text: "Main transformer energization is a key stage in substation commissioning. The operating sequence, protection settings and acceptance requirements are determined by the approved project procedures and grid requirements.",
+        text: "Main transformer energization is a key milestone after substation installation and pre-commissioning checks. The operating sequence, protection settings, electrical tests and acceptance requirements are completed according to the approved project procedures and grid requirements.",
+      },
+      {
+        type: "heading",
+        text: "Power Transformer and Substation Applications",
+      },
+      {
+        type: "paragraph",
+        text: "Large power transformers and high-voltage substations support utility grids, renewable energy step-up stations, industrial power systems and regional transmission projects. Final equipment ratings and protection requirements are engineered for the destination grid and approved technical specification.",
       },
     ],
     relatedProductSlugs: ["high-voltage-power-transformer", "power-transformer"],
-    cardButtonLabel: "Watch Video",
+    cardButtonLabel: "Watch Startup Video",
     relatedSectionTitle: "Related Transformer Solutions",
     relatedSectionDescription:
       "Explore power transformer solutions for utility substations, step-up stations and high-voltage power projects.",
     relatedSectionButtonLabel: "View Transformer Solutions",
-    inquiryButtonLabel: "Discuss Your Project",
-    seoTitle: "220 kV Substation 120 MVA Transformer Energization | Wenze Electric",
+    inquiryButtonLabel: "Discuss a Substation Project",
+    seoTitle: "220 kV Substation Completion & Transformer Energization Video | Wenze Electric",
     seoDescription:
-      "Watch the energization moment of a 120 MVA main transformer at a 220 kV step-up substation and view the installed high-voltage equipment.",
+      "Watch a completed 220 kV step-up substation start operation with successful energization of its 120 MVA main transformer and high-voltage equipment.",
   },
 ];
 

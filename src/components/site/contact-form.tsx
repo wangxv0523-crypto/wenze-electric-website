@@ -199,8 +199,8 @@ export function ContactForm() {
                   </div>
                   <div>
                     <p className="font-medium text-foreground text-sm">WhatsApp / Phone</p>
-                    <a href="https://wa.me/8615905342475" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                      +86 159 0534 2475
+                    <a href="https://wa.me/8615905342405" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                      +86 159 0534 2405
                     </a>
                     <p className="text-xs text-muted-foreground mt-1">Click to chat instantly</p>
                   </div>
@@ -241,7 +241,7 @@ export function ContactForm() {
                 Available for urgent inquiries and quick responses.
               </p>
               <Button asChild className="w-full bg-white hover:bg-white/90 text-[#25D366] font-bold h-12 text-base">
-                <a href={`https://wa.me/8615905342475?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://wa.me/8615905342405?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Chat on WhatsApp Now
                 </a>
@@ -297,7 +297,7 @@ export function ContactForm() {
                       Submit Another Inquiry
                     </Button>
                     <Button asChild className="w-full bg-[#25D366] hover:bg-[#25D366]/90 text-white">
-                      <a href={`https://wa.me/8615905342475?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">
+                      <a href={`https://wa.me/8615905342405?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="w-5 h-5 mr-2" />
                         Or Chat on WhatsApp for Faster Response
                       </a>
@@ -414,7 +414,7 @@ export function ContactForm() {
                       Need faster response?
                     </p>
                     <Button asChild variant="outline" className="w-full border-[#25D366] text-[#25D366] hover:bg-[#25D366]/10">
-                      <a href={`https://wa.me/8615905342475?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">
+                      <a href={`https://wa.me/8615905342405?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="w-5 h-5 mr-2" />
                         Chat on WhatsApp Instead
                       </a>

@@ -4,9 +4,7 @@ import {
   Box,
   BriefcaseBusiness,
   CircleCheck as CheckCircle2,
-  ClipboardList,
   Droplets,
-  FileText,
   HelpCircle,
   Mail,
   MessageCircle,
@@ -42,25 +40,41 @@ const iconMap = {
 };
 
 function QuickSpecificationsCard({ rows }: { rows: QuickSpecification[] }) {
+  const getSpanClass = (index: number) => {
+    const smRemainder = rows.length % 2;
+    const xlRemainder = rows.length % 3;
+    const isLast = index === rows.length - 1;
+    const isFirstOfLastTwo = index === rows.length - 2;
+
+    return [
+      smRemainder === 1 && isLast ? "sm:col-span-2" : "",
+      xlRemainder === 1 && isLast ? "xl:col-span-3" : "",
+      xlRemainder === 2 && isFirstOfLastTwo ? "xl:col-span-2" : "",
+      xlRemainder === 2 && isLast ? "xl:col-span-1" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+  };
+
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
       <div className="bg-primary px-4 py-2.5">
         <h2 className="text-sm font-bold tracking-wider text-white">Quick Specifications</h2>
       </div>
-      <dl className="grid sm:grid-cols-2 xl:grid-cols-3">
+      <dl className="grid gap-px border-t border-border bg-border sm:grid-cols-2 xl:grid-cols-3">
         {rows.map((row, index) => (
           <div
             key={row.label}
             className={[
-              "border-t border-border px-4 py-2.5 sm:border-r",
-              "sm:[&:nth-child(2n)]:border-r-0 xl:[&:nth-child(2n)]:border-r xl:[&:nth-child(3n)]:border-r-0",
+              "min-h-[72px] px-4 py-2.5",
+              getSpanClass(index),
               index % 2 === 0 ? "bg-white" : "bg-secondary/30",
             ].join(" ")}
           >
             <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               {row.label}
             </dt>
-            <dd className="mt-1 text-sm font-semibold leading-snug text-foreground">
+            <dd className="mt-1 break-words text-sm font-semibold leading-snug text-foreground">
               {row.value}
             </dd>
           </div>
@@ -228,7 +242,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
                     className="h-12 bg-accent px-6 font-semibold text-accent-foreground hover:bg-accent/90"
                   >
                     <a
-                      href={`https://wa.me/8615905342475?text=${whatsappMessage}`}
+                      href={`https://wa.me/8615905342405?text=${whatsappMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -317,7 +331,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
                   className="h-12 bg-accent px-6 font-semibold text-accent-foreground hover:bg-accent/90"
                 >
                   <a
-                    href={`https://wa.me/8615905342475?text=${whatsappMessage}`}
+                    href={`https://wa.me/8615905342405?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -346,12 +360,12 @@ export function ProductDetail({ product }: { product: ProductData }) {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
       <DetailedSpecifications
         table={product.detailedSpecTable}
+        regionalSpecifications={product.regionalSpecifications}
         technicalNotes={product.technicalNotes}
       />
 
@@ -367,47 +381,6 @@ export function ProductDetail({ product }: { product: ProductData }) {
             title="Customization Options"
             items={product.customizationOptions}
           />
-        </div>
-      </section>
-
-      <section className="border-t border-border bg-white py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div className="rounded-2xl border border-border bg-background p-6 sm:p-8">
-            <div className="mb-4 flex items-center gap-3">
-              <ClipboardList className="h-6 w-6 text-primary" />
-              <h2 className="text-xl font-bold text-primary">Information Required for Quotation</h2>
-            </div>
-            <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-              To prepare an accurate quotation, please provide the following technical information.
-            </p>
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {product.quotationRequirements.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm text-foreground">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-border bg-background p-6 sm:p-8">
-            <div className="mb-4 flex items-center gap-3">
-              <FileText className="h-6 w-6 text-primary" />
-              <h2 className="text-xl font-bold text-primary">Technical Documents</h2>
-            </div>
-            <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-              Available technical documents depend on the final project specification and contract
-              requirements.
-            </p>
-            <ul className="space-y-3">
-              {product.technicalDocuments.map((document) => (
-                <li key={document} className="flex items-start gap-2 text-sm text-foreground">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                  <span>{document}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </section>
 
@@ -491,7 +464,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
                 className="h-14 bg-accent px-8 text-base font-semibold text-accent-foreground hover:bg-accent/90"
               >
                 <a
-                  href={`https://wa.me/8615905342475?text=${whatsappMessage}`}
+                  href={`https://wa.me/8615905342405?text=${whatsappMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -588,25 +561,76 @@ const applicabilityLabels: Array<[keyof NonNullable<DetailedSpecTable["applicabi
 
 function DetailedSpecifications({
   table,
+  regionalSpecifications,
   technicalNotes,
 }: {
   table?: DetailedSpecTable;
+  regionalSpecifications: QuickSpecification[];
   technicalNotes: string[];
 }) {
   const publicationStatus = table?.publicationStatus ?? "technical-review";
   const hasReferenceTable = Boolean(table && table.rows.length > 0);
   const hasPublishedReferenceTable = hasReferenceTable && publicationStatus === "published";
+  const hasPublishedModelTable =
+    hasPublishedReferenceTable && Boolean(table && table.columns.length > 2);
+  const hasTechnicalReviewTable = hasReferenceTable && publicationStatus === "technical-review";
   const tableMinWidth = table && table.columns.length > 8 ? "min-w-[1800px]" : "min-w-[760px]";
   const technicalReviewMessage =
-    "Detailed technical data is currently under technical review. Please contact us for the applicable datasheet based on your project requirements.";
+    "Model-specific loss, impedance, sound, dimension and weight data must be confirmed in the approved technical datasheet.";
 
   return (
     <section className="border-t border-border bg-white py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-6 text-2xl font-bold text-primary">Typical Reference Specifications</h2>
+        <h2 className="text-2xl font-bold text-primary">
+          Technical Specifications for Southeast Asia Projects
+        </h2>
+        <p className="mt-3 max-w-4xl text-sm leading-relaxed text-muted-foreground">
+          The following selection data covers common 50 Hz and 60 Hz transformer inquiries across
+          Southeast Asia. Final voltage ratio, utility interface and guaranteed performance are
+          confirmed against the destination-country specification.
+        </p>
 
-        {hasPublishedReferenceTable && table ? (
+        <h3 className="mb-3 mt-7 text-lg font-bold text-primary">
+          Southeast Asia Project Selection Guide
+        </h3>
+        <div className="overflow-hidden rounded-xl border border-border">
+          <table className="w-full table-fixed border-separate border-spacing-0">
+            <thead>
+              <tr className="bg-primary">
+                <th className="w-[34%] px-4 py-3 text-left text-sm font-bold text-white sm:px-5">
+                  Parameter
+                </th>
+                <th className="px-4 py-3 text-left text-sm font-bold text-white sm:px-5">
+                  Typical Project Selection
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {regionalSpecifications.map((specification, index) => (
+                <tr
+                  key={specification.label}
+                  className={index % 2 === 0 ? "bg-white" : "bg-secondary"}
+                >
+                  <th
+                    scope="row"
+                    className="break-words border-t border-border px-4 py-3 text-left align-top text-sm font-semibold text-primary sm:px-5"
+                  >
+                    {specification.label}
+                  </th>
+                  <td className="break-words border-t border-border px-4 py-3 align-top text-sm leading-relaxed text-foreground sm:px-5">
+                    {specification.value}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {hasPublishedModelTable && table && (
           <>
+            <h3 className="mb-3 mt-7 text-lg font-bold text-primary">
+              Typical Model Reference Data
+            </h3>
             <p className="mb-3 text-sm font-medium text-muted-foreground md:hidden">
               Swipe horizontally to view all specifications.
             </p>
@@ -656,31 +680,36 @@ function DetailedSpecifications({
                 </tbody>
               </table>
             </div>
-
-            {table.note && <p className="mt-4 text-sm text-muted-foreground">{table.note}</p>}
-
-            {table.applicability && (
-              <div className="mt-6 rounded-xl border border-border bg-secondary/20 p-5">
-                <h3 className="text-base font-bold text-primary">Data Applicability Conditions</h3>
-                <dl className="mt-4 grid gap-x-8 gap-y-3 md:grid-cols-2">
-                  {applicabilityLabels.map(([key, label]) => (
-                    <div key={key} className="border-b border-border/70 pb-3">
-                      <dt className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
-                        {label}
-                      </dt>
-                      <dd className="mt-1 text-sm leading-relaxed text-foreground">
-                        {table.applicability?.[key]}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            )}
           </>
-        ) : (
-          <div className="rounded-xl border border-border bg-secondary/20 p-5 text-sm leading-relaxed text-foreground/80">
-            <p>{table?.reviewNote ?? technicalReviewMessage}</p>
-            {table?.reviewNote && <p className="mt-3">{technicalReviewMessage}</p>}
+        )}
+
+        {hasTechnicalReviewTable && (
+          <div className="mt-6 rounded-xl border border-border bg-secondary/20 p-5 text-sm leading-relaxed text-foreground/80">
+            <h3 className="mb-2 text-base font-bold text-primary">
+              Model-Specific Performance Data
+            </h3>
+            {table?.reviewNote && <p>{table.reviewNote}</p>}
+            <p className={table?.reviewNote ? "mt-3" : ""}>{technicalReviewMessage}</p>
+          </div>
+        )}
+
+        {table?.note && <p className="mt-4 text-sm text-muted-foreground">{table.note}</p>}
+
+        {table?.applicability && (
+          <div className="mt-6 rounded-xl border border-border bg-secondary/20 p-5">
+            <h3 className="text-base font-bold text-primary">Data Applicability Conditions</h3>
+            <dl className="mt-4 grid gap-x-8 gap-y-3 md:grid-cols-2">
+              {applicabilityLabels.map(([key, label]) => (
+                <div key={key} className="border-b border-border/70 pb-3">
+                  <dt className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                    {label}
+                  </dt>
+                  <dd className="mt-1 text-sm leading-relaxed text-foreground">
+                    {table.applicability?.[key]}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         )}
 

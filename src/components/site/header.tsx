@@ -25,9 +25,9 @@ export function Header() {
                 <Mail className="h-4 w-4" />
                 <span className="hidden sm:inline">sales@wenzepower.com</span>
               </a>
-              <a href="https://wa.me/8615905342475" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors">
+              <a href="https://wa.me/8615905342405" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors">
                 <Phone className="h-4 w-4" />
-                <span className="hidden sm:inline">+86 159 0534 2475</span>
+                <span className="hidden sm:inline">+86 159 0534 2405</span>
               </a>
             </div>
             <div className="hidden md:block">

@@ -11,19 +11,32 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Analytics } from "../components/site/analytics";
 import { UnifiedHeader } from "../components/site/unified-header";
-import { absoluteUrl, serializeJsonLd, siteConfig } from "../lib/site-config";
+import {
+  absoluteUrl,
+  serializeJsonLd,
+  siteConfig,
+  southeastAsiaMarketSchema,
+  southeastAsiaTransformerTopics,
+} from "../lib/site-config";
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": absoluteUrl("/#organization"),
   name: siteConfig.name,
   legalName: siteConfig.legalName,
-  alternateName: ["Wenzepower"],
+  alternateName: ["Wenzepower", "Wenze Power", "文则电气", "山东文则电气有限公司"],
   url: siteConfig.url,
   logo: absoluteUrl(siteConfig.logoPath),
+  image: absoluteUrl("/images/opengraph.jpg"),
   description:
-    "Power transformer manufacturer in Shandong, China, supplying project-specific transformer and compact substation solutions.",
+    "China transformer manufacturer supplying oil immersed distribution transformers, dry type transformers, power transformers and compact substations for Southeast Asia project requirements.",
+  email: siteConfig.email,
+  telephone: siteConfig.phone,
+  areaServed: southeastAsiaMarketSchema,
+  knowsAbout: southeastAsiaTransformerTopics,
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -38,7 +51,7 @@ const organizationSchema = {
     addressCountry: "CN",
     addressRegion: "Shandong",
   },
-  sameAs: ["https://wa.me/8615905342475"],
+  sameAs: ["https://wa.me/8615905342405"],
 };
 
 function NotFoundComponent() {
@@ -108,12 +121,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Power Transformer Manufacturer China | Wenze Electric" },
+      { title: "Transformer Manufacturer China for Southeast Asia | Wenze Electric" },
       {
         name: "description",
         content:
-          "Wenze Electric manufactures oil immersed, dry type, pole mounted and power transformers, plus compact substations, for project-specific requirements.",
+          "China transformer manufacturer for Southeast Asia projects, supplying oil immersed distribution, dry type, pole mounted, power transformers and compact substations.",
       },
+      { name: "robots", content: "index,follow,max-image-preview:large" },
       { name: "author", content: "Wenze Electric" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Wenze Electric" },
@@ -130,6 +144,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", type: "image/png", sizes: "64x64", href: "/wenze-favicon.png" },
       { rel: "apple-touch-icon", href: "/apple-icon.png" },
+      { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
     ],
     scripts: [
       {
@@ -163,6 +178,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Analytics />
       <UnifiedHeader />
       <Outlet />
     </QueryClientProvider>
