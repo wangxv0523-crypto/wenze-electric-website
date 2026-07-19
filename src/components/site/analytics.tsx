@@ -12,7 +12,7 @@ const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
 export function Analytics() {
   const pagePath = useRouterState({
-    select: (state) => `${state.location.pathname}${state.location.search}`,
+    select: (state) => `${state.location.pathname}${state.location.searchStr}`,
   });
 
   useEffect(() => {
