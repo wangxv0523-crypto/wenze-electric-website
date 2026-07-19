@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID || "G-2N8THH1T8V";
 
 export function Analytics() {
   const pagePath = useRouterState({
