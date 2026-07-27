@@ -1,5 +1,5 @@
 import { useRouterState } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 declare global {
   interface Window {
@@ -8,32 +8,22 @@ declare global {
   }
 }
 
-const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID || "G-2N8THH1T8V";
+export const googleAnalyticsMeasurementId =
+  import.meta.env.VITE_GA_MEASUREMENT_ID || "G-2N8THH1T8V";
 
 export function Analytics() {
   const pagePath = useRouterState({
     select: (state) => `${state.location.pathname}${state.location.searchStr}`,
   });
+  const isInitialPage = useRef(true);
 
   useEffect(() => {
-    if (!measurementId || typeof document === "undefined") return;
-
-    if (!document.querySelector(`script[data-ga4="${measurementId}"]`)) {
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-      script.dataset.ga4 = measurementId;
-      document.head.appendChild(script);
+    if (isInitialPage.current) {
+      isInitialPage.current = false;
+      return;
     }
 
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || ((...args: unknown[]) => window.dataLayer.push(args));
-    window.gtag("js", new Date());
-    window.gtag("config", measurementId, { send_page_view: false });
-  }, []);
-
-  useEffect(() => {
-    if (!measurementId || !window.gtag) return;
+    if (!googleAnalyticsMeasurementId || !window.gtag) return;
 
     window.gtag("event", "page_view", {
       page_title: document.title,

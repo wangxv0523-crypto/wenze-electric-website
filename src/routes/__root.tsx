@@ -11,7 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { Analytics } from "../components/site/analytics";
+import {
+  Analytics,
+  googleAnalyticsMeasurementId,
+} from "../components/site/analytics";
 import { UnifiedHeader } from "../components/site/unified-header";
 import {
   absoluteUrl,
@@ -147,6 +150,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
     ],
     scripts: [
+      {
+        async: true,
+        src: `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsMeasurementId}`,
+      },
+      {
+        children: `window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag("js", new Date());
+gtag("config", "${googleAnalyticsMeasurementId}");`,
+      },
       {
         type: "application/ld+json",
         children: serializeJsonLd(organizationSchema),
