@@ -1,4 +1,4 @@
-import { ArrowRight, Gauge, PackageCheck, PlugZap } from "lucide-react";
+import { ArrowRight, Droplets, Fan, Gauge, PackageCheck, PlugZap, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getProductBySlug, type Product } from "@/lib/products-data";
@@ -21,9 +21,9 @@ const accessoryProducts = [
     image: "/images/products/transformer-bushings-connectors.png",
     icon: PlugZap,
     specifications: [
-      ["Voltage", "Project specific"],
-      ["Insulation", "Porcelain / Composite"],
-      ["Use", "Transformer terminals"],
+      ["Voltage class", "Um 7.2 / 12 / 17.5 / 24 / 36 kV"],
+      ["Current", "250-3150 A typical"],
+      ["Standard", "IEC 60137"],
     ],
   },
   {
@@ -35,8 +35,47 @@ const accessoryProducts = [
     icon: Gauge,
     specifications: [
       ["Devices", "Buchholz / PRD / MOG"],
-      ["Function", "Protection & monitoring"],
-      ["Use", "Oil-immersed transformers"],
+      ["Signals", "Alarm / trip contacts"],
+      ["Selection", "By tank and wiring drawing"],
+    ],
+  },
+  {
+    id: "transformer-tap-changers-controls",
+    title: "Transformer Tap Changers & Control Panels",
+    description:
+      "DETC and OLTC components, motor-drive mechanisms and control panels selected for transformer voltage-regulation projects.",
+    image: "/images/products/transformer-tap-changers-controls.png",
+    icon: Settings,
+    specifications: [
+      ["Type", "DETC / OLTC"],
+      ["Control", "Motor drive / RTCC"],
+      ["Standard", "IEC 60214-1 / -2"],
+    ],
+  },
+  {
+    id: "transformer-cooling-system-components",
+    title: "Transformer Cooling System Components",
+    description:
+      "Radiators, cooling fans, oil pumps and associated components for transformer maintenance and cooling-system retrofit.",
+    image: "/images/products/transformer-cooling-system-components.png",
+    icon: Fan,
+    specifications: [
+      ["System", "ONAN / ONAF / OFAF"],
+      ["Components", "Radiator / fan / pump"],
+      ["Selection", "By heat-loss duty"],
+    ],
+  },
+  {
+    id: "transformer-conservator-breathers-oil-accessories",
+    title: "Transformer Conservator, Breathers & Oil Accessories",
+    description:
+      "Breathers, oil-level indicators, air cells, valves and conservator fittings for oil-preservation and maintenance projects.",
+    image: "/images/products/transformer-conservator-breathers-oil-accessories.png",
+    icon: Droplets,
+    specifications: [
+      ["Items", "Breathers / OLI / air cells"],
+      ["Materials", "Oil-compatible selection"],
+      ["Selection", "By conservator drawing"],
     ],
   },
   {
@@ -47,9 +86,9 @@ const accessoryProducts = [
     image: "/images/products/transformer-maintenance-spares.png",
     icon: PackageCheck,
     specifications: [
-      ["Items", "Breathers / Gaskets / Valves"],
-      ["Selection", "By model / drawing"],
-      ["Use", "Preventive maintenance"],
+      ["Items", "Gaskets / seals / valves"],
+      ["Supply", "Single item / repair kit"],
+      ["Selection", "By model / BOM"],
     ],
   },
 ] as const;
@@ -111,7 +150,7 @@ function AccessoryCard({ product }: { product: (typeof accessoryProducts)[number
 
   return (
     <Card className="group mx-auto flex h-full w-full max-w-[360px] overflow-hidden border-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg md:max-w-[380px] lg:max-w-[400px]">
-      <a href="#contact" className="flex h-full w-full flex-col">
+      <a href={`/products/${product.id}`} className="flex h-full w-full flex-col">
         <div className="relative aspect-[4/3] overflow-hidden bg-white p-2">
           <img
             src={product.image}
@@ -140,12 +179,12 @@ function AccessoryCard({ product }: { product: (typeof accessoryProducts)[number
           <div className="overflow-hidden rounded-lg border border-border">
             <div className="bg-primary px-4 py-2">
               <h3 className="text-xs font-bold uppercase tracking-wider text-white">
-                Product Scope
+                Quick Scope
               </h3>
             </div>
             <div className="divide-y divide-border">
               {product.specifications.map(([label, value], index) => (
-                <SpecRow
+                <AccessorySpecRow
                   key={label}
                   label={label}
                   value={value}
@@ -156,12 +195,33 @@ function AccessoryCard({ product }: { product: (typeof accessoryProducts)[number
           </div>
 
           <Button className="mt-auto w-full bg-primary text-primary-foreground hover:bg-primary/90">
-            Request Spare Parts List
+            View Technical Details
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
         </CardContent>
       </a>
     </Card>
+  );
+}
+
+function AccessorySpecRow({
+  label,
+  value,
+  alternate = false,
+}: {
+  label: string;
+  value: string;
+  alternate?: boolean;
+}) {
+  return (
+    <div
+      className={`flex items-start gap-3 px-4 py-2.5 ${alternate ? "bg-secondary/30" : "bg-white"}`}
+    >
+      <span className="w-24 shrink-0 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        {label}
+      </span>
+      <span className="min-w-0 text-sm font-semibold leading-snug text-foreground">{value}</span>
+    </div>
   );
 }
 

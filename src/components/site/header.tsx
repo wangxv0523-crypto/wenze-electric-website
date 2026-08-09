@@ -43,7 +43,7 @@ export function Header() {
           {/* Logo */}
           <a href="/" className="flex items-center">
             <img 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-n2GL5TaXQSDwwTPZmdjvvT0y5cX8oN.png" 
+              src="/wenze-logo-mark.png"
               alt="文则电气 - Reliable Power Solutions" 
               className="h-12 w-auto"
             />

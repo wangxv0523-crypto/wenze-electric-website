@@ -23,6 +23,7 @@ export interface QuickSpecification {
 }
 
 export interface DetailedSpecTable {
+  heading?: string;
   columns: SpecColumn[];
   rows: DetailedSpecRow[];
   note?: string;
@@ -166,6 +167,57 @@ function createProductFaq(productName: string, applicableStandards: string): Pro
       question: "How is the transformer packed for export?",
       answer:
         "The packing method is selected according to the equipment configuration, transport route and agreed contract requirements.",
+    },
+  ];
+}
+
+const accessoryQuotationRequirements = [
+  "Accessory category and required item",
+  "Transformer model, serial number and nameplate photo",
+  "Existing part number or device label, if available",
+  "Approved drawing, dimensions or interface photo",
+  "Electrical duty, voltage/current or control-circuit requirements where applicable",
+  "Quantity and required delivery date",
+  "Destination country and installation environment",
+  "Applicable utility or project specification",
+];
+
+const accessoryTechnicalDocuments = [
+  "Accessory technical datasheet",
+  "Outline and interface drawing",
+  "Wiring diagram or terminal schematic, where applicable",
+  "Material and compatibility statement",
+  "Inspection record or test certificate, where applicable",
+  "Packing list",
+];
+
+const accessoryTechnicalNotes = [
+  "Accessory information is provided for preliminary selection. No cross-brand or cross-model interchangeability is assumed.",
+  "Final compatibility is confirmed against the transformer model, nameplate, existing interface, approved drawing and engineering review.",
+  "For Southeast Asia projects, confirm ambient temperature, humidity, coastal or salt-pollution exposure, indoor or outdoor service, and local utility requirements before final selection.",
+];
+
+function createAccessoryFaq(productName: string): ProductFaqItem[] {
+  return [
+    {
+      question: `How is compatibility for ${productName} confirmed?`,
+      answer:
+        "Please provide the transformer model, serial number, nameplate photo, existing part number and interface drawing or dimensions. Our engineering team reviews these details before confirming a replacement or retrofit item.",
+    },
+    {
+      question: "Are replacement accessories universal across transformer brands?",
+      answer:
+        "No. Electrical duty, mechanical interface, material compatibility and control wiring can differ by transformer design. Final selection must be based on the approved drawing and technical review.",
+    },
+    {
+      question: "Can parts be supplied for tropical or coastal sites?",
+      answer:
+        "Yes. Please identify humidity, temperature, salt-pollution and outdoor exposure conditions so that enclosure protection, coating and material selection can be reviewed for the site.",
+    },
+    {
+      question: "Which documents can be provided before ordering?",
+      answer:
+        "Available documents can include a technical datasheet, outline or interface drawing, wiring diagram where applicable, material statement and inspection record, subject to the selected item and contract scope.",
     },
   ];
 }
@@ -1604,6 +1656,823 @@ export const products: Product[] = [
           "To be confirmed for the selected transformer and enclosure configuration",
         dimensionsAndWeight:
           "Approximate only and subject to approved general arrangement drawings",
+      },
+    },
+  },
+  {
+    id: "transformer-bushings-connectors",
+    icon: Radio,
+    title: "Transformer Bushings & Terminal Connectors",
+    titleEn: "Transformer Bushings & Terminal Connectors",
+    seoDescription:
+      "Transformer bushings and terminal connectors for oil-immersed distribution and power transformers, selected by voltage class, current rating, insulation and interface drawing.",
+    shortDescription:
+      "Porcelain, epoxy and composite transformer bushings with matched terminal connection components.",
+    shortDescriptionEn:
+      "Porcelain, epoxy and composite transformer bushings with matched terminal connection components.",
+    fullDescription:
+      "Transformer bushings and terminal connectors are selected for replacement, retrofit or new transformer projects. Voltage class, current rating, creepage distance, terminal arrangement and flange dimensions are confirmed against the transformer nameplate and approved drawing.",
+    fullDescriptionEn:
+      "Transformer bushings and terminal connectors are selected for replacement, retrofit or new transformer projects. Voltage class, current rating, creepage distance, terminal arrangement and flange dimensions are confirmed against the transformer nameplate and approved drawing.",
+    standardSizes: [
+      "LV equipment class Um <= 1.1 kV",
+      "MV equipment class Um 7.2 / 12 / 17.5 / 24 / 36 kV",
+      "Higher voltage by project",
+    ],
+    image: "/images/products/transformer-bushings-connectors.png",
+    cardImage: "/images/products/transformer-bushings-connectors.png",
+    detailImage: "/images/products/transformer-bushings-connectors.png",
+    specs: {
+      voltage:
+        "Equipment class Um <= 1.1 / 7.2 / 12 / 17.5 / 24 / 36 kV; matched to the local grid",
+      capacity:
+        "Current rating follows the selected bushing construction, transformer load, terminal configuration and temperature-rise duty",
+      frequency: "50/60 Hz system service",
+      phase: "Single bushing or matched 3-phase set",
+      cooling: "N/A - insulation and terminal component",
+      insulationMedium: "Porcelain / epoxy resin / composite",
+      tappingRange: "Not applicable",
+      standards: "IEC 60137 / applicable utility specification",
+    },
+    regionalSpecifications: [
+      {
+        label: "Typical Nominal System Voltage",
+        value: "6.6 kV / 11 kV / 13.8 kV / 20 kV / 22 kV / 33 kV examples; final by local utility",
+      },
+      {
+        label: "Equipment Voltage Class",
+        value: "Um <= 1.1 / 7.2 / 12 / 17.5 / 24 / 36 kV selected by insulation coordination",
+      },
+      {
+        label: "Current Rating",
+        value:
+          "Current duty is model-specific and is confirmed from the bushing construction, conductor and temperature-rise duty",
+      },
+      { label: "Insulation Type", value: "Porcelain, epoxy resin or composite insulation selected for the service environment" },
+      { label: "Connection Style", value: "Threaded, spade, plug-in or project-specific terminal arrangement" },
+      { label: "Mechanical Interface", value: "Flange, gasket, stud pattern and conductor dimensions matched to the approved drawing" },
+      { label: "Environmental Selection", value: "Creepage distance, coating and material selected for humidity, pollution and coastal exposure" },
+      { label: "Applicable Standard", value: "IEC 60137 or applicable utility and project specification" },
+      { label: "Required for Quotation", value: "Nameplate, existing bushing drawing, terminal details and quantity" },
+    ],
+    features: [
+      { zh: "Matched electrical and mechanical interface", en: "Matched electrical and mechanical interface" },
+      { zh: "Porcelain, epoxy and composite options", en: "Porcelain, epoxy and composite options" },
+      { zh: "Tropical and coastal environment review", en: "Tropical and coastal environment review" },
+      { zh: "Replacement or retrofit selection", en: "Replacement or retrofit selection" },
+    ],
+    applications: [
+      "Oil-immersed distribution transformer replacement",
+      "Power transformer retrofit and maintenance",
+      "Utility, industrial and compact substation projects",
+      "Indoor, outdoor, tropical and coastal installations",
+    ],
+    customizationOptions: [
+      "Voltage class, current rating and insulation type",
+      "Creepage distance and pollution performance",
+      "Terminal, conductor and flange interface",
+      "Gasket and hardware material selection",
+    ],
+    quotationRequirements: [...accessoryQuotationRequirements],
+    faq: createAccessoryFaq("Transformer Bushings & Terminal Connectors"),
+    relatedProductSlugs: [
+      "oil-immersed-distribution-transformer",
+      "power-transformer",
+      "high-voltage-power-transformer",
+    ],
+    technicalDocuments: [...accessoryTechnicalDocuments],
+    technicalNotes: [
+      ...accessoryTechnicalNotes,
+      "Nominal system voltage and the bushing Um equipment voltage class are not interchangeable. Current rating, creepage distance and terminal configuration must match the transformer and grid insulation-coordination requirements.",
+    ],
+    detailedSpecTable: {
+      heading: "Bushing Selection Reference Parameters",
+      columns: [
+        { key: "parameter", label: "Parameter" },
+        { key: "reference", label: "Typical Reference" },
+        { key: "confirmation", label: "Confirm for Order" },
+      ],
+      rows: [
+        {
+          parameter: "Equipment voltage class",
+          reference: "Um <= 1.1 / 7.2 / 12 / 17.5 / 24 / 36 kV",
+          confirmation: "Required Um, insulation coordination, impulse level and local-utility requirement",
+        },
+        {
+          parameter: "Rated current",
+          reference: "Model-specific; confirmed from the required continuous current and selected bushing construction",
+          confirmation: "Transformer load, terminal design and temperature rise duty",
+        },
+        {
+          parameter: "Insulation material",
+          reference: "Porcelain / epoxy resin / composite",
+          confirmation: "Indoor or outdoor service, humidity, pollution and coastal exposure",
+        },
+        {
+          parameter: "Creepage selection",
+          reference: "Selected for site pollution severity; no universal mm/kV value is claimed",
+          confirmation: "IEC TS 60815 basis and destination-utility requirement",
+        },
+        {
+          parameter: "Terminal arrangement",
+          reference: "Threaded stud / palm / plug-in / project-specific connector",
+          confirmation: "Stud size, hole pattern, phase spacing and conductor direction",
+        },
+        {
+          parameter: "Mounting interface",
+          reference: "Flange, gasket, bolt pattern and oil-side length",
+          confirmation: "Approved bushing drawing and transformer cover interface",
+        },
+        {
+          parameter: "Applicable standard",
+          reference: "IEC 60137 for applicable AC bushing duty",
+          confirmation: "Product-specific test and utility or project requirements",
+        },
+      ],
+      publicationStatus: "published",
+      note:
+        "These are reference selection parameters, not universal interchangeability claims. The approved accessory drawing and transformer nameplate control the final supply.",
+      applicability: {
+        productSeriesModelBasis: "Transformer bushing and terminal accessory category",
+        applicableStandard: "IEC 60137 and applicable utility or project specification",
+        windingConductor: "Not applicable; conductor and terminal interface are confirmed by drawing",
+        lossReferenceTemperature: "Not applicable",
+        tappingRange: "Not applicable",
+        vectorGroup: "Not applicable",
+        energyEfficiencyBasis: "Not applicable; electrical duty and insulation coordination are reviewed",
+        soundMeasurementBasis: "Not applicable",
+        dimensionsAndWeight: "Subject to selected voltage class, terminal design and approved interface drawing",
+      },
+    },
+  },
+  {
+    id: "transformer-protection-monitoring",
+    icon: Zap,
+    title: "Transformer Protection & Monitoring Devices",
+    titleEn: "Transformer Protection & Monitoring Devices",
+    seoDescription:
+      "Buchholz relays, pressure relief devices, oil level indicators and temperature monitoring accessories for oil-immersed transformers and OLTC applications.",
+    shortDescription:
+      "Protection and monitoring devices selected for oil-immersed transformers and on-load tap changers.",
+    shortDescriptionEn:
+      "Protection and monitoring devices selected for oil-immersed transformers and on-load tap changers.",
+    fullDescription:
+      "Protection and monitoring devices support transformer condition indication, alarm and trip functions. Device type, mounting interface, contact arrangement, enclosure protection and pressure setting are confirmed against the transformer tank design and approved electrical schematic.",
+    fullDescriptionEn:
+      "Protection and monitoring devices support transformer condition indication, alarm and trip functions. Device type, mounting interface, contact arrangement, enclosure protection and pressure setting are confirmed against the transformer tank design and approved electrical schematic.",
+    standardSizes: ["Buchholz relay", "Pressure relief device", "MOG / OTI / WTI"],
+    image: "/images/products/transformer-protection-monitoring.png",
+    cardImage: "/images/products/transformer-protection-monitoring.png",
+    detailImage: "/images/products/transformer-protection-monitoring.png",
+    specs: {
+      voltage: "Auxiliary and contact circuit by project",
+      capacity: "Oil-immersed transformer / OLTC duty",
+      frequency: "50/60 Hz system service",
+      phase: "Alarm and trip contacts as specified",
+      cooling: "N/A - protection and monitoring devices",
+      insulationMedium: "Not applicable",
+      tappingRange: "Not applicable",
+      standards: "IEC 60076-22-1 / IEC 60529 for enclosure protection / project specification",
+    },
+    regionalSpecifications: [
+      { label: "Typical Devices", value: "Buchholz relay, PRD, magnetic oil gauge, OTI, WTI and related contacts" },
+      { label: "Application", value: "Oil-immersed transformers, conservators and on-load tap changer compartments" },
+      { label: "Signal Function", value: "Local indication with alarm and trip contacts selected to the control schematic" },
+      { label: "PRD Selection", value: "Operating pressure, flange and discharge arrangement confirmed against tank design" },
+      {
+        label: "Enclosure Protection",
+        value:
+          "IP rating is stated on the selected device datasheet and assessed with its actual cable-entry arrangement to IEC 60529",
+      },
+      { label: "Control Interface", value: "Terminal box, cable entry, contact rating and wiring identified on the approved schematic" },
+      { label: "Environmental Selection", value: "Outdoor coating, stainless hardware and corrosion protection reviewed for site conditions" },
+      { label: "Required for Quotation", value: "Device label, existing drawing, tank interface, wiring requirement and quantity" },
+    ],
+    features: [
+      { zh: "Alarm and trip contact options", en: "Alarm and trip contact options" },
+      { zh: "Tank and piping interface review", en: "Tank and piping interface review" },
+      { zh: "Outdoor and corrosive site options", en: "Outdoor and corrosive site options" },
+      { zh: "New-build and retrofit support", en: "New-build and retrofit support" },
+    ],
+    applications: [
+      "Oil-immersed distribution and power transformers",
+      "On-load tap changer protection circuits",
+      "Substation condition monitoring upgrades",
+      "Replacement of failed or obsolete protection devices",
+    ],
+    customizationOptions: [
+      "Device type and alarm/trip contact arrangement",
+      "Mounting flange, piping and cable entry interface",
+      "Pressure setting and discharge shield for PRD applications",
+      "Enclosure protection and corrosion-resistant materials",
+    ],
+    quotationRequirements: [...accessoryQuotationRequirements],
+    faq: createAccessoryFaq("Transformer Protection & Monitoring Devices"),
+    relatedProductSlugs: [
+      "oil-immersed-distribution-transformer",
+      "power-transformer",
+      "high-voltage-power-transformer",
+    ],
+    technicalDocuments: [...accessoryTechnicalDocuments],
+    technicalNotes: [
+      ...accessoryTechnicalNotes,
+      "Pressure-relief settings, contact ratings and wiring arrangements are device-specific and must be confirmed against the approved transformer tank design and control schematic.",
+    ],
+    detailedSpecTable: {
+      heading: "Protection Device Configuration Parameters",
+      columns: [
+        { key: "parameter", label: "Parameter" },
+        { key: "reference", label: "Typical Reference" },
+        { key: "confirmation", label: "Confirm for Order" },
+      ],
+      rows: [
+        {
+          parameter: "Device scope",
+          reference: "Buchholz relay / PRD / MOG / OTI / WTI",
+          confirmation: "Transformer type, conservator or OLTC application and required function",
+        },
+        {
+          parameter: "Protection function",
+          reference: "Gas accumulation, oil surge, pressure, oil level or temperature monitoring",
+          confirmation: "Approved protection philosophy and control schematic",
+        },
+        {
+          parameter: "Alarm and trip contacts",
+          reference: "Local indication with alarm / trip contact options",
+          confirmation: "Contact quantity, NO/NC logic and circuit duty",
+        },
+        {
+          parameter: "Auxiliary and control supply",
+          reference: "AC or DC auxiliary circuits; 50/60 Hz where AC is used",
+          confirmation: "Control voltage, terminal arrangement and cable entry",
+        },
+        {
+          parameter: "PRD configuration",
+          reference: "Operating pressure and discharge arrangement selected by tank design",
+          confirmation: "Tank pressure calculation, flange and discharge clearance",
+        },
+        {
+          parameter: "Enclosure protection",
+          reference: "IP rating stated on the selected device datasheet and cable-entry arrangement",
+          confirmation: "Outdoor exposure, cable glands and IEC 60529 requirement",
+        },
+        {
+          parameter: "Mechanical interface",
+          reference: "Pipe, flange, gasket, mounting and terminal-box interface",
+          confirmation: "Approved tank drawing and existing device label",
+        },
+        {
+          parameter: "Applicable standard",
+          reference: "IEC 60076-22-1; IEC 60529 applies to the declared enclosure IP rating",
+          confirmation: "Utility and project specification",
+        },
+      ],
+      publicationStatus: "published",
+      note:
+        "Protection-device ratings and interfaces are not universal. The approved transformer tank drawing, electrical schematic and protection philosophy control the final supply.",
+      applicability: {
+        productSeriesModelBasis: "Oil-immersed transformer and OLTC protection accessory category",
+        applicableStandard: "IEC 60076-22-1 and applicable project specification",
+        windingConductor: "Not applicable",
+        lossReferenceTemperature: "Not applicable",
+        tappingRange: "Not applicable",
+        vectorGroup: "Not applicable",
+        energyEfficiencyBasis: "Not applicable; protection function and device interface are reviewed",
+        soundMeasurementBasis: "Not applicable",
+        dimensionsAndWeight: "Subject to selected device, tank interface and terminal-box configuration",
+      },
+    },
+  },
+  {
+    id: "transformer-tap-changers-controls",
+    icon: Box,
+    title: "Transformer Tap Changers & Control Panels",
+    titleEn: "Transformer Tap Changers & Control Panels",
+    seoDescription:
+      "Off-circuit and on-load transformer tap changer components, motor drive mechanisms and control panels selected by transformer winding design and voltage regulation requirements.",
+    shortDescription:
+      "DETC, OLTC components and control panels for transformer voltage regulation and retrofit projects.",
+    shortDescriptionEn:
+      "DETC, OLTC components and control panels for transformer voltage regulation and retrofit projects.",
+    fullDescription:
+      "Tap changer equipment is selected for transformer voltage regulation, maintenance and retrofit projects. DETC or OLTC type, contact arrangement, step range, motor-drive controls and mechanical interface must match the transformer winding design and approved control scheme.",
+    fullDescriptionEn:
+      "Tap changer equipment is selected for transformer voltage regulation, maintenance and retrofit projects. DETC or OLTC type, contact arrangement, step range, motor-drive controls and mechanical interface must match the transformer winding design and approved control scheme.",
+    standardSizes: ["DETC components", "OLTC components", "Motor drive and control panels"],
+    image: "/images/products/transformer-tap-changers-controls.png",
+    cardImage: "/images/products/transformer-tap-changers-controls.png",
+    detailImage: "/images/products/transformer-tap-changers-controls.png",
+    specs: {
+      voltage: "Regulation range by transformer winding design",
+      capacity: "DETC / OLTC selected by transformer rating",
+      frequency: "50/60 Hz control supply by project",
+      phase: "Single- or three-phase transformer application",
+      cooling: "N/A - switching and control equipment",
+      insulationMedium: "Oil-immersed or dry-type application by design",
+      tappingRange: "Number of positions and step percent by approved datasheet",
+      standards: "IEC 60214-1 / IEC/IEEE 60214-2 / project specification",
+    },
+    regionalSpecifications: [
+      { label: "Tap Changer Type", value: "DETC or OLTC selected by transformer design and operating requirement" },
+      { label: "Voltage Regulation", value: "Tap range, number of positions and step percentage confirmed by approved winding data" },
+      { label: "Contact System", value: "Diverter, selector, fixed or moving contacts matched to existing mechanism" },
+      { label: "Motor Drive", value: "Motor-drive mechanism, RTCC or local control panel by project control philosophy" },
+      { label: "Auxiliary Supply", value: "Voltage, frequency, phase and terminal arrangement confirmed by control schematic" },
+      { label: "Mechanical Interface", value: "Mounting, shaft, drive linkage and enclosure dimensions matched to drawing" },
+      {
+        label: "Applicable Standard",
+        value: "IEC 60214-1 / IEC/IEEE 60214-2 or applicable utility and project specification",
+      },
+      { label: "Required for Quotation", value: "Tap changer nameplate, schematic, mechanism photo and transformer drawing" },
+    ],
+    features: [
+      { zh: "DETC and OLTC selection support", en: "DETC and OLTC selection support" },
+      { zh: "Motor drive and RTCC options", en: "Motor drive and RTCC options" },
+      { zh: "Existing mechanism matching", en: "Existing mechanism matching" },
+      { zh: "Voltage regulation retrofit review", en: "Voltage regulation retrofit review" },
+    ],
+    applications: [
+      "Distribution and power transformer voltage regulation",
+      "OLTC maintenance and component replacement",
+      "Motor-drive cabinet and RTCC retrofit projects",
+      "Utility and industrial transformer refurbishment",
+    ],
+    customizationOptions: [
+      "DETC or OLTC configuration",
+      "Tap range, steps and contact arrangement",
+      "Motor-drive supply and control-panel wiring",
+      "Mounting, drive-shaft and linkage interface",
+    ],
+    quotationRequirements: [...accessoryQuotationRequirements],
+    faq: createAccessoryFaq("Transformer Tap Changers & Control Panels"),
+    relatedProductSlugs: [
+      "power-transformer",
+      "high-voltage-power-transformer",
+      "transformer-protection-monitoring",
+    ],
+    technicalDocuments: [...accessoryTechnicalDocuments],
+    technicalNotes: [
+      ...accessoryTechnicalNotes,
+      "Tap changer components are strictly matched to the existing mechanism, winding data and control schematic; a visual similarity alone is not sufficient for selection.",
+    ],
+    detailedSpecTable: {
+      heading: "Tap Changer Configuration Parameters",
+      columns: [
+        { key: "parameter", label: "Parameter" },
+        { key: "reference", label: "Typical Reference" },
+        { key: "confirmation", label: "Confirm for Order" },
+      ],
+      rows: [
+        {
+          parameter: "Tap changer type",
+          reference: "DETC or OLTC; selector, diverter, fixed or moving contact components",
+          confirmation: "Existing device nameplate, transformer winding design and duty",
+        },
+        {
+          parameter: "Voltage regulation",
+          reference: "Tap range, position count and step percentage by transformer winding data",
+          confirmation: "Approved nameplate and voltage-regulation requirement",
+        },
+        {
+          parameter: "Electrical duty",
+          reference: "Rated through-current, step voltage and short-circuit duty by device design",
+          confirmation: "Tap winding data and approved tap changer datasheet",
+        },
+        {
+          parameter: "Motor-drive supply",
+          reference: "Motor and control supply by schematic; 50/60 Hz where AC is used",
+          confirmation: "Voltage, phase, terminal arrangement and local supply",
+        },
+        {
+          parameter: "Control functions",
+          reference: "Local / remote operation, position indication, electrical and mechanical end limits",
+          confirmation: "RTCC interface, interlocking and signal list",
+        },
+        {
+          parameter: "Mechanical interface",
+          reference: "Mounting, drive shaft, linkage and enclosure dimensions",
+          confirmation: "Mechanism drawing and retrofit installation space",
+        },
+        {
+          parameter: "Applicable standard",
+          reference: "IEC 60214-1 / IEC/IEEE 60214-2",
+          confirmation: "Utility and project specification",
+        },
+      ],
+      publicationStatus: "published",
+      note:
+        "Tap changer parts are model-specific. Replacement and retrofit supply must follow the approved device nameplate, mechanism drawing and control-circuit documentation.",
+      applicability: {
+        productSeriesModelBasis: "Transformer DETC / OLTC and motor-drive accessory category",
+        applicableStandard: "IEC 60214-1 / IEC/IEEE 60214-2 and applicable project specification",
+        windingConductor: "Confirmed through the transformer winding and tap changer design review",
+        lossReferenceTemperature: "Not applicable",
+        tappingRange: "Confirmed by approved transformer winding data and required voltage regulation range",
+        vectorGroup: "Confirmed through the transformer design where relevant",
+        energyEfficiencyBasis: "Not applicable; regulation duty and component compatibility are reviewed",
+        soundMeasurementBasis: "Not applicable",
+        dimensionsAndWeight: "Subject to selected mechanism, motor-drive cabinet and approved drawings",
+      },
+    },
+  },
+  {
+    id: "transformer-cooling-system-components",
+    icon: Wind,
+    title: "Transformer Cooling System Components",
+    titleEn: "Transformer Cooling System Components",
+    seoDescription:
+      "Transformer radiators, cooling fans, oil pumps and cooling-system components selected for ONAN, ONAF and OFAF transformer cooling arrangements.",
+    shortDescription:
+      "Radiators, cooling fans, oil pumps and associated parts for transformer cooling-system maintenance or retrofit.",
+    shortDescriptionEn:
+      "Radiators, cooling fans, oil pumps and associated parts for transformer cooling-system maintenance or retrofit.",
+    fullDescription:
+      "Transformer cooling-system components include radiator banks, cooling fans, oil pumps, valves and related controls. Selection is based on transformer heat-loss duty, cooling mode, auxiliary supply, interface dimensions, insulating-fluid review and site ambient conditions.",
+    fullDescriptionEn:
+      "Transformer cooling-system components include radiator banks, cooling fans, oil pumps, valves and related controls. Selection is based on transformer heat-loss duty, cooling mode, auxiliary supply, interface dimensions, insulating-fluid review and site ambient conditions.",
+    standardSizes: ["Radiator bank", "Cooling fan set", "Oil pump and cooling controls"],
+    image: "/images/products/transformer-cooling-system-components.png",
+    cardImage: "/images/products/transformer-cooling-system-components.png",
+    detailImage: "/images/products/transformer-cooling-system-components.png",
+    specs: {
+      voltage: "Fan and pump auxiliary supply by project",
+      capacity: "Radiator, fan and pump sizing by heat-loss duty",
+      frequency: "50/60 Hz",
+      phase: "Single- or three-phase auxiliary supply",
+      cooling: "ONAN / ONAF / OFAF system components",
+      insulationMedium: "Material selected after insulating-fluid compatibility review",
+      tappingRange: "Not applicable",
+      standards: "IEC 60076-2 / applicable project specification",
+    },
+    regionalSpecifications: [
+      { label: "Component Scope", value: "Radiators, cooling fans, oil pumps, valves, controls and associated fittings" },
+      { label: "Cooling Arrangement", value: "ONAN, ONAF or OFAF arrangement confirmed by the transformer cooling calculation" },
+      { label: "Thermal Duty", value: "Heat dissipation, oil flow and fan duty selected against transformer losses and ambient temperature" },
+      { label: "Auxiliary Supply", value: "Fan or pump voltage, frequency, phase, cable entry and control interface by project" },
+      { label: "Mechanical Interface", value: "Radiator flange pitch, valve size, pipework and mounting dimensions matched to drawing" },
+      {
+        label: "Material and Coating",
+        value: "Material and coating selected after insulating-fluid, humidity and corrosion review",
+      },
+      { label: "Noise Requirement", value: "Fan and pump acoustic requirement confirmed where the installation has a sound limit" },
+      { label: "Required for Quotation", value: "Transformer rating, losses, cooling mode, drawing and auxiliary supply details" },
+    ],
+    features: [
+      { zh: "ONAN, ONAF and OFAF support", en: "ONAN, ONAF and OFAF support" },
+      { zh: "Radiator and fan interface matching", en: "Radiator and fan interface matching" },
+      { zh: "Auxiliary control-supply review", en: "Auxiliary control-supply review" },
+      { zh: "Hot and humid site selection", en: "Hot and humid site selection" },
+    ],
+    applications: [
+      "Power transformer cooling-system overhaul",
+      "Radiator, fan and pump replacement",
+      "ONAN to ONAF cooling upgrade studies",
+      "Industrial and utility substation maintenance",
+    ],
+    customizationOptions: [
+      "Radiator bank dimensions and flange arrangement",
+      "Fan and pump auxiliary supply configuration",
+      "Control-panel and cable-entry interface",
+      "Coating and corrosion-protection system",
+    ],
+    quotationRequirements: [...accessoryQuotationRequirements],
+    faq: createAccessoryFaq("Transformer Cooling System Components"),
+    relatedProductSlugs: [
+      "power-transformer",
+      "high-voltage-power-transformer",
+      "transformer-maintenance-spares",
+    ],
+    technicalDocuments: [...accessoryTechnicalDocuments],
+    technicalNotes: [
+      ...accessoryTechnicalNotes,
+      "Cooling components must be sized using transformer heat losses, cooling mode, auxiliary supply and approved radiator or pipework drawings.",
+    ],
+    detailedSpecTable: {
+      heading: "Cooling System Engineering Parameters",
+      columns: [
+        { key: "parameter", label: "Parameter" },
+        { key: "reference", label: "Typical Reference" },
+        { key: "confirmation", label: "Confirm for Order" },
+      ],
+      rows: [
+        {
+          parameter: "Cooling arrangement",
+          reference: "ONAN / ONAF / OFAF radiator, fan, pump and control components",
+          confirmation: "Existing cooling mode and planned transformer duty",
+        },
+        {
+          parameter: "Thermal duty",
+          reference: "Heat dissipation selected from total losses, ambient temperature and temperature-rise limits",
+          confirmation: "Approved thermal calculation and loss data",
+        },
+        {
+          parameter: "Radiator configuration",
+          reference: "Panel or bank quantity, center distance, valve and flange arrangement",
+          confirmation: "Radiator drawing, pipework and mounting dimensions",
+        },
+        {
+          parameter: "Fan and pump duty",
+          reference: "Motor rating, voltage, phase, flow and head are model-specific; 50/60 Hz where AC is used",
+          confirmation: "Supply voltage, rotation, flow, head and control sequence",
+        },
+        {
+          parameter: "Control interface",
+          reference: "Staged fan / pump control, terminal box and cable entry",
+          confirmation: "Temperature signals, control panel and site wiring",
+        },
+        {
+          parameter: "Material and coating",
+          reference: "Material and coating selected after insulating-fluid, humidity and corrosion review",
+          confirmation: "Oil type, outdoor humidity and coastal exposure",
+        },
+        {
+          parameter: "Noise requirement",
+          reference: "Fan and pump acoustic duty reviewed where a site limit applies",
+          confirmation: "Substation boundary limit and installation arrangement",
+        },
+        {
+          parameter: "Applicable standard",
+          reference: "IEC 60076-2 governs transformer thermal performance; component data is model-specific",
+          confirmation: "Fan, pump and radiator datasheets plus project temperature-rise specification",
+        },
+      ],
+      publicationStatus: "published",
+      note:
+        "Cooling-system components are selected from the approved thermal design and cannot be confirmed from transformer rating alone. The final arrangement follows the loss, heat-run and auxiliary-system requirements.",
+      applicability: {
+        productSeriesModelBasis: "Transformer radiator, fan, oil-pump and cooling control accessory category",
+        applicableStandard: "IEC 60076-2 and applicable project specification",
+        windingConductor: "Not applicable",
+        lossReferenceTemperature: "Confirmed through transformer loss and cooling calculation",
+        tappingRange: "Not applicable",
+        vectorGroup: "Not applicable",
+        energyEfficiencyBasis: "Cooling duty is reviewed against transformer losses and agreed performance requirements",
+        soundMeasurementBasis: "Fan and pump sound limits are confirmed where required by the project",
+        dimensionsAndWeight: "Subject to radiator bank dimensions, fan set, pump and interface drawing",
+      },
+    },
+  },
+  {
+    id: "transformer-conservator-breathers-oil-accessories",
+    icon: Droplets,
+    title: "Transformer Conservator, Breathers & Oil Accessories",
+    titleEn: "Transformer Conservator, Breathers & Oil Accessories",
+    seoDescription:
+      "Transformer conservator, silica-gel breather, oil level indication, air-cell and oil-accessory components for oil-immersed transformer maintenance and retrofit projects.",
+    shortDescription:
+      "Conservator, breather, oil-level and oil-preservation accessories for oil-immersed transformers.",
+    shortDescriptionEn:
+      "Conservator, breather, oil-level and oil-preservation accessories for oil-immersed transformers.",
+    fullDescription:
+      "Conservator and oil-preservation accessories are selected to control moisture ingress, support oil-level indication and maintain the oil system of an oil-immersed transformer. Breather size, air-cell material, gauge interface, valve and flange dimensions are matched to the existing conservator arrangement.",
+    fullDescriptionEn:
+      "Conservator and oil-preservation accessories are selected to control moisture ingress, support oil-level indication and maintain the oil system of an oil-immersed transformer. Breather size, air-cell material, gauge interface, valve and flange dimensions are matched to the existing conservator arrangement.",
+    standardSizes: ["Silica-gel breather", "Oil level indication", "Air cell and conservator fittings"],
+    image: "/images/products/transformer-conservator-breathers-oil-accessories.png",
+    cardImage: "/images/products/transformer-conservator-breathers-oil-accessories.png",
+    detailImage: "/images/products/transformer-conservator-breathers-oil-accessories.png",
+    specs: {
+      voltage: "N/A - oil preservation accessory",
+      capacity: "Breather, air cell and gauge sized by conservator design",
+      frequency: "N/A",
+      cooling: "N/A - oil preservation and indication components",
+      insulationMedium: "Material selected after insulating-fluid compatibility review",
+      tappingRange: "Not applicable",
+      standards: "IEC 60076 / IEC 60296 for mineral oil / project specification",
+    },
+    regionalSpecifications: [
+      { label: "Component Scope", value: "Silica-gel breathers, oil level gauges, air cells, valves and conservator fittings" },
+      { label: "Breather Selection", value: "Desiccant quantity, connection size and mounting arrangement matched to conservator duty" },
+      { label: "Oil Level Indication", value: "Gauge type, flange or thread interface, dial range and contacts by the existing arrangement" },
+      { label: "Air Cell Selection", value: "Material, dimensions and oil compatibility confirmed against conservator design" },
+      { label: "Valve and Fittings", value: "Thread, flange, gasket and material selected from the approved interface drawing" },
+      { label: "Environmental Selection", value: "Humidity, UV exposure, coastal corrosion and outdoor service conditions reviewed" },
+      {
+        label: "Oil Compatibility",
+        value:
+          "IEC 60296 specifies mineral insulating oil; component materials and seals are verified against the actual fluid and OEM or utility requirements",
+      },
+      { label: "Required for Quotation", value: "Conservator drawing, existing item photo, interface dimensions and quantity" },
+    ],
+    features: [
+      { zh: "Moisture-control accessory options", en: "Moisture-control accessory options" },
+      { zh: "Oil-level indication matching", en: "Oil-level indication matching" },
+      { zh: "Air-cell and conservator interface review", en: "Air-cell and conservator interface review" },
+      { zh: "Oil-compatible material selection", en: "Oil-compatible material selection" },
+    ],
+    applications: [
+      "Oil-immersed transformer conservator maintenance",
+      "Silica-gel breather replacement",
+      "Oil level indication upgrade or retrofit",
+      "Moisture-control and oil-system refurbishment",
+    ],
+    customizationOptions: [
+      "Breather capacity, connection and mounting arrangement",
+      "Oil level gauge interface and contact arrangement",
+      "Air-cell material and conservator dimensions",
+      "Valve, flange and gasket material selection",
+    ],
+    quotationRequirements: [...accessoryQuotationRequirements],
+    faq: createAccessoryFaq("Transformer Conservator, Breathers & Oil Accessories"),
+    relatedProductSlugs: [
+      "oil-immersed-distribution-transformer",
+      "power-transformer",
+      "transformer-maintenance-spares",
+    ],
+    technicalDocuments: [...accessoryTechnicalDocuments],
+    technicalNotes: [
+      ...accessoryTechnicalNotes,
+      "Oil-preservation accessories are confirmed against the existing conservator volume, interface, insulating-fluid type and local environmental conditions.",
+    ],
+    detailedSpecTable: {
+      heading: "Oil-System Accessory Configuration Parameters",
+      columns: [
+        { key: "parameter", label: "Parameter" },
+        { key: "reference", label: "Typical Reference" },
+        { key: "confirmation", label: "Confirm for Order" },
+      ],
+      rows: [
+        {
+          parameter: "Breather type",
+          reference: "Silica-gel dehydrating breather for conservator and OLTC oil systems",
+          confirmation: "Air-breathing duty, connection size and mounting arrangement",
+        },
+        {
+          parameter: "Desiccant capacity",
+          reference: "Selected by conservator oil volume, breathing volume and ambient humidity",
+          confirmation: "Transformer rating, climate and service interval requirement",
+        },
+        {
+          parameter: "Oil level indication",
+          reference: "Gauge dial range, local indication and optional alarm contacts",
+          confirmation: "Existing gauge interface, contact logic and required viewing position",
+        },
+        {
+          parameter: "Air cell and conservator",
+          reference: "Fluid-compatible air-cell material, conservator volume and dimensions",
+          confirmation: "Existing conservator drawing, oil type and internal arrangement",
+        },
+        {
+          parameter: "Fittings and seals",
+          reference: "Thread, flange, gasket, valve and mounting hardware",
+          confirmation: "Approved interface drawing and material compatibility",
+        },
+        {
+          parameter: "Environmental selection",
+          reference: "Outdoor humidity, UV exposure and coastal corrosion consideration",
+          confirmation: "Destination climate and installation location",
+        },
+        {
+          parameter: "Oil compatibility",
+          reference: "IEC 60296 specifies mineral insulating oil; material compatibility is component-specific",
+          confirmation: "Insulating-fluid type, component material data and OEM or utility requirement",
+        },
+      ],
+      publicationStatus: "published",
+      note:
+        "Breather, gauge and air-cell replacements are selected from the existing conservator design, not by transformer capacity alone. The final item follows the drawing, existing label and site environment.",
+      applicability: {
+        productSeriesModelBasis: "Oil-immersed transformer conservator and oil-preservation accessory category",
+        applicableStandard: "IEC 60076 and applicable project specification",
+        windingConductor: "Not applicable",
+        lossReferenceTemperature: "Not applicable",
+        tappingRange: "Not applicable",
+        vectorGroup: "Not applicable",
+        energyEfficiencyBasis: "Not applicable; oil-system compatibility and site conditions are reviewed",
+        soundMeasurementBasis: "Not applicable",
+        dimensionsAndWeight: "Subject to conservator volume, breather size, gauge interface and approved drawing",
+      },
+    },
+  },
+  {
+    id: "transformer-maintenance-spares",
+    icon: Box,
+    title: "Transformer Maintenance & Repair Spare Parts",
+    titleEn: "Transformer Maintenance & Repair Spare Parts",
+    seoDescription:
+      "Transformer maintenance and repair spare parts including gaskets, seals, valves, fittings, fasteners and project-matched replacement kits for oil-immersed and dry-type transformers.",
+    shortDescription:
+      "Gaskets, seals, valves, fittings and repair kits matched to transformer model, drawing and BOM.",
+    shortDescriptionEn:
+      "Gaskets, seals, valves, fittings and repair kits matched to transformer model, drawing and BOM.",
+    fullDescription:
+      "Transformer maintenance and repair spare parts support planned servicing, breakdown repair and export spare packages. Material compatibility, thread and flange dimensions, gasket profile and part identification are verified against the transformer model, approved drawing and bill of materials.",
+    fullDescriptionEn:
+      "Transformer maintenance and repair spare parts support planned servicing, breakdown repair and export spare packages. Material compatibility, thread and flange dimensions, gasket profile and part identification are verified against the transformer model, approved drawing and bill of materials.",
+    standardSizes: ["Single replacement item", "Repair kit", "Scheduled maintenance spare package"],
+    image: "/images/products/transformer-maintenance-spares.png",
+    cardImage: "/images/products/transformer-maintenance-spares.png",
+    detailImage: "/images/products/transformer-maintenance-spares.png",
+    specs: {
+      voltage: "N/A - replacement items by equipment interface",
+      capacity: "Single item, repair kit or maintenance package",
+      frequency: "N/A",
+      cooling: "N/A - preventive maintenance items",
+      insulationMedium: "Gasket and seal material selected after insulating-fluid compatibility review",
+      tappingRange: "Not applicable",
+      standards: "Approved transformer drawing / BOM / project specification",
+    },
+    regionalSpecifications: [
+      { label: "Typical Items", value: "Gaskets, seals, valves, fittings, fasteners, breathers and maintenance hardware" },
+      { label: "Supply Format", value: "Single item, repair kit or scheduled maintenance spare package" },
+      {
+        label: "Material Selection",
+        value:
+          "Seal, gasket and hardware material selected after insulating-fluid, service-temperature and corrosion review",
+      },
+      { label: "Mechanical Interface", value: "Thread, flange, gasket profile, stud pattern and dimensions verified to drawing" },
+      { label: "Identification", value: "Transformer model, serial number, nameplate, part number and BOM used for matching" },
+      { label: "Site Condition", value: "Tropical, coastal, corrosive or outdoor exposure considered for material and packing" },
+      { label: "Packing", value: "Labelled and packed by item or maintenance kit as agreed for export handling" },
+      { label: "Required for Quotation", value: "Part label or photo, quantity, dimensions, transformer details and delivery need" },
+    ],
+    features: [
+      { zh: "Single item and repair-kit supply", en: "Single item and repair-kit supply" },
+      { zh: "Model and drawing verification", en: "Model and drawing verification" },
+      { zh: "Oil-compatible material review", en: "Oil-compatible material review" },
+      { zh: "Export packing by item list", en: "Export packing by item list" },
+    ],
+    applications: [
+      "Planned transformer maintenance",
+      "Emergency repair and replacement needs",
+      "Export spare-part packages for utility or industrial sites",
+      "Oil-immersed and dry-type transformer service work",
+    ],
+    customizationOptions: [
+      "Single item, repair kit or annual maintenance package",
+      "Gasket, seal and valve material selection",
+      "Item labelling, kit packing and export documentation",
+      "Project-specific inspection or preservation requirements",
+    ],
+    quotationRequirements: [...accessoryQuotationRequirements],
+    faq: createAccessoryFaq("Transformer Maintenance & Repair Spare Parts"),
+    relatedProductSlugs: [
+      "oil-immersed-distribution-transformer",
+      "transformer-cooling-system-components",
+      "transformer-conservator-breathers-oil-accessories",
+    ],
+    technicalDocuments: [...accessoryTechnicalDocuments],
+    technicalNotes: [
+      ...accessoryTechnicalNotes,
+      "Maintenance spares are matched by part identity and interface dimensions. A visual photo alone may not be sufficient to confirm compatibility.",
+    ],
+    detailedSpecTable: {
+      heading: "Spare-Part Identification Parameters",
+      columns: [
+        { key: "parameter", label: "Parameter" },
+        { key: "reference", label: "Typical Reference" },
+        { key: "confirmation", label: "Confirm for Order" },
+      ],
+      rows: [
+        {
+          parameter: "Part identification",
+          reference: "Existing part number, label, photo, transformer model and serial number",
+          confirmation: "Approved BOM or manufacturer drawing",
+        },
+        {
+          parameter: "Typical spare scope",
+          reference: "Gaskets, seals, valves, hardware, terminals, gauges and accessory repair items",
+          confirmation: "Required quantity, item list and maintenance task",
+        },
+        {
+          parameter: "Seal and gasket material",
+          reference: "Material grade selected from oil type, service temperature and interface design",
+          confirmation: "Fluid compatibility, temperature range, gasket profile and approved material requirement",
+        },
+        {
+          parameter: "Mechanical interface",
+          reference: "Thread, flange, bolt pattern, gasket profile and mating dimensions",
+          confirmation: "Existing part measurement and approved interface drawing",
+        },
+        {
+          parameter: "Supply package",
+          reference: "Single replacement item, repair kit or planned-maintenance spare package",
+          confirmation: "BOM, quantity and required maintenance interval",
+        },
+        {
+          parameter: "Documentation",
+          reference: "Part list, identification photos and dimensional confirmation",
+          confirmation: "Destination-country document and packing requirement",
+        },
+        {
+          parameter: "Export packing",
+          reference: "Item separation, labeling and moisture-protection package as required",
+          confirmation: "Transport mode, destination and customer packing instruction",
+        },
+      ],
+      publicationStatus: "published",
+      note:
+        "Maintenance spare parts must be identified by the existing part and transformer interface. The final bill of materials, material grade and item quantities are agreed before production or export packing.",
+      applicability: {
+        productSeriesModelBasis: "Transformer maintenance and repair spare-part category",
+        applicableStandard: "Approved transformer drawing, BOM and applicable project specification",
+        windingConductor: "Not applicable",
+        lossReferenceTemperature: "Not applicable",
+        tappingRange: "Not applicable",
+        vectorGroup: "Not applicable",
+        energyEfficiencyBasis: "Not applicable; part compatibility and material selection are reviewed",
+        soundMeasurementBasis: "Not applicable",
+        dimensionsAndWeight: "Subject to selected item, kit contents and approved interface dimensions",
       },
     },
   },

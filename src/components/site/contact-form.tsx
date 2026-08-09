@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Send, Mail, Phone, MapPin, MessageCircle, Clock, AlertCircle } from 'lucide-react'
 import { products } from '@/lib/products-data'
+import { siteConfig } from '@/lib/site-config'
 
 const productTypes = [
   ...products.map((product) => ({ label: product.titleEn ?? product.title, value: product.id })),
@@ -68,10 +69,12 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [noticeMessage, setNoticeMessage] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setErrorMessage(null)
+    setNoticeMessage(null)
     setIsSubmitting(true)
 
     try {
@@ -80,9 +83,11 @@ export function ContactForm() {
       // Client-side validation
       const name = formData.get('name') as string
       const email = formData.get('email') as string
+      const country = formData.get('country') as string
+      const product = formData.get('product') as string
       const requirements = formData.get('requirements') as string
 
-      if (!name || !email || !requirements) {
+      if (!name || !email || !country || !product || !requirements) {
         setErrorMessage('Please fill in all required fields.')
         setIsSubmitting(false)
         return
@@ -109,10 +114,25 @@ export function ContactForm() {
       // Get form ID from environment variable
       const formId = import.meta.env.VITE_FORMSPREE_ID
       if (!formId || formId === 'YOUR_FORM_ID') {
-        setErrorMessage(
-          import.meta.env.DEV
-            ? 'Development notice: VITE_FORMSPREE_ID is not configured. Please use WhatsApp or email for this preview.'
-            : 'The inquiry form is temporarily unavailable. Please use WhatsApp or email instead.',
+        const selectedCountry = countries.find((item) => item.toLowerCase() === country) ?? country
+        const selectedProduct = productTypes.find((item) => item.value === product)?.label ?? product
+        const emailBody = [
+          'New website quotation inquiry',
+          '',
+          `Name: ${sanitizedData.get('name') ?? ''}`,
+          `Company: ${sanitizedData.get('company') ?? ''}`,
+          `Email: ${sanitizedData.get('email') ?? ''}`,
+          `Phone / WhatsApp: ${sanitizedData.get('phone') ?? ''}`,
+          `Country: ${selectedCountry}`,
+          `Product: ${selectedProduct}`,
+          '',
+          'Requirements:',
+          String(sanitizedData.get('requirements') ?? ''),
+        ].join('\n')
+
+        window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent('Website quotation inquiry')}&body=${encodeURIComponent(emailBody)}`
+        setNoticeMessage(
+          'Your email app is opening with this inquiry prepared. Review and send the email to complete the request, or use WhatsApp for a faster response.',
         )
         console.error('VITE_FORMSPREE_ID not configured')
         setIsSubmitting(false)
@@ -165,8 +185,8 @@ export function ContactForm() {
             <div className="bg-secondary/50 rounded-xl p-6">
               <div className="flex items-center gap-3 mb-4">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-n2GL5TaXQSDwwTPZmdjvvT0y5cX8oN.png"
-                  alt="文则电气"
+                  src="/wenze-logo-mark.png"
+                  alt="Wenze Electric logo"
                   width={96}
                   height={32}
                   loading="lazy"
@@ -310,6 +330,12 @@ export function ContactForm() {
                     <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-lg">
                       <AlertCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
                       <p className="text-sm text-red-800">{errorMessage}</p>
+                    </div>
+                  )}
+                  {noticeMessage && (
+                    <div className="flex items-start gap-3 rounded-lg border border-primary/20 bg-primary/5 p-4">
+                      <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                      <p className="text-sm text-primary">{noticeMessage}</p>
                     </div>
                   )}
 

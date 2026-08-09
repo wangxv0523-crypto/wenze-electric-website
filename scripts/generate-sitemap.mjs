@@ -60,6 +60,7 @@ const newsSlugs = readArrayStringProperty(newsSource, newsPath, "newsItems", "sl
 
 const paths = [
   "/",
+  "/southeast-asia-oil-immersed-transformer",
   "/products",
   ...productSlugs.map((slug) => `/products/${slug}`),
   "/news",

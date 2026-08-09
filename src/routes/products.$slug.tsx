@@ -12,6 +12,12 @@ const iconNameMap: Record<string, "droplets" | "wind" | "zap" | "box" | "radio" 
   "power-transformer": "zap",
   "high-voltage-power-transformer": "box",
   "compact-substation": "box",
+  "transformer-bushings-connectors": "radio",
+  "transformer-protection-monitoring": "zap",
+  "transformer-tap-changers-controls": "box",
+  "transformer-cooling-system-components": "wind",
+  "transformer-conservator-breathers-oil-accessories": "droplets",
+  "transformer-maintenance-spares": "box",
 };
 
 export const Route = createFileRoute("/products/$slug")({
@@ -70,12 +76,6 @@ export const Route = createFileRoute("/products/$slug")({
           name: "Target region",
           value: "Southeast Asia projects",
         },
-        {
-          "@type": "PropertyValue",
-          name: "Common regional grid requirements",
-          value:
-            "11 kV, 22 kV, 33 kV, 0.4/0.415 kV and 50/60 Hz configurations by approved project datasheet",
-        },
       ],
     };
     const breadcrumbSchema = {
@@ -89,7 +89,7 @@ export const Route = createFileRoute("/products/$slug")({
     };
     return {
       meta: [
-        { title: `${productName} Manufacturer China | Wenze Electric` },
+        { title: `${productName} Manufacturer in China | Wenze Electric` },
         { name: "description", content: product.seoDescription },
         { property: "og:type", content: "product" },
         { property: "og:title", content: `${productName} | Wenze Electric` },

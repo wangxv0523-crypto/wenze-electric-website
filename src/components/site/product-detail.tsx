@@ -629,7 +629,7 @@ function DetailedSpecifications({
         {hasPublishedModelTable && table && (
           <>
             <h3 className="mb-3 mt-7 text-lg font-bold text-primary">
-              Typical Model Reference Data
+              {table.heading ?? "Typical Model Reference Data"}
             </h3>
             <p className="mb-3 text-sm font-medium text-muted-foreground md:hidden">
               Swipe horizontally to view all specifications.

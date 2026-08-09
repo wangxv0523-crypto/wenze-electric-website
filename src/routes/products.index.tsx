@@ -10,17 +10,18 @@ import {
   southeastAsiaTransformerTopics,
 } from "@/lib/site-config";
 
-const pageTitle = "Transformer Products for Southeast Asia | Wenze Electric";
+const pageTitle = "Transformer, Substation & Accessories | Wenze Electric";
 const pageDescription =
-  "Explore transformer products for Southeast Asia projects, including oil immersed distribution, dry type, pole mounted, power transformers and compact substations.";
+  "Explore transformer, compact substation and transformer accessory products for Southeast Asia utility, industrial and infrastructure projects.";
 const pageUrl = absoluteUrl("/products");
 const socialImage = absoluteUrl("/images/opengraph.jpg");
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "@id": absoluteUrl("/products#product-list"),
-  name: "Transformer Products",
-  description: "Transformer and compact substation categories for Southeast Asia utility, industrial and infrastructure projects.",
+  name: "Transformer, Substation and Accessory Products",
+  description:
+    "Transformer, compact substation and accessory categories for Southeast Asia utility, industrial and infrastructure projects.",
   about: southeastAsiaTransformerTopics.map((name) => ({ "@type": "Thing", name })),
   itemListElement: products.map((product, index) => ({
     "@type": "ListItem",
@@ -72,11 +73,11 @@ function ProductsPage() {
               Product Center
             </p>
             <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-              Transformer and Substation Products
+              Transformer, Substation and Accessory Products
             </h1>
             <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-white/75">
-              Review the six product categories and open each page for technical scope,
-              customization options and inquiry requirements.
+              Review transformer, compact substation and accessory categories, then open each
+              page for technical scope, customization options and inquiry requirements.
             </p>
           </div>
         </section>
