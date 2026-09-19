@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Send, Mail, Phone, MapPin, MessageCircle, Clock, AlertCircle } from 'lucide-react'
 import { products } from '@/lib/products-data'
 import { siteConfig } from '@/lib/site-config'
@@ -364,33 +363,39 @@ export function ContactForm() {
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="country">Country *</Label>
-                      <Select name="country" required>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select country" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {countries.map((country) => (
-                            <SelectItem key={country} value={country.toLowerCase()}>
-                              {country}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      {/* Native selects keep translated labels separate from the selected value. */}
+                      <select
+                        id="country"
+                        name="country"
+                        autoComplete="country-name"
+                        defaultValue=""
+                        required
+                        className="h-10 w-full min-w-0 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 invalid:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 [&>option]:text-foreground"
+                      >
+                        <option value="" disabled>Select country</option>
+                        {countries.map((country) => (
+                          <option key={country} value={country.toLowerCase()}>
+                            {country}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="product">Product Type *</Label>
-                      <Select name="product" required>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select product" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {productTypes.map((product) => (
-                            <SelectItem key={product.value} value={product.value}>
-                              {product.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <select
+                        id="product"
+                        name="product"
+                        defaultValue=""
+                        required
+                        className="h-10 w-full min-w-0 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 invalid:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 [&>option]:text-foreground"
+                      >
+                        <option value="" disabled>Select product</option>
+                        {productTypes.map((product) => (
+                          <option key={product.value} value={product.value}>
+                            {product.label}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
 
@@ -417,12 +422,12 @@ export function ContactForm() {
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        Submitting...
+                        <span>Submitting...</span>
                       </>
                     ) : (
                       <>
                         <Send className="w-5 h-5 mr-2" />
-                        Get Quote
+                        <span>Get Quote</span>
                       </>
                     )}
                   </Button>
