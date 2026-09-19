@@ -16,12 +16,11 @@ import {
   googleAnalyticsMeasurementId,
 } from "../components/site/analytics";
 import { UnifiedHeader } from "../components/site/unified-header";
+import { products } from "../lib/products-data";
 import {
   absoluteUrl,
   serializeJsonLd,
   siteConfig,
-  southeastAsiaMarketSchema,
-  southeastAsiaTransformerTopics,
 } from "../lib/site-config";
 
 const organizationSchema = {
@@ -35,11 +34,10 @@ const organizationSchema = {
   logo: absoluteUrl(siteConfig.logoPath),
   image: absoluteUrl("/images/opengraph.jpg"),
   description:
-    "China transformer manufacturer supplying oil immersed distribution transformers, dry type transformers, power transformers and compact substations for Southeast Asia project requirements.",
+    "Power transformer manufacturer in China supplying transformers, compact substations, accessories and spare parts according to project requirements.",
   email: siteConfig.email,
   telephone: siteConfig.phone,
-  areaServed: southeastAsiaMarketSchema,
-  knowsAbout: southeastAsiaTransformerTopics,
+  knowsAbout: products.map((product) => product.titleEn),
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -124,11 +122,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Transformer Manufacturer China for Southeast Asia | Wenze Electric" },
+      { title: "Power Transformer Manufacturer in China | Wenze Electric" },
       {
         name: "description",
         content:
-          "China transformer manufacturer for Southeast Asia projects, supplying oil immersed distribution, dry type, pole mounted, power transformers and compact substations.",
+          "Power transformer manufacturer in China supplying transformers, compact substations, accessories and spare parts according to project requirements.",
       },
       { name: "robots", content: "index,follow,max-image-preview:large" },
       { name: "author", content: "Wenze Electric" },

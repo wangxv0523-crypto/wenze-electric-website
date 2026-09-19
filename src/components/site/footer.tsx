@@ -8,6 +8,7 @@ const navigation = {
     href: `/products/${product.id}`,
   })),
   company: [
+    { name: "Transformer Solutions", href: "/transformer-solutions" },
     { name: "About Us", href: "/#about" },
     { name: "Company Updates", href: "/news" },
     { name: "Manufacturing Capability", href: "/#capabilities" },

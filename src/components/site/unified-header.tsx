@@ -6,6 +6,7 @@ import { products } from "@/lib/products-data";
 const navItems = [
   { label: "Home", href: "/", id: "home" },
   { label: "Products", href: "/products", id: "products" },
+  { label: "Solutions", href: "/transformer-solutions", id: "solutions" },
   { label: "Factory", href: "/#capabilities", id: "factory" },
   { label: "About Us", href: "/#about", id: "about" },
   { label: "Contact Us", href: "/#contact", id: "contact" },

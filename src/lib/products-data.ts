@@ -2486,7 +2486,7 @@ export function getProductBySlug(slug: string) {
   return products.find((p) => p.id === slug);
 }
 
-export function getQuickSpecifications(product: Product): QuickSpecification[] {
+export function getQuickSpecifications(product: Pick<Product, "specs">): QuickSpecification[] {
   const specifications: Array<QuickSpecification | undefined> = [
     { label: "Rated Capacity", value: product.specs.capacity },
     { label: "Primary Voltage", value: product.specs.voltage },

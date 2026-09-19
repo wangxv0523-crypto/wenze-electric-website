@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TransformerSolutionsRouteImport } from './routes/transformer-solutions'
 import { Route as SoutheastAsiaOilImmersedTransformerRouteImport } from './routes/southeast-asia-oil-immersed-transformer'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as NewsIndexRouteImport } from './routes/news.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 
+const TransformerSolutionsRoute = TransformerSolutionsRouteImport.update({
+  id: '/transformer-solutions',
+  path: '/transformer-solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SoutheastAsiaOilImmersedTransformerRoute =
   SoutheastAsiaOilImmersedTransformerRouteImport.update({
     id: '/southeast-asia-oil-immersed-transformer',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/southeast-asia-oil-immersed-transformer': typeof SoutheastAsiaOilImmersedTransformerRoute
+  '/transformer-solutions': typeof TransformerSolutionsRoute
   '/news/$slug': typeof NewsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/news/': typeof NewsIndexRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/southeast-asia-oil-immersed-transformer': typeof SoutheastAsiaOilImmersedTransformerRoute
+  '/transformer-solutions': typeof TransformerSolutionsRoute
   '/news/$slug': typeof NewsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/news': typeof NewsIndexRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/southeast-asia-oil-immersed-transformer': typeof SoutheastAsiaOilImmersedTransformerRoute
+  '/transformer-solutions': typeof TransformerSolutionsRoute
   '/news/$slug': typeof NewsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/news/': typeof NewsIndexRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/'
     | '/privacy-policy'
     | '/southeast-asia-oil-immersed-transformer'
+    | '/transformer-solutions'
     | '/news/$slug'
     | '/products/$slug'
     | '/news/'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/'
     | '/privacy-policy'
     | '/southeast-asia-oil-immersed-transformer'
+    | '/transformer-solutions'
     | '/news/$slug'
     | '/products/$slug'
     | '/news'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/'
     | '/privacy-policy'
     | '/southeast-asia-oil-immersed-transformer'
+    | '/transformer-solutions'
     | '/news/$slug'
     | '/products/$slug'
     | '/news/'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SoutheastAsiaOilImmersedTransformerRoute: typeof SoutheastAsiaOilImmersedTransformerRoute
+  TransformerSolutionsRoute: typeof TransformerSolutionsRoute
   NewsSlugRoute: typeof NewsSlugRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   NewsIndexRoute: typeof NewsIndexRoute
@@ -124,6 +137,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/transformer-solutions': {
+      id: '/transformer-solutions'
+      path: '/transformer-solutions'
+      fullPath: '/transformer-solutions'
+      preLoaderRoute: typeof TransformerSolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/southeast-asia-oil-immersed-transformer': {
       id: '/southeast-asia-oil-immersed-transformer'
       path: '/southeast-asia-oil-immersed-transformer'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SoutheastAsiaOilImmersedTransformerRoute:
     SoutheastAsiaOilImmersedTransformerRoute,
+  TransformerSolutionsRoute: TransformerSolutionsRoute,
   NewsSlugRoute: NewsSlugRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   NewsIndexRoute: NewsIndexRoute,
