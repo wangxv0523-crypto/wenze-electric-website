@@ -17,7 +17,7 @@ import {
   southeastAsiaTransformerTopics,
 } from "@/lib/site-config";
 
-const pageTitle = "China Transformer Manufacturer for Southeast Asia | Wenze Electric";
+const pageTitle = "Power Transformer Manufacturer in China | Wenze Electric";
 const pageDescription =
   "Wenze Electric is a China transformer manufacturer for Southeast Asia projects, supplying oil immersed distribution, dry type, pole mounted, power transformers and compact substations.";
 const pageUrl = siteConfig.url;
