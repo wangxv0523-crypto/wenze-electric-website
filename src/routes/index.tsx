@@ -13,13 +13,12 @@ import {
   absoluteUrl,
   serializeJsonLd,
   siteConfig,
-  southeastAsiaMarketSchema,
-  southeastAsiaTransformerTopics,
+  transformerTopics,
 } from "@/lib/site-config";
 
 const pageTitle = "Power Transformer Manufacturer in China | Wenze Electric";
 const pageDescription =
-  "Wenze Electric is a China transformer manufacturer for Southeast Asia projects, supplying oil immersed distribution, dry type, pole mounted, power transformers and compact substations.";
+  "Wenze Electric manufactures project-specific power and distribution transformers, dry type transformers, compact substations and accessories in China for utility and industrial projects worldwide.";
 const pageUrl = siteConfig.url;
 const socialImage = absoluteUrl("/images/opengraph.jpg");
 const websiteSchema = {
@@ -29,7 +28,7 @@ const websiteSchema = {
   name: siteConfig.name,
   url: siteConfig.url,
   inLanguage: "en",
-  about: southeastAsiaTransformerTopics.map((name) => ({ "@type": "Thing", name })),
+  about: transformerTopics.map((name) => ({ "@type": "Thing", name })),
   publisher: {
     "@type": "Organization",
     "@id": absoluteUrl("/#organization"),
@@ -37,17 +36,16 @@ const websiteSchema = {
     url: siteConfig.url,
   },
 };
-const southeastAsiaSupplyServiceSchema = {
+const transformerSupplyServiceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": absoluteUrl("/#southeast-asia-transformer-supply"),
-  name: "Transformer manufacturing and export supply for Southeast Asia",
+  "@id": absoluteUrl("/#transformer-supply"),
+  name: "Project-specific transformer manufacturing and export supply",
   serviceType: "Transformer manufacturing and export supply",
   provider: { "@type": "Organization", "@id": absoluteUrl("/#organization") },
-  areaServed: southeastAsiaMarketSchema,
   audience: {
     "@type": "BusinessAudience",
-    name: "Utility, industrial and infrastructure project buyers in Southeast Asia",
+    name: "Utility, industrial and infrastructure project buyers",
   },
 };
 
@@ -69,7 +67,7 @@ export const Route = createFileRoute("/")({
     links: [{ rel: "canonical", href: pageUrl }],
     scripts: [
       { type: "application/ld+json", children: serializeJsonLd(websiteSchema) },
-      { type: "application/ld+json", children: serializeJsonLd(southeastAsiaSupplyServiceSchema) },
+      { type: "application/ld+json", children: serializeJsonLd(transformerSupplyServiceSchema) },
     ],
   }),
   component: HomePage,

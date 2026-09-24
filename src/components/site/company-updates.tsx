@@ -19,7 +19,7 @@ export function CompanyUpdates() {
             Company Updates
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Factory News, Product Insights and Project Highlights
+            Factory News, Product Insights and Project References
           </p>
         </div>
 

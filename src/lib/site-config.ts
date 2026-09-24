@@ -39,6 +39,16 @@ export const southeastAsiaTransformerTopics = [
   'compact substation',
 ] as const
 
+export const transformerTopics = [
+  'Oil immersed distribution transformers',
+  'Dry type transformers',
+  'Pole mounted transformers',
+  'Power transformers',
+  'High voltage power transformers',
+  'Compact substations',
+  'Transformer accessories and spare parts',
+] as const
+
 export function absoluteUrl(path: string): string {
   return new URL(path, siteConfig.url).toString()
 }

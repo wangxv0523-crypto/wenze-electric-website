@@ -4,6 +4,7 @@ import {
   Box,
   BriefcaseBusiness,
   CircleCheck as CheckCircle2,
+  Download,
   Droplets,
   HelpCircle,
   Mail,
@@ -94,16 +95,20 @@ const primaryImageAlt: Record<string, string> = {
   "compact-substation": "Compact substations on the factory production line",
 };
 
-function getWhatsAppMessage(productName: string): string {
+function getWhatsAppMessage(productName: string, isAccessory: boolean): string {
   return encodeURIComponent(
-    `Hello, I am interested in the ${productName}. Please provide a quotation. My required capacity is __, primary voltage is __, secondary voltage is __, quantity is __, and destination country is __.`,
+    isAccessory
+      ? `Hello, I am interested in the ${productName}. Please provide a quotation. Transformer model / nameplate: __. Existing part or drawing reference: __. Required electrical duty or interface: __. Quantity: __. Destination country: __.`
+      : `Hello, I am interested in the ${productName}. Please provide a quotation. My required capacity is __, primary voltage is __, secondary voltage is __, quantity is __, and destination country is __.`,
   );
 }
 
-function getEmailHref(productName: string): string {
+function getEmailHref(productName: string, isAccessory: boolean): string {
   const subject = encodeURIComponent(`Inquiry for ${productName}`);
   const body = encodeURIComponent(
-    `Hello,\n\nI am interested in the ${productName}. Please provide a quotation.\n\nRequired capacity:\nPrimary voltage:\nSecondary voltage:\nFrequency:\nPhase / vector group:\nQuantity:\nInstallation environment:\nDestination country:\nRequired delivery date:\nApplicable standard:\nSpecial technical requirements:\n\nThank you.`,
+    isAccessory
+      ? `Hello,\n\nI am interested in the ${productName}. Please provide a quotation.\n\nTransformer model and nameplate:\nExisting part number or drawing reference:\nElectrical duty or control interface:\nMechanical dimensions / connection:\nQuantity:\nInstallation environment:\nDestination country:\nRequired delivery date:\nApplicable standard:\n\nThank you.`
+      : `Hello,\n\nI am interested in the ${productName}. Please provide a quotation.\n\nRequired capacity:\nPrimary voltage:\nSecondary voltage:\nFrequency:\nPhase / vector group:\nQuantity:\nInstallation environment:\nDestination country:\nRequired delivery date:\nApplicable standard:\nSpecial technical requirements:\n\nThank you.`,
   );
   return `mailto:sales@wenzepower.com?subject=${subject}&body=${body}`;
 }
@@ -111,8 +116,9 @@ function getEmailHref(productName: string): string {
 export function ProductDetail({ product }: { product: ProductData }) {
   const Icon = iconMap[product.iconName];
   const productName = product.titleEn ?? product.title;
-  const whatsappMessage = getWhatsAppMessage(productName);
-  const emailHref = getEmailHref(productName);
+  const isAccessory = product.id.startsWith("transformer-");
+  const whatsappMessage = getWhatsAppMessage(productName, isAccessory);
+  const emailHref = getEmailHref(productName, isAccessory);
   const quickSpecifications = getQuickSpecifications(product);
   const relatedProducts = product.relatedProductSlugs
     .map((slug) => getProductBySlug(slug))
@@ -310,6 +316,22 @@ export function ProductDetail({ product }: { product: ProductData }) {
 
               <QuickSpecificationsCard rows={quickSpecifications} />
 
+              {product.downloadableDatasheet && (
+                <div className="rounded-xl border border-border bg-white p-4 shadow-sm">
+                  <a
+                    href={product.downloadableDatasheet.href}
+                    download={product.downloadableDatasheet.fileName}
+                    className="inline-flex items-center gap-2 font-semibold text-primary underline-offset-4 hover:underline"
+                  >
+                    <Download className="h-5 w-5" aria-hidden="true" />
+                    Download Southeast Asia reference datasheet (PDF, R1)
+                  </a>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Preliminary selection information. Final guaranteed values and documents are confirmed for each project.
+                  </p>
+                </div>
+              )}
+
               <div className="lg:hidden">
                 <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                   Key Features
@@ -367,6 +389,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
         table={product.detailedSpecTable}
         regionalSpecifications={product.regionalSpecifications}
         technicalNotes={product.technicalNotes}
+        isAccessory={isAccessory}
       />
 
       <section className="border-t border-border bg-secondary/20 py-16">
@@ -563,10 +586,12 @@ function DetailedSpecifications({
   table,
   regionalSpecifications,
   technicalNotes,
+  isAccessory,
 }: {
   table?: DetailedSpecTable;
   regionalSpecifications: QuickSpecification[];
   technicalNotes: string[];
+  isAccessory: boolean;
 }) {
   const publicationStatus = table?.publicationStatus ?? "technical-review";
   const hasReferenceTable = Boolean(table && table.rows.length > 0);
@@ -585,9 +610,9 @@ function DetailedSpecifications({
           Technical Specifications for Southeast Asia Projects
         </h2>
         <p className="mt-3 max-w-4xl text-sm leading-relaxed text-muted-foreground">
-          The following selection data covers common 50 Hz and 60 Hz transformer inquiries across
-          Southeast Asia. Final voltage ratio, utility interface and guaranteed performance are
-          confirmed against the destination-country specification.
+          {isAccessory
+            ? "The following accessory selection data covers common project enquiries across Southeast Asia. Final electrical duty, mechanical interface and compatibility are confirmed against the equipment nameplate, drawings and project requirements."
+            : "The following selection data covers common 50 Hz and 60 Hz transformer inquiries across Southeast Asia. Final voltage ratio, utility interface and guaranteed performance are confirmed against the destination-country specification."}
         </p>
 
         <h3 className="mb-3 mt-7 text-lg font-bold text-primary">
@@ -732,8 +757,9 @@ function DetailedSpecifications({
           <div>
             <h3 className="text-xl font-bold">Need a Confirmed Technical Datasheet?</h3>
             <p className="mt-2 max-w-3xl text-sm leading-relaxed text-white/75">
-              Send us your required capacity, voltage ratio, frequency, quantity and destination
-              country. We will provide the applicable technical data for your project.
+              {isAccessory
+                ? "Send us the transformer model, nameplate, existing part reference or interface drawing, quantity and destination country. We will review the applicable accessory data for your project."
+                : "Send us your required capacity, voltage ratio, frequency, quantity and destination country. We will provide the applicable technical data for your project."}
             </p>
           </div>
           <Button

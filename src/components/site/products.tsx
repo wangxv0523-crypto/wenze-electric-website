@@ -1,7 +1,7 @@
 import { ArrowRight, Droplets, Fan, Gauge, PackageCheck, PlugZap, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { getProductBySlug, type Product } from "@/lib/products-data";
+import { getProductBySlug, getQuickSpecifications, type Product } from "@/lib/products-data";
 
 const homepageProductSlugs = [
   "oil-immersed-distribution-transformer",
@@ -94,6 +94,10 @@ const accessoryProducts = [
 ] as const;
 
 export function ProductCard({ product }: { product: Product }) {
+  const quickSpecifications = getQuickSpecifications(product);
+  const cardSpecifications = product.id.startsWith("transformer-")
+    ? quickSpecifications.slice(0, 3)
+    : null;
   return (
     <Card className="group mx-auto flex h-full w-full max-w-[360px] overflow-hidden border-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg md:max-w-[380px] lg:max-w-[400px]">
       <a href={`/products/${product.id}`} className="flex h-full w-full flex-col">
@@ -129,9 +133,20 @@ export function ProductCard({ product }: { product: Product }) {
               </h3>
             </div>
             <div className="divide-y divide-border">
-              <SpecRow label="Voltage" value={product.specs.voltage} />
-              <SpecRow label="Capacity" value={product.specs.capacity} alternate />
-              <SpecRow label="Cooling" value={product.specs.cooling} />
+              {cardSpecifications
+                ? cardSpecifications.map((specification, index) => (
+                    <SpecRow
+                      key={specification.label}
+                      label={specification.label}
+                      value={specification.value}
+                      alternate={index === 1}
+                    />
+                  ))
+                : <>
+                    <SpecRow label="Voltage" value={product.specs.voltage} />
+                    <SpecRow label="Capacity" value={product.specs.capacity} alternate />
+                    <SpecRow label="Cooling" value={product.specs.cooling} />
+                  </>}
             </div>
           </div>
 

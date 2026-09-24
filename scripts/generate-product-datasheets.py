@@ -183,7 +183,7 @@ COMMON_QUOTATION_ITEMS = [
 PRODUCTS = [
     {
         "filename": "wenze-oil-immersed-distribution-transformer-datasheet-en.pdf",
-        "document_number": "WZE-DS-OIDT-EN-R0",
+        "document_number": "WZE-DS-OIDT-EN-R1",
         "title": "Oil Immersed Distribution Transformer",
         "subtitle": "English Product Datasheet | Southeast Asia Project Selection",
         "image": "images/products/oil-immersed-distribution-transformer.webp",
@@ -260,7 +260,7 @@ PRODUCTS = [
     },
     {
         "filename": "wenze-dry-type-transformer-datasheet-en.pdf",
-        "document_number": "WZE-DS-DTT-EN-R0",
+        "document_number": "WZE-DS-DTT-EN-R1",
         "title": "Dry Type Transformer",
         "subtitle": "English Product Datasheet | Southeast Asia Project Selection",
         "image": "images/products/dry-type-transformer.webp",
@@ -337,7 +337,7 @@ PRODUCTS = [
     },
     {
         "filename": "wenze-compact-substation-datasheet-en.pdf",
-        "document_number": "WZE-DS-CSS-EN-R0",
+        "document_number": "WZE-DS-CSS-EN-R1",
         "title": "Compact Substation",
         "subtitle": "English Product Datasheet | Southeast Asia Project Selection",
         "image": "images/products/compact-substation-workshop.jpg",
@@ -443,7 +443,7 @@ def branded_header():
         )
     )
     contact = Paragraph(
-        "www.wenzepower.com<br/>sales@wenzepower.com<br/>+86 159 0534 2475",
+        "www.wenzepower.com<br/>sales@wenzepower.com<br/>+86 159 0534 2405",
         ParagraphStyle(
             "HeaderContact",
             parent=styles["BrandSub"],
@@ -524,7 +524,7 @@ def selection_table(rows):
 def metadata_panel(product):
     data = [
         [paragraph("Document", "TableLabel"), paragraph(product["document_number"])],
-        [paragraph("Revision", "TableLabel"), paragraph("R0 | 14 July 2026")],
+        [paragraph("Revision", "TableLabel"), paragraph("R1 | 24 September 2026")],
         [paragraph("Language", "TableLabel"), paragraph("English")],
         [paragraph("Status", "TableLabel"), paragraph("Preliminary product selection data")],
     ]

@@ -16,10 +16,10 @@ const navigation = {
     { name: "Contact Us", href: "/#contact" },
   ],
   markets: [
-    { name: "Southeast Asia", href: "/#contact" },
-    { name: "Middle East", href: "/#contact" },
-    { name: "Africa", href: "/#contact" },
-    { name: "South America", href: "/#contact" },
+    { name: "Enquire from Southeast Asia", href: "/#contact" },
+    { name: "Enquire from the Middle East", href: "/#contact" },
+    { name: "Enquire from Africa", href: "/#contact" },
+    { name: "Enquire from South America", href: "/#contact" },
   ],
 };
 

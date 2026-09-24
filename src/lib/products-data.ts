@@ -1208,7 +1208,7 @@ export const products: Product[] = [
     title: "电力变压器",
     titleEn: "Power Transformer",
     seoDescription:
-      "Oil immersed power transformer manufacturer in China for Southeast Asia substations, industrial power systems, renewable energy and grid applications.",
+      "Oil-immersed power transformers for utility substations, industrial power systems, renewable energy and grid applications, configured to approved project requirements.",
     shortDescription: "大型油浸式电力变压器，适用于工业变电站、电厂升压和主配电系统。",
     shortDescriptionEn:
       "Oil-immersed power transformer for substations, industrial power systems and project-specific grid applications.",
@@ -2486,7 +2486,37 @@ export function getProductBySlug(slug: string) {
   return products.find((p) => p.id === slug);
 }
 
-export function getQuickSpecifications(product: Pick<Product, "specs">): QuickSpecification[] {
+const accessoryQuickSpecificationLabels: Record<string, string[]> = {
+  "transformer-bushings-connectors": [
+    "Equipment Voltage Class", "Current Rating", "Insulation Type", "Mechanical Interface",
+  ],
+  "transformer-protection-monitoring": [
+    "Typical Devices", "Signal Function", "Control Interface", "Required for Quotation",
+  ],
+  "transformer-tap-changers-controls": [
+    "Tap Changer Type", "Voltage Regulation", "Motor Drive", "Mechanical Interface",
+  ],
+  "transformer-cooling-system-components": [
+    "Component Scope", "Cooling Arrangement", "Thermal Duty", "Auxiliary Supply",
+  ],
+  "transformer-conservator-breathers-oil-accessories": [
+    "Component Scope", "Breather Selection", "Oil Level Indication", "Oil Compatibility",
+  ],
+  "transformer-maintenance-spares": [
+    "Typical Items", "Supply Format", "Material Selection", "Mechanical Interface",
+  ],
+};
+
+export function getQuickSpecifications(product: Pick<Product, "id" | "specs" | "regionalSpecifications">): QuickSpecification[] {
+  const accessoryLabels = accessoryQuickSpecificationLabels[product.id];
+  if (accessoryLabels) {
+    return accessoryLabels.map((label) => {
+      const specification = product.regionalSpecifications.find((item) => item.label === label);
+      if (!specification) throw new Error(`Missing quick specification ${label} for ${product.id}`);
+      return specification;
+    });
+  }
+
   const specifications: Array<QuickSpecification | undefined> = [
     { label: "Rated Capacity", value: product.specs.capacity },
     { label: "Primary Voltage", value: product.specs.voltage },

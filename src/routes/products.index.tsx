@@ -7,12 +7,12 @@ import {
   absoluteUrl,
   serializeJsonLd,
   siteConfig,
-  southeastAsiaTransformerTopics,
+  transformerTopics,
 } from "@/lib/site-config";
 
 const pageTitle = "Transformer, Substation & Accessories | Wenze Electric";
 const pageDescription =
-  "Explore transformer, compact substation and transformer accessory products for Southeast Asia utility, industrial and infrastructure projects.";
+  "Explore Wenze Electric power and distribution transformers, compact substations, accessories and spare parts for utility, industrial and infrastructure projects worldwide.";
 const pageUrl = absoluteUrl("/products");
 const socialImage = absoluteUrl("/images/opengraph.jpg");
 const itemListSchema = {
@@ -21,8 +21,8 @@ const itemListSchema = {
   "@id": absoluteUrl("/products#product-list"),
   name: "Transformer, Substation and Accessory Products",
   description:
-    "Transformer, compact substation and accessory categories for Southeast Asia utility, industrial and infrastructure projects.",
-  about: southeastAsiaTransformerTopics.map((name) => ({ "@type": "Thing", name })),
+    "Transformer, compact substation and accessory categories for utility, industrial and infrastructure projects.",
+  about: transformerTopics.map((name) => ({ "@type": "Thing", name })),
   itemListElement: products.map((product, index) => ({
     "@type": "ListItem",
     position: index + 1,

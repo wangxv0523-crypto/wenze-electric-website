@@ -44,7 +44,7 @@ function NewsListPage() {
             </p>
             <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">Company Updates</h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-              Factory News, Product Insights and Project Highlights
+              Factory News, Product Insights and Project References
             </p>
           </div>
         </section>

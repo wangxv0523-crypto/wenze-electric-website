@@ -1,4 +1,4 @@
-export type NewsCategory = "Factory Update" | "Product Insight" | "Project Highlight";
+export type NewsCategory = "Factory Update" | "Product Insight" | "Project Reference";
 
 export type NewsContentBlock =
   | {
@@ -276,8 +276,12 @@ export const newsItems: NewsItem[] = [
     coverAlt: "Completed 100 MW 200 MWh battery energy storage project in Nigeria",
     coverCaption:
       "Aerial view of the completed Nigeria battery energy storage project, including containerized BESS units and grid interconnection facilities.",
-    category: "Project Highlight",
+    category: "Project Reference",
     content: [
+      {
+        type: "paragraph",
+        text: "This article presents a project reference for technical discussion. It does not specify Wenze Electric's role in equipment supply, construction or ownership of this project.",
+      },
       {
         type: "paragraph",
         text: "The 100 MW / 200 MWh battery energy storage project in Nigeria has reached completion, marking an important stage in the delivery of utility-scale energy storage and supporting power infrastructure.",
@@ -378,8 +382,12 @@ export const newsItems: NewsItem[] = [
     coverAlt: "Completed 220 kV step-up substation with 120 MVA main transformer",
     coverCaption:
       "Completed 220 kV step-up substation during startup and 120 MVA main transformer energization.",
-    category: "Project Highlight",
+    category: "Project Reference",
     content: [
+      {
+        type: "paragraph",
+        text: "This article presents project footage as a technical reference. It does not specify Wenze Electric's role in equipment supply, construction or ownership of this substation.",
+      },
       {
         type: "heading",
         text: "Substation Completion and Startup Video",

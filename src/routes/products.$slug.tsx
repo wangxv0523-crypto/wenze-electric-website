@@ -37,6 +37,10 @@ export const Route = createFileRoute("/products/$slug")({
       };
     }
     const productName = product.titleEn ?? product.title;
+    const pageTitle =
+      product.id === "power-transformer"
+        ? "Oil-Immersed Power Transformers for Substations | Wenze Electric"
+        : `${productName} Manufacturer in China | Wenze Electric`;
     const productUrl = absoluteUrl(`/products/${product.id}`);
     const imageUrl = absoluteUrl(product.detailImage ?? product.image);
     const quickSpecifications = getQuickSpecifications(product);
@@ -65,18 +69,11 @@ export const Route = createFileRoute("/products/$slug")({
       category: "Power transformer and electrical distribution equipment",
       sku: product.id,
       url: productUrl,
-      additionalProperty: [
-        ...structuredSpecifications.map((spec) => ({
-          "@type": "PropertyValue",
-          name: spec.label,
-          value: spec.value,
-        })),
-        {
-          "@type": "PropertyValue",
-          name: "Target region",
-          value: "Southeast Asia projects",
-        },
-      ],
+      additionalProperty: structuredSpecifications.map((spec) => ({
+        "@type": "PropertyValue",
+        name: spec.label,
+        value: spec.value,
+      })),
     };
     const breadcrumbSchema = {
       "@context": "https://schema.org",
@@ -89,15 +86,15 @@ export const Route = createFileRoute("/products/$slug")({
     };
     return {
       meta: [
-        { title: `${productName} Manufacturer in China | Wenze Electric` },
+        { title: pageTitle },
         { name: "description", content: product.seoDescription },
         { property: "og:type", content: "product" },
-        { property: "og:title", content: `${productName} | Wenze Electric` },
+        { property: "og:title", content: pageTitle },
         { property: "og:description", content: product.seoDescription },
         { property: "og:image", content: imageUrl },
         { property: "og:url", content: productUrl },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: `${productName} | Wenze Electric` },
+        { name: "twitter:title", content: pageTitle },
         { name: "twitter:description", content: product.seoDescription },
         { name: "twitter:image", content: imageUrl },
       ],
