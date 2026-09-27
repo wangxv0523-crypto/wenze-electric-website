@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Send, Mail, Phone, MapPin, MessageCircle, Clock, AlertCircle } from 'lucide-react'
 import { products } from '@/lib/products-data'
 import { siteConfig } from '@/lib/site-config'
+import { trackInquiryEvent } from '@/lib/analytics-events'
 
 const productTypes = [
   ...products.map((product) => ({ label: product.titleEn ?? product.title, value: product.id })),
@@ -129,6 +130,7 @@ export function ContactForm() {
           String(sanitizedData.get('requirements') ?? ''),
         ].join('\n')
 
+        trackInquiryEvent('email_draft_requested', 'general_quote')
         window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent('Website quotation inquiry')}&body=${encodeURIComponent(emailBody)}`
         setNoticeMessage(
           'Your email app is opening with this inquiry prepared. Review and send the email to complete the request, or use WhatsApp for a faster response.',
@@ -147,6 +149,7 @@ export function ContactForm() {
       })
 
       if (response.ok) {
+        trackInquiryEvent('generate_lead', 'general_quote')
         setIsSubmitting(false)
         setSubmitted(true)
       } else if (response.status === 429) {

@@ -1,12 +1,6 @@
 import { useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-
-declare global {
-  interface Window {
-    dataLayer: unknown[];
-    gtag?: (...args: unknown[]) => void;
-  }
-}
+import { trackInquiryEvent } from "@/lib/analytics-events";
 
 export const googleAnalyticsMeasurementId =
   import.meta.env.VITE_GA_MEASUREMENT_ID || "G-2N8THH1T8V";
@@ -31,6 +25,24 @@ export function Analytics() {
       page_path: pagePath,
     });
   }, [pagePath]);
+
+  useEffect(() => {
+    const trackContactClick = (event: MouseEvent) => {
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest("a[href]");
+      if (!link) return;
+      const href = link.getAttribute("href") ?? "";
+
+      if (/^https:\/\/wa\.me\//i.test(href)) {
+        trackInquiryEvent("whatsapp_click");
+      } else if (/^mailto:/i.test(href)) {
+        trackInquiryEvent("email_link_click");
+      }
+    };
+
+    document.addEventListener("click", trackContactClick);
+    return () => document.removeEventListener("click", trackContactClick);
+  }, []);
 
   return null;
 }

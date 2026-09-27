@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { trackInquiryEvent } from '@/lib/analytics-events'
 
 interface ProductInquiryFormProps {
   productName: string
@@ -87,6 +88,7 @@ export function ProductInquiryForm({ productName }: ProductInquiryFormProps) {
       }
 
       form.reset()
+      trackInquiryEvent('generate_lead', 'product_quote')
       setSubmitted(true)
     } catch (error) {
       console.error('Product inquiry submission error:', error instanceof Error ? error.message : 'Unknown error')
