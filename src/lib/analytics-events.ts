@@ -5,7 +5,7 @@ declare global {
   }
 }
 
-type InquiryEventName = 'generate_lead' | 'whatsapp_click' | 'email_link_click' | 'email_draft_requested'
+type InquiryEventName = 'generate_lead' | 'whatsapp_click' | 'email_link_click'
 
 export function trackInquiryEvent(eventName: InquiryEventName, formType?: 'general_quote' | 'product_quote') {
   if (typeof window === 'undefined' || !window.gtag) return

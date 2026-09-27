@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { trackInquiryEvent } from '@/lib/analytics-events'
+import { submitInquiry } from '@/lib/submit-inquiry'
 
 interface ProductInquiryFormProps {
   productName: string
@@ -54,34 +55,19 @@ export function ProductInquiryForm({ productName }: ProductInquiryFormProps) {
       return
     }
 
-    const formId = import.meta.env.VITE_FORMSPREE_ID
-    if (!formId || formId === 'YOUR_FORM_ID') {
-      setErrorMessage(
-        import.meta.env.DEV
-          ? 'Development notice: VITE_FORMSPREE_ID is not configured. Please use WhatsApp or email for this preview.'
-          : 'The inquiry form is temporarily unavailable. Please use WhatsApp or email instead.',
-      )
-      setIsSubmitting(false)
-      return
-    }
-
     const sanitizedData = new FormData()
     for (const [key, value] of formData.entries()) {
       sanitizedData.append(key, sanitizeInput(String(value)))
     }
 
     try {
-      const response = await fetch(`https://formspree.io/f/${formId}`, {
-        method: 'POST',
-        body: sanitizedData,
-        headers: { Accept: 'application/json' },
-      })
+      const result = await submitInquiry(sanitizedData)
 
-      if (!response.ok) {
+      if (!result.ok) {
         setErrorMessage(
-          response.status === 429
+          result.reason === 'rate_limit'
             ? 'Too many requests. Please wait a moment and try again.'
-            : 'The inquiry could not be submitted. Please try again or use WhatsApp or email.',
+            : 'The inquiry form is temporarily unavailable. Please use WhatsApp or email instead.',
         )
         setIsSubmitting(false)
         return
@@ -121,6 +107,7 @@ export function ProductInquiryForm({ productName }: ProductInquiryFormProps) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+              <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
               {errorMessage && (
                 <div className="flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 p-4" role="alert">
                   <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />

@@ -24,7 +24,7 @@ const sections = [
   },
   {
     title: 'Form submission information',
-    content: 'Website forms may be processed through Formspree. Information submitted through a form is transmitted to the form service and then delivered to our designated business contact channel. Please avoid submitting passwords, payment card data or unrelated sensitive information.',
+    content: 'Website inquiry forms are processed through FormSubmit and delivered to our designated business email address. Please avoid submitting passwords, payment card data or unrelated sensitive information.',
   },
   {
     title: 'Email and WhatsApp communication',
@@ -66,7 +66,7 @@ function PrivacyPolicyPage() {
                 <p className="mt-3 leading-relaxed text-muted-foreground">{section.content}</p>
               </article>
             ))}
-            <p className="pt-3 text-sm text-muted-foreground">Last updated: June 20, 2026</p>
+            <p className="pt-3 text-sm text-muted-foreground">Last updated: September 27, 2026</p>
           </div>
         </section>
       </main>

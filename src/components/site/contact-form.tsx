@@ -6,8 +6,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Send, Mail, Phone, MapPin, MessageCircle, Clock, AlertCircle } from 'lucide-react'
 import { products } from '@/lib/products-data'
-import { siteConfig } from '@/lib/site-config'
 import { trackInquiryEvent } from '@/lib/analytics-events'
+import { submitInquiry } from '@/lib/submit-inquiry'
 
 const productTypes = [
   ...products.map((product) => ({ label: product.titleEn ?? product.title, value: product.id })),
@@ -69,12 +69,10 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
-  const [noticeMessage, setNoticeMessage] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setErrorMessage(null)
-    setNoticeMessage(null)
     setIsSubmitting(true)
 
     try {
@@ -111,52 +109,18 @@ export function ContactForm() {
         sanitizedData.append(key, sanitizeInput(String(value)))
       }
 
-      // Get form ID from environment variable
-      const formId = import.meta.env.VITE_FORMSPREE_ID
-      if (!formId || formId === 'YOUR_FORM_ID') {
-        const selectedCountry = countries.find((item) => item.toLowerCase() === country) ?? country
-        const selectedProduct = productTypes.find((item) => item.value === product)?.label ?? product
-        const emailBody = [
-          'New website quotation inquiry',
-          '',
-          `Name: ${sanitizedData.get('name') ?? ''}`,
-          `Company: ${sanitizedData.get('company') ?? ''}`,
-          `Email: ${sanitizedData.get('email') ?? ''}`,
-          `Phone / WhatsApp: ${sanitizedData.get('phone') ?? ''}`,
-          `Country: ${selectedCountry}`,
-          `Product: ${selectedProduct}`,
-          '',
-          'Requirements:',
-          String(sanitizedData.get('requirements') ?? ''),
-        ].join('\n')
+      sanitizedData.set('_subject', 'Wenze website quotation inquiry')
+      const result = await submitInquiry(sanitizedData)
 
-        trackInquiryEvent('email_draft_requested', 'general_quote')
-        window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent('Website quotation inquiry')}&body=${encodeURIComponent(emailBody)}`
-        setNoticeMessage(
-          'Your email app is opening with this inquiry prepared. Review and send the email to complete the request, or use WhatsApp for a faster response.',
-        )
-        console.error('VITE_FORMSPREE_ID not configured')
-        setIsSubmitting(false)
-        return
-      }
-
-      const response = await fetch(`https://formspree.io/f/${formId}`, {
-        method: 'POST',
-        body: sanitizedData,
-        headers: {
-          'Accept': 'application/json',
-        },
-      })
-
-      if (response.ok) {
+      if (result.ok) {
         trackInquiryEvent('generate_lead', 'general_quote')
         setIsSubmitting(false)
         setSubmitted(true)
-      } else if (response.status === 429) {
+      } else if (result.reason === 'rate_limit') {
         setErrorMessage('Too many requests. Please wait a moment and try again.')
         setIsSubmitting(false)
       } else {
-        setErrorMessage('Failed to submit form. Please try again or use WhatsApp.')
+        setErrorMessage('The inquiry form is temporarily unavailable. Please use WhatsApp or email instead.')
         setIsSubmitting(false)
       }
     } catch (error) {
@@ -334,12 +298,7 @@ export function ContactForm() {
                       <p className="text-sm text-red-800">{errorMessage}</p>
                     </div>
                   )}
-                  {noticeMessage && (
-                    <div className="flex items-start gap-3 rounded-lg border border-primary/20 bg-primary/5 p-4">
-                      <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                      <p className="text-sm text-primary">{noticeMessage}</p>
-                    </div>
-                  )}
+                  <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
