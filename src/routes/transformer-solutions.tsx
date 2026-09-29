@@ -285,8 +285,9 @@ function TransformerSolutionsPage() {
                 Start with the right information.
               </h2>
               <p className="mt-4 leading-7 text-muted-foreground">
-                Download the available English datasheets for initial review. For other categories,
-                send your project requirements to request the applicable technical information.
+                Download the English Southeast Asia reference datasheets for preliminary review.
+                For other destinations or product categories, send your project requirements to
+                request the applicable technical information.
               </p>
               <a
                 href={emailUrl}
@@ -310,7 +311,7 @@ function TransformerSolutionsPage() {
                       {product.titleEn}
                     </span>
                     <span className="mt-1 block text-xs text-muted-foreground">
-                      English product datasheet · PDF
+                      English · Southeast Asia reference · PDF (R1)
                     </span>
                   </span>
                   <Download className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
