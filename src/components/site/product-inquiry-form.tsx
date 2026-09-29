@@ -12,7 +12,7 @@ interface ProductInquiryFormProps {
 }
 
 function sanitizeInput(input: string): string {
-  return input.trim().replace(/[<>]/g, '').slice(0, 2000)
+  return input.replace(/[<>]/g, '').trim().slice(0, 2000)
 }
 
 function isValidEmail(email: string): boolean {
@@ -31,11 +31,16 @@ export function ProductInquiryForm({ productName }: ProductInquiryFormProps) {
 
     const form = event.currentTarget
     const formData = new FormData(form)
-    const name = String(formData.get('name') ?? '')
-    const email = String(formData.get('email') ?? '')
-    const country = String(formData.get('country') ?? '')
-    const quantity = String(formData.get('quantity') ?? '')
-    const specifications = String(formData.get('requiredSpecifications') ?? '')
+    const sanitizedData = new FormData()
+    for (const [key, value] of formData.entries()) {
+      sanitizedData.append(key, sanitizeInput(String(value)))
+    }
+
+    const name = String(sanitizedData.get('name') ?? '')
+    const email = String(sanitizedData.get('email') ?? '')
+    const country = String(sanitizedData.get('country') ?? '')
+    const quantity = String(sanitizedData.get('quantity') ?? '')
+    const specifications = String(sanitizedData.get('requiredSpecifications') ?? '')
 
     if (!name || !email || !country || !quantity || !specifications) {
       setErrorMessage('Please complete all required fields marked with an asterisk.')
@@ -53,11 +58,6 @@ export function ProductInquiryForm({ productName }: ProductInquiryFormProps) {
       setErrorMessage('Please provide at least 10 characters describing the required specifications.')
       setIsSubmitting(false)
       return
-    }
-
-    const sanitizedData = new FormData()
-    for (const [key, value] of formData.entries()) {
-      sanitizedData.append(key, sanitizeInput(String(value)))
     }
 
     try {

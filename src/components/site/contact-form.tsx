@@ -54,9 +54,9 @@ Thank you.`
 // Input sanitization function
 function sanitizeInput(input: string): string {
   return input
-    .trim()
     .replace(/[<>]/g, '') // Remove potential HTML tags
-    .slice(0, 500) // Limit length
+    .trim()
+    .slice(0, 2000) // Match the requirements textarea limit
 }
 
 // Email validation
@@ -77,13 +77,18 @@ export function ContactForm() {
 
     try {
       const formData = new FormData(e.currentTarget)
-      
-      // Client-side validation
-      const name = formData.get('name') as string
-      const email = formData.get('email') as string
-      const country = formData.get('country') as string
-      const product = formData.get('product') as string
-      const requirements = formData.get('requirements') as string
+
+      // Validate the same cleaned values that will be sent.
+      const sanitizedData = new FormData()
+      for (const [key, value] of formData.entries()) {
+        sanitizedData.append(key, sanitizeInput(String(value)))
+      }
+
+      const name = sanitizedData.get('name') as string
+      const email = sanitizedData.get('email') as string
+      const country = sanitizedData.get('country') as string
+      const product = sanitizedData.get('product') as string
+      const requirements = sanitizedData.get('requirements') as string
 
       if (!name || !email || !country || !product || !requirements) {
         setErrorMessage('Please fill in all required fields.')
@@ -101,12 +106,6 @@ export function ContactForm() {
         setErrorMessage('Please provide at least 10 characters in requirements.')
         setIsSubmitting(false)
         return
-      }
-
-      // Sanitize inputs before sending
-      const sanitizedData = new FormData()
-      for (const [key, value] of formData.entries()) {
-        sanitizedData.append(key, sanitizeInput(String(value)))
       }
 
       sanitizedData.set('_subject', 'Wenze website quotation inquiry')
