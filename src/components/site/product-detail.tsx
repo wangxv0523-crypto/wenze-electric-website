@@ -607,16 +607,16 @@ function DetailedSpecifications({
     <section className="border-t border-border bg-white py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-bold text-primary">
-          Technical Specifications for Southeast Asia Projects
+          Technical Specifications for International Projects
         </h2>
         <p className="mt-3 max-w-4xl text-sm leading-relaxed text-muted-foreground">
           {isAccessory
-            ? "The following accessory selection data covers common project enquiries across Southeast Asia. Final electrical duty, mechanical interface and compatibility are confirmed against the equipment nameplate, drawings and project requirements."
-            : "The following selection data covers common 50 Hz and 60 Hz transformer inquiries across Southeast Asia. Final voltage ratio, utility interface and guaranteed performance are confirmed against the destination-country specification."}
+            ? "The following accessory selection data supports preliminary enquiries for international projects. Final electrical duty, mechanical interface and compatibility are confirmed against the equipment nameplate, drawings and project requirements."
+            : "The following selection data covers common 50 Hz and 60 Hz transformer configurations. Final voltage ratio, utility interface and guaranteed performance are confirmed against the destination-country specification."}
         </p>
 
         <h3 className="mb-3 mt-7 text-lg font-bold text-primary">
-          Southeast Asia Project Selection Guide
+          Project Selection Guide
         </h3>
         <div className="overflow-hidden rounded-xl border border-border">
           <table className="w-full table-fixed border-separate border-spacing-0">

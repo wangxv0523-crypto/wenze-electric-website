@@ -132,10 +132,10 @@ const lossTechnicalNotes = [
   "Load loss values are subject to confirmation of the reference temperature and product design.",
 ];
 
-const southeastAsiaTechnicalNotes = [
-  "For Southeast Asia projects, confirm the destination country and local utility because nominal voltage, frequency, earthing arrangement and insulation coordination vary by network.",
+const internationalTechnicalNotes = [
+  "For international projects, confirm the destination country and local utility because nominal voltage, frequency, earthing arrangement and insulation coordination vary by network.",
   "Declare maximum ambient temperature, installation altitude, humidity, coastal or salt-pollution exposure, seismic requirements and indoor or outdoor service before the final design is approved.",
-  "Common regional configurations include 11 kV, 20 kV, 22 kV, 33 kV and 0.4/0.415 kV at 50 Hz or 60 Hz. Final frequency, voltage ratio and insulation coordination must be confirmed against the destination-country utility and approved project specification.",
+  "Reference configurations include 11 kV, 20 kV, 22 kV, 33 kV and 0.4/0.415 kV at 50 Hz or 60 Hz. Final frequency, voltage ratio and insulation coordination must be confirmed against the destination-country utility and approved project specification.",
 ];
 
 function createProductFaq(productName: string, applicableStandards: string): ProductFaqItem[] {
@@ -194,7 +194,7 @@ const accessoryTechnicalDocuments = [
 const accessoryTechnicalNotes = [
   "Accessory information is provided for preliminary selection. No cross-brand or cross-model interchangeability is assumed.",
   "Final compatibility is confirmed against the transformer model, nameplate, existing interface, approved drawing and engineering review.",
-  "For Southeast Asia projects, confirm ambient temperature, humidity, coastal or salt-pollution exposure, indoor or outdoor service, and local utility requirements before final selection.",
+  "For each project, confirm ambient temperature, humidity, coastal or salt-pollution exposure, indoor or outdoor service, and local utility requirements before final selection.",
 ];
 
 function createAccessoryFaq(productName: string): ProductFaqItem[] {
@@ -229,7 +229,7 @@ export const products: Product[] = [
     title: "油浸式配电变压器",
     titleEn: "Oil Immersed Distribution Transformer",
     seoDescription:
-      "Oil immersed distribution transformer manufacturer in China for Southeast Asia utility and industrial projects, including 11/22/33 kV and IEC 60076 options.",
+      "Oil immersed distribution transformer manufacturer in China for utility and industrial projects, including 11/22/33 kV and IEC 60076 options.",
     shortDescription: "中小型油浸式配电变压器，适用于公用配电网络、工商业配电和农村电气化。",
     shortDescriptionEn:
       "Oil-immersed distribution transformer for utility, industrial, commercial and rural distribution projects.",
@@ -272,7 +272,7 @@ export const products: Product[] = [
     regionalSpecifications: [
       { label: "Rated Capacity Range", value: "30–2500 kVA" },
       {
-        label: "Common Southeast Asia Voltage Ratios",
+        label: "Reference Voltage Ratios",
         value:
           "10/0.4 kV, 11/0.415 kV, 20/0.4 kV, 22/0.415 kV and 33/0.415 kV; final ratio by utility specification",
       },
@@ -354,7 +354,7 @@ export const products: Product[] = [
       fileName: "wenze-oil-immersed-distribution-transformer-datasheet-en.pdf",
       title: "Oil Immersed Distribution Transformer - English Product Datasheet",
     },
-    technicalNotes: [...lossTechnicalNotes, ...southeastAsiaTechnicalNotes],
+    technicalNotes: [...lossTechnicalNotes, ...internationalTechnicalNotes],
     detailedSpecTable: {
       publicationStatus: "technical-review",
       reviewNote:
@@ -631,10 +631,10 @@ export const products: Product[] = [
           weight_kg: 6500,
         },
       ],
-      note: "Typical reference data for 6–11 kV oil-immersed distribution transformers. Southeast Asia 11 kV, 22 kV, 33 kV and 0.4/0.415 kV configurations are confirmed by the approved project datasheet.",
+      note: "Typical reference data for 6–11 kV oil-immersed distribution transformers. Project-specific 11 kV, 22 kV, 33 kV and 0.4/0.415 kV configurations are confirmed by the approved project datasheet.",
       applicability: {
         productSeriesModelBasis:
-          "6–11 kV oil-immersed distribution transformer reference range; 11/22/33 kV Southeast Asia configurations by approved project datasheet",
+          "6–11 kV oil-immersed distribution transformer reference range; 11/22/33 kV project configurations by approved project datasheet",
         applicableStandard: "IEC 60076 and approved project requirements",
         windingConductor: "To be confirmed in the approved technical datasheet",
         lossReferenceTemperature: "To be confirmed in the approved technical datasheet",
@@ -652,7 +652,7 @@ export const products: Product[] = [
     title: "干式变压器",
     titleEn: "Dry Type Transformer",
     seoDescription:
-      "Dry type transformer manufacturer in China for Southeast Asia indoor substations, data centers and industrial distribution, with IEC 60076-11 options.",
+      "Dry type transformer manufacturer in China for indoor substations, data centers and industrial distribution projects, with IEC 60076-11 options.",
     shortDescription: "环保型空冷变压器，适用于室内安装，防火安全性高。",
     shortDescriptionEn:
       "Dry-type transformer for indoor commercial, industrial and infrastructure power distribution.",
@@ -689,7 +689,7 @@ export const products: Product[] = [
     regionalSpecifications: [
       { label: "Rated Capacity Range", value: "125–2500 kVA" },
       {
-        label: "Common Southeast Asia Voltage Ratios",
+        label: "Reference Voltage Ratios",
         value:
           "10/0.4 kV, 11/0.415 kV, 20/0.4 kV, 22/0.415 kV and 33/0.415 kV; final ratio by utility specification",
       },
@@ -734,7 +734,7 @@ export const products: Product[] = [
       },
     ],
     productDescription:
-      "适用于室内变电站、数据中心、医院等对防火要求高的场所，支持东南亚常见 11/22/33 kV 与 0.4/0.415 kV 配置，符合 IEC 60076-11 标准。",
+      "适用于室内变电站、数据中心、医院等对防火要求高的场所，常见 11/22/33 kV 与 0.4/0.415 kV 配置按项目技术要求确认，符合 IEC 60076-11 标准。",
     descriptionBullets: [
       {
         zh: "F级/H级环氧树脂绝缘，防火性能按项目确认",
@@ -783,7 +783,7 @@ export const products: Product[] = [
       fileName: "wenze-dry-type-transformer-datasheet-en.pdf",
       title: "Dry Type Transformer - English Product Datasheet",
     },
-    technicalNotes: [...lossTechnicalNotes, ...southeastAsiaTechnicalNotes],
+    technicalNotes: [...lossTechnicalNotes, ...internationalTechnicalNotes],
     detailedSpecTable: {
       publicationStatus: "technical-review",
       reviewNote:
@@ -1045,7 +1045,7 @@ export const products: Product[] = [
           body_weight_kg: 4190,
         },
       ],
-      note: "Typical reference data for the existing 10 kV-class SCB dry-type transformer series. 11 kV, 22 kV, 33 kV and 0.4/0.415 kV Southeast Asia configurations are reviewed against the approved project datasheet.",
+      note: "Typical reference data for the existing 10 kV-class SCB dry-type transformer series. Project-specific 11 kV, 22 kV, 33 kV and 0.4/0.415 kV configurations are reviewed against the approved project datasheet.",
     },
   },
   {
@@ -1054,7 +1054,7 @@ export const products: Product[] = [
     title: "柱上式变压器",
     titleEn: "Pole Mounted Transformer",
     seoDescription:
-      "Pole mounted transformer manufacturer in China for Southeast Asia overhead distribution and rural electrification, with 11/22/33 kV and 50/60 Hz options.",
+      "Pole mounted transformer manufacturer in China for overhead distribution and rural electrification projects, with 11/22/33 kV and 50/60 Hz options.",
     shortDescription: "紧凑型单相配电变压器，专为公用电杆架空线路安装设计。",
     shortDescriptionEn:
       "Single-phase pole-mounted transformer for overhead utility distribution and rural electrification.",
@@ -1167,7 +1167,7 @@ export const products: Product[] = [
       "dry-type-transformer",
     ],
     technicalDocuments: [...technicalDocuments],
-    technicalNotes: [...baseTechnicalNotes, ...southeastAsiaTechnicalNotes],
+    technicalNotes: [...baseTechnicalNotes, ...internationalTechnicalNotes],
     detailedSpecTable: {
       publicationStatus: "published",
       columns: [
@@ -1186,7 +1186,7 @@ export const products: Product[] = [
           value: "IEC 60076 / IEEE C57.12.20 / applicable utility requirements",
         },
       ],
-      note: "Typical reference configuration for pole-mounted distribution projects. Southeast Asia utility voltage and frequency requirements are confirmed by the approved project datasheet.",
+      note: "Typical reference configuration for pole-mounted distribution projects. Destination-country utility voltage and frequency requirements are confirmed by the approved project datasheet.",
       applicability: {
         productSeriesModelBasis:
           "Single-phase pole-mounted distribution transformer; final model by approved project datasheet",
@@ -1326,7 +1326,7 @@ export const products: Product[] = [
       "compact-substation",
     ],
     technicalDocuments: [...technicalDocuments],
-    technicalNotes: [...baseTechnicalNotes, ...southeastAsiaTechnicalNotes],
+    technicalNotes: [...baseTechnicalNotes, ...internationalTechnicalNotes],
   },
   {
     id: "high-voltage-power-transformer",
@@ -1334,7 +1334,7 @@ export const products: Product[] = [
     title: "高压电力变压器",
     titleEn: "High Voltage Power Transformer",
     seoDescription:
-      "High voltage power transformer manufacturer in China for Southeast Asia utility substations, 110 kV-class projects and industrial grid connections.",
+      "High voltage power transformer manufacturer in China for utility substations, 110 kV-class projects and industrial grid connections.",
     shortDescription: "110 kV 三绕组有载调压电力变压器，适用于公用电网和大型工业供电项目。",
     shortDescriptionEn:
       "110 kV three-winding OLTC power transformer for utility substations and large industrial grid connections.",
@@ -1443,7 +1443,7 @@ export const products: Product[] = [
       "oil-immersed-distribution-transformer",
     ],
     technicalDocuments: [...technicalDocuments],
-    technicalNotes: [...baseTechnicalNotes, ...southeastAsiaTechnicalNotes],
+    technicalNotes: [...baseTechnicalNotes, ...internationalTechnicalNotes],
     detailedSpecTable: {
       publicationStatus: "published",
       columns: [
@@ -1479,7 +1479,7 @@ export const products: Product[] = [
     title: "箱式变电站",
     titleEn: "Compact Substation",
     seoDescription:
-      "Compact substation manufacturer in China for Southeast Asia industrial and infrastructure projects with integrated high-voltage, transformer and low-voltage sections.",
+      "Compact substation manufacturer in China for industrial and infrastructure projects with integrated high-voltage, transformer and low-voltage sections.",
     shortDescription: "集成高压开关、变压器和低压配电单元的一体化箱式变电站。",
     shortDescriptionEn:
       "Compact substation integrating high-voltage, transformer and low-voltage distribution sections.",
@@ -1609,7 +1609,7 @@ export const products: Product[] = [
       fileName: "wenze-compact-substation-datasheet-en.pdf",
       title: "Compact Substation - English Product Datasheet",
     },
-    technicalNotes: [...baseTechnicalNotes, ...southeastAsiaTechnicalNotes],
+    technicalNotes: [...baseTechnicalNotes, ...internationalTechnicalNotes],
     detailedSpecTable: {
       publicationStatus: "published",
       columns: [
