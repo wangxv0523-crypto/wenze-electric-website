@@ -72,6 +72,11 @@ const faqs = [
       "You can enquire about oil immersed, dry type, pole mounted, power and high voltage power transformers, compact substations, and the accessory and spare-part categories shown on this page. Select the product in the quotation form and include your required quantity.",
   },
   {
+    question: "Which product category should I enquire about?",
+    answer:
+      "For preliminary selection, consider oil immersed distribution transformers for distribution networks, dry type transformers for indoor installations, and pole mounted transformers for overhead distribution. Power and high voltage power transformers serve substation and grid applications. Compact substations combine high-voltage switchgear, a transformer and low-voltage distribution in one package. For maintenance or replacement parts, provide the transformer model, nameplate and existing part drawing. Final product selection follows the project specification and technical review.",
+  },
+  {
     question: "Can I enquire from different countries and regions?",
     answer:
       "Yes. Please specify the destination, local utility requirements and operating conditions. Technical suitability, export documentation and delivery terms are confirmed for each project.",

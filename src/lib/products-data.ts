@@ -1594,10 +1594,17 @@ export const products: Product[] = [
       "Applicable IEC and project-specific requirements",
     ],
     quotationRequirements: [...quotationRequirements],
-    faq: createProductFaq(
-      "Compact Substation",
-      "IEC 62271-202, IEC 60076 or applicable project requirements",
-    ),
+    faq: [
+      ...createProductFaq(
+        "Compact Substation",
+        "IEC 62271-202, IEC 60076 or applicable project requirements",
+      ),
+      {
+        question: "What information is needed to quote a compact substation beyond the transformer ratings?",
+        answer:
+          "Please provide the single-line diagram, high-voltage switchgear arrangement, low-voltage rated current and short-circuit requirements, outgoing feeder quantity and metering needs. Identify the transformer type, enclosure requirements and site conditions. The final equipment configuration follows the approved single-line diagram and project specification.",
+      },
+    ],
     relatedProductSlugs: [
       "oil-immersed-distribution-transformer",
       "dry-type-transformer",
@@ -2273,7 +2280,14 @@ export const products: Product[] = [
       "Valve, flange and gasket material selection",
     ],
     quotationRequirements: [...accessoryQuotationRequirements],
-    faq: createAccessoryFaq("Transformer Conservator, Breathers & Oil Accessories"),
+    faq: [
+      ...createAccessoryFaq("Transformer Conservator, Breathers & Oil Accessories"),
+      {
+        question: "Can a breather or air-cell replacement be selected by transformer capacity alone?",
+        answer:
+          "No. Selection also requires the conservator volume and drawing, existing connection and mounting dimensions, insulating-fluid type and site conditions. Breather selection considers breathing duty and ambient humidity; air-cell material and dimensions must match the conservator design. Final compatibility follows the approved drawing and technical review.",
+      },
+    ],
     relatedProductSlugs: [
       "oil-immersed-distribution-transformer",
       "power-transformer",

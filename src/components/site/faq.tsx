@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { ChevronDown, HelpCircle } from 'lucide-react'
 
 const faqs = [
@@ -33,8 +32,6 @@ const faqs = [
 ]
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -66,20 +63,17 @@ export function FAQ() {
 
         <div className="space-y-3">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-white rounded-xl border border-border overflow-hidden shadow-sm">
-              <button
-                className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-secondary/30 transition-colors"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            <details key={index} name="wenze-homepage-faq" className="group bg-white rounded-xl border border-border overflow-hidden shadow-sm">
+              <summary
+                className="w-full flex cursor-pointer list-none items-center justify-between px-6 py-4 text-left hover:bg-secondary/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset [&::-webkit-details-marker]:hidden"
               >
                 <span className="font-semibold text-foreground pr-4">{faq.question}</span>
-                <ChevronDown className={`w-5 h-5 text-muted-foreground shrink-0 transition-transform ${openIndex === index ? 'rotate-180' : ''}`} />
-              </button>
-              {openIndex === index && (
-                <div className="px-6 pb-4 text-muted-foreground leading-relaxed text-sm border-t border-border pt-4">
-                  {faq.answer}
-                </div>
-              )}
-            </div>
+                <ChevronDown aria-hidden="true" className="w-5 h-5 text-muted-foreground shrink-0 transition-transform group-open:rotate-180" />
+              </summary>
+              <div className="px-6 pb-4 text-muted-foreground leading-relaxed text-sm border-t border-border pt-4">
+                {faq.answer}
+              </div>
+            </details>
           ))}
         </div>
       </div>
