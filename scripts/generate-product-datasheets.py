@@ -22,6 +22,8 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_DIR = ROOT / "public"
 OUTPUT_DIR = PUBLIC_DIR / "downloads"
+REVISION = "R2"
+REVISION_DATE = "30 September 2026"
 
 NAVY = colors.HexColor("#0B3255")
 BLUE = colors.HexColor("#1E5A87")
@@ -183,9 +185,9 @@ COMMON_QUOTATION_ITEMS = [
 PRODUCTS = [
     {
         "filename": "wenze-oil-immersed-distribution-transformer-datasheet-en.pdf",
-        "document_number": "WZE-DS-OIDT-EN-R1",
+        "document_number": "WZE-DS-OIDT-EN-R2",
         "title": "Oil Immersed Distribution Transformer",
-        "subtitle": "English Product Datasheet | Southeast Asia Project Selection",
+        "subtitle": "English Product Datasheet | Preliminary Project Reference",
         "image": "images/products/oil-immersed-distribution-transformer.webp",
         "overview": (
             "Wenze oil-immersed distribution transformers provide medium-to-low-voltage "
@@ -228,8 +230,8 @@ PRODUCTS = [
             ),
             (
                 "Service environment",
-                "Indoor or outdoor tropical service",
-                "Declare humidity, coastal pollution, solar load and maximum ambient temperature.",
+                "Indoor or outdoor service; tropical/coastal conditions where specified",
+                "Declare humidity, salt exposure, solar load and maximum ambient temperature; confirm suitability for the project.",
             ),
             (
                 "Testing",
@@ -260,9 +262,9 @@ PRODUCTS = [
     },
     {
         "filename": "wenze-dry-type-transformer-datasheet-en.pdf",
-        "document_number": "WZE-DS-DTT-EN-R1",
+        "document_number": "WZE-DS-DTT-EN-R2",
         "title": "Dry Type Transformer",
-        "subtitle": "English Product Datasheet | Southeast Asia Project Selection",
+        "subtitle": "English Product Datasheet | Preliminary Project Reference",
         "image": "images/products/dry-type-transformer.webp",
         "overview": (
             "Wenze cast-resin dry-type transformers use solid insulation and air cooling for "
@@ -316,7 +318,7 @@ PRODUCTS = [
         ],
         "features": [
             "No insulating oil and reduced fire risk for indoor applications",
-            "Cast-resin windings designed for humid and demanding environments",
+            "Environmental class and humidity suitability confirmed for the project",
             "AN natural-air cooling with AF forced-air option",
             "Temperature monitoring and enclosure options configured to order",
         ],
@@ -337,9 +339,9 @@ PRODUCTS = [
     },
     {
         "filename": "wenze-compact-substation-datasheet-en.pdf",
-        "document_number": "WZE-DS-CSS-EN-R1",
+        "document_number": "WZE-DS-CSS-EN-R2",
         "title": "Compact Substation",
-        "subtitle": "English Product Datasheet | Southeast Asia Project Selection",
+        "subtitle": "English Product Datasheet | Preliminary Project Reference",
         "image": "images/products/compact-substation-workshop.jpg",
         "overview": (
             "Wenze compact substations integrate medium-voltage switchgear, a distribution "
@@ -378,7 +380,7 @@ PRODUCTS = [
             (
                 "Enclosure protection",
                 "Project-selected IP level and corrosion system",
-                "Ventilation, transformer type and coastal exposure must be considered together.",
+                "Ventilation, transformer type and site exposure are reviewed together; coastal provisions where specified.",
             ),
             (
                 "Internal arc",
@@ -395,7 +397,7 @@ PRODUCTS = [
             "Integrated MV, transformer and LV compartments",
             "Compact footprint and reduced on-site assembly",
             "Project-specific metering, protection and automation options",
-            "Outdoor enclosure configured for tropical and coastal conditions",
+            "Tropical or coastal enclosure provisions where specified and confirmed for the site",
         ],
         "applications": [
             "Industrial parks and production facilities",
@@ -524,9 +526,9 @@ def selection_table(rows):
 def metadata_panel(product):
     data = [
         [paragraph("Document", "TableLabel"), paragraph(product["document_number"])],
-        [paragraph("Revision", "TableLabel"), paragraph("R1 | 24 September 2026")],
+        [paragraph("Revision", "TableLabel"), paragraph(f"{REVISION} | {REVISION_DATE}")],
         [paragraph("Language", "TableLabel"), paragraph("English")],
-        [paragraph("Status", "TableLabel"), paragraph("Preliminary product selection data")],
+        [paragraph("Status", "TableLabel"), paragraph("Preliminary project reference data")],
     ]
     table = Table(data, colWidths=[24 * mm, 54 * mm])
     table.setStyle(
@@ -612,11 +614,12 @@ def notice_box(text):
 def footer_callback(product):
     def draw_footer(canvas, doc):
         canvas.saveState()
-        canvas.setTitle(f'{product["title"]} | Wenze Electric')
+        canvas.setTitle(f'{product["title"]} | {product["document_number"]} | Wenze Electric')
         canvas.setAuthor("Shandong Wenze Electric Co., Ltd.")
-        canvas.setSubject("English transformer product datasheet for Southeast Asia projects")
+        canvas.setSubject(f"Preliminary project reference datasheet | {REVISION} | {REVISION_DATE}")
         canvas.setKeywords(
-            "Wenze Electric, transformer datasheet, Southeast Asia, IEC transformer, "
+            "Wenze Electric, transformer datasheet, preliminary project reference, "
+            f'{product["document_number"]}, '
             f'{product["title"]}'
         )
         canvas.setStrokeColor(LINE)
@@ -645,7 +648,7 @@ def build_datasheet(product):
         leftMargin=14 * mm,
         topMargin=12 * mm,
         bottomMargin=18 * mm,
-        title=f'{product["title"]} | Wenze Electric',
+        title=f'{product["title"]} | {product["document_number"]} | Wenze Electric',
         author="Shandong Wenze Electric Co., Ltd.",
     )
 
@@ -666,10 +669,10 @@ def build_datasheet(product):
         ),
         PageBreak(),
         branded_header(),
-        Paragraph("Southeast Asia Project Selection", styles["Section"]),
+        Paragraph("Project Selection Reference", styles["Section"]),
         Paragraph(
-            "Common regional configurations are shown for inquiry preparation. The destination "
-            "utility, local regulations and site conditions remain the governing requirements.",
+            "Typical configurations are shown for inquiry preparation. The destination "
+            "utility specification, applicable local requirements and site conditions govern final selection.",
             styles["BodySmall"],
         ),
         selection_table(product["selection_rows"]),

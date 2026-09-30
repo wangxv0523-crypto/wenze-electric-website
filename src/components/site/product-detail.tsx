@@ -324,7 +324,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
                     className="inline-flex items-center gap-2 font-semibold text-primary underline-offset-4 hover:underline"
                   >
                     <Download className="h-5 w-5" aria-hidden="true" />
-                    Download Southeast Asia reference datasheet (PDF, R1)
+                    Download preliminary reference datasheet (PDF, R2)
                   </a>
                   <p className="mt-2 text-sm text-muted-foreground">
                     Preliminary selection information. Final guaranteed values and documents are confirmed for each project.

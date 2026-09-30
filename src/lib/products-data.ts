@@ -350,7 +350,7 @@ export const products: Product[] = [
     relatedProductSlugs: ["dry-type-transformer", "pole-mounted-transformer", "compact-substation"],
     technicalDocuments: [...technicalDocuments],
     downloadableDatasheet: {
-      href: "/downloads/wenze-oil-immersed-distribution-transformer-datasheet-en.pdf",
+      href: "/downloads/wenze-oil-immersed-distribution-transformer-datasheet-en.pdf?v=R2",
       fileName: "wenze-oil-immersed-distribution-transformer-datasheet-en.pdf",
       title: "Oil Immersed Distribution Transformer - English Product Datasheet",
     },
@@ -779,7 +779,7 @@ export const products: Product[] = [
     ],
     technicalDocuments: [...technicalDocuments],
     downloadableDatasheet: {
-      href: "/downloads/wenze-dry-type-transformer-datasheet-en.pdf",
+      href: "/downloads/wenze-dry-type-transformer-datasheet-en.pdf?v=R2",
       fileName: "wenze-dry-type-transformer-datasheet-en.pdf",
       title: "Dry Type Transformer - English Product Datasheet",
     },
@@ -1612,7 +1612,7 @@ export const products: Product[] = [
     ],
     technicalDocuments: [...technicalDocuments],
     downloadableDatasheet: {
-      href: "/downloads/wenze-compact-substation-datasheet-en.pdf",
+      href: "/downloads/wenze-compact-substation-datasheet-en.pdf?v=R2",
       fileName: "wenze-compact-substation-datasheet-en.pdf",
       title: "Compact Substation - English Product Datasheet",
     },
