@@ -79,6 +79,16 @@ function ProductsPage() {
               Review transformer, compact substation and accessory categories, then open each
               page for technical scope, customization options and inquiry requirements.
             </p>
+            <p className="mt-5 text-sm text-white/85">
+              Looking for 11 kV, 22 kV or 33 kV equipment?{" "}
+              <a
+                href="/transformer-solutions#voltage-options"
+                className="font-semibold text-white underline underline-offset-4 hover:text-accent"
+              >
+                Compare transformer voltage examples by product type
+              </a>
+              .
+            </p>
           </div>
         </section>
 

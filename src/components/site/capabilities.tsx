@@ -3,38 +3,32 @@ import { Settings, Globe, Shield, Cog, Zap, Award } from 'lucide-react'
 const capabilities = [
   {
     icon: Zap,
-    title: 'Voltage Range',
-    value: 'Project Specific',
-    description: 'Primary and secondary voltage requirements are reviewed for each transformer application.',
+    title: 'Product Selection',
+    description: 'Find the transformer or substation category that matches the project application.',
   },
   {
     icon: Settings,
-    title: 'Capacity Range',
-    value: 'Project Specific',
-    description: 'Rated capacity is selected according to load requirements and the approved technical specification.',
+    title: 'Project Requirement Review',
+    description: 'Share your load and network requirements for product-specific technical review.',
   },
   {
     icon: Cog,
-    title: 'Frequency Options',
-    value: '50 Hz / 60 Hz',
-    description: 'Frequency configuration is subject to the selected product and project requirements.',
+    title: 'Configuration Review',
+    description: 'Equipment configuration is considered against the project specification and site conditions.',
   },
   {
     icon: Shield,
-    title: 'Standards Compliance',
-    value: 'IEC / ANSI',
-    description: 'Designed according to applicable IEC or ANSI requirements, subject to project specifications.',
+    title: 'Standards Review',
+    description: 'Applicable product and project standards are checked during technical review.',
   },
   {
     icon: Globe,
     title: 'Export Projects',
-    value: 'Multiple Regions',
     description: 'Destination, packing and documentation requirements are reviewed for each export project.',
   },
   {
     icon: Award,
-    title: 'Quality Control',
-    value: 'Agreed Test Plan',
+    title: 'Inspection Planning',
     description: 'Inspection and testing scope is confirmed in the technical agreement for each order.',
   },
 ]
@@ -82,13 +76,20 @@ export function Capabilities() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">{capability.title}</h3>
-                  <p className="text-2xl font-bold text-primary mt-1">{capability.value}</p>
                   <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{capability.description}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
+        <p className="mb-16 text-center text-sm text-muted-foreground">
+          Product-specific voltage and capacity details are on the{' '}
+          <a href="/products" className="font-semibold text-primary underline underline-offset-4">
+            product pages
+          </a>
+          .
+        </p>
 
         {/* Engineering Section */}
         <div className="bg-primary rounded-2xl p-8 md:p-12">
@@ -112,7 +113,7 @@ export function Capabilities() {
                   <svg className="w-5 h-5 text-accent shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span>Custom voltage and capacity configurations</span>
+                  <span>Project-specific equipment configuration review</span>
                 </li>
                 <li className="flex items-center gap-3 text-white/90">
                   <svg className="w-5 h-5 text-accent shrink-0" fill="currentColor" viewBox="0 0 20 20">

@@ -29,7 +29,12 @@ import {
 } from "@/lib/products-data";
 
 type IconName = "droplets" | "wind" | "zap" | "box" | "radio" | "sun";
+type VoltageGuideData = NonNullable<Product["voltageGuide"]>;
 type ProductData = Omit<Product, "icon"> & { iconName: IconName };
+
+function formatReferenceRatio(ratio: string): string {
+  return ratio.replace(/\s*\/\s*/g, "/");
+}
 
 const iconMap = {
   droplets: Droplets,
@@ -40,7 +45,13 @@ const iconMap = {
   sun: Sun,
 };
 
-function QuickSpecificationsCard({ rows }: { rows: QuickSpecification[] }) {
+function QuickSpecificationsCard({
+  rows,
+  isAccessory,
+}: {
+  rows: QuickSpecification[];
+  isAccessory: boolean;
+}) {
   const getSpanClass = (index: number) => {
     const smRemainder = rows.length % 2;
     const xlRemainder = rows.length % 3;
@@ -49,6 +60,7 @@ function QuickSpecificationsCard({ rows }: { rows: QuickSpecification[] }) {
 
     return [
       smRemainder === 1 && isLast ? "sm:col-span-2" : "",
+      xlRemainder === 0 && isLast ? "xl:col-span-1" : "",
       xlRemainder === 1 && isLast ? "xl:col-span-3" : "",
       xlRemainder === 2 && isFirstOfLastTwo ? "xl:col-span-2" : "",
       xlRemainder === 2 && isLast ? "xl:col-span-1" : "",
@@ -60,7 +72,9 @@ function QuickSpecificationsCard({ rows }: { rows: QuickSpecification[] }) {
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
       <div className="bg-primary px-4 py-2.5">
-        <h2 className="text-sm font-bold tracking-wider text-white">Quick Specifications</h2>
+        <h2 className="text-sm font-bold tracking-wider text-white">
+          {isAccessory ? "Key Selection Inputs" : "Preliminary Selection Parameters"}
+        </h2>
       </div>
       <dl className="grid gap-px border-t border-border bg-border sm:grid-cols-2 xl:grid-cols-3">
         {rows.map((row, index) => (
@@ -81,6 +95,110 @@ function QuickSpecificationsCard({ rows }: { rows: QuickSpecification[] }) {
           </div>
         ))}
       </dl>
+      {!isAccessory && (
+        <p className="border-t border-border px-4 py-3 text-xs leading-relaxed text-muted-foreground">
+          These are reference options for early selection, not guaranteed values for a single model.
+          Final ratings and performance follow the approved project datasheet.
+        </p>
+      )}
+    </div>
+  );
+}
+
+function VoltageSelectionGuide({
+  guide,
+  capacitySizes,
+}: {
+  guide: VoltageGuideData;
+  capacitySizes: string[];
+}) {
+  const voltageSides = [
+    { label: guide.highSideLabel, options: guide.highSideOptions },
+    { label: guide.lowSideLabel, options: guide.lowSideOptions },
+  ];
+
+  return (
+    <div
+      id="voltage-selection"
+      className="mt-8 overflow-hidden rounded-xl border border-primary/20 bg-secondary/20 shadow-sm"
+    >
+      <div className="bg-primary px-5 py-5 text-white sm:px-6">
+        <h3 className="text-xl font-bold">Voltage Selection Guide</h3>
+        <p className="mt-2 max-w-4xl text-sm leading-relaxed text-white/85">{guide.intro}</p>
+      </div>
+
+      <div className="grid gap-4 p-4 sm:p-6 md:grid-cols-2">
+        {voltageSides.map((side) => (
+          <div
+            key={side.label}
+            className="min-w-0 rounded-lg border border-border bg-white p-4 sm:p-5"
+          >
+            <h4 className="text-sm font-bold text-primary">{side.label}</h4>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {side.options.map((option) => (
+                <li
+                  key={option}
+                  className="max-w-full break-words rounded-md border border-primary/20 bg-primary/5 px-3 py-1.5 text-sm font-semibold text-primary"
+                >
+                  {option}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p className="px-5 pb-5 text-xs leading-relaxed text-muted-foreground sm:px-6">
+        These voltage choices are separate enquiry references and should not be freely combined into
+        a project rating.
+      </p>
+
+      <div className="border-t border-border bg-white px-5 py-5 sm:px-6">
+        <h4 className="text-sm font-bold text-primary">Enquiry Examples</h4>
+        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+          Reference project voltage pairs or sets, not confirmed catalogue models. Actual rated
+          winding voltages and connections follow the supplier-approved datasheet.
+        </p>
+        {guide.referenceRatios.length > 0 ? (
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {guide.referenceRatios.map((ratio) => (
+              <li
+                key={ratio}
+                className="max-w-full break-words rounded-md bg-secondary px-3 py-2 text-sm font-semibold text-foreground"
+              >
+                {formatReferenceRatio(ratio)}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="mt-3 rounded-md bg-secondary px-3 py-2 text-sm text-foreground">
+            Voltage ratios are selected for each project. Please provide the required supply and
+            output voltages for technical confirmation.
+          </p>
+        )}
+        <p className="mt-4 rounded-md border-l-4 border-accent bg-secondary/50 px-4 py-3 text-sm leading-relaxed text-foreground">
+          {guide.note}
+        </p>
+      </div>
+
+      {capacitySizes.length > 0 && (
+        <div className="border-t border-border bg-white px-5 py-5 sm:px-6">
+          <h4 className="text-sm font-bold text-primary">Reference Capacity Sizes</h4>
+          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+            Selection references; confirm the available rating for the required voltage and design.
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {capacitySizes.map((size) => (
+              <li
+                key={size}
+                className="max-w-full break-words rounded-md border border-border bg-secondary/50 px-3 py-1.5 text-sm font-medium text-foreground"
+              >
+                {size}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
     </div>
   );
 }
@@ -164,7 +282,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
 
   return (
     <main className="min-h-screen overflow-x-clip bg-background">
-      {/* Hero: balanced image and product information columns */}
+      {/* Hero: product image and summary, followed by full-width selection details */}
       <section className="py-10 md:py-14">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,48fr)_minmax(0,52fr)]">
@@ -226,56 +344,6 @@ export function ProductDetail({ product }: { product: ProductData }) {
                 )}
               </div>
 
-              <div className="hidden space-y-5 pt-2 lg:block">
-                <div>
-                  <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    Key Features
-                  </h3>
-                  <ul className="grid gap-2 sm:grid-cols-2">
-                    {product.features.map((feature) => (
-                      <li key={feature.en} className="flex items-start gap-2.5 text-sm">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                        <span className="font-medium text-foreground">{feature.en}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="h-12 bg-accent px-6 font-semibold text-accent-foreground hover:bg-accent/90"
-                  >
-                    <a
-                      href={`https://wa.me/8615905342405?text=${whatsappMessage}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="mr-2 h-5 w-5" />
-                      WhatsApp
-                    </a>
-                  </Button>
-                  <Button
-                    asChild
-                    size="lg"
-                    variant="outline"
-                    className="h-12 border-primary px-6 font-semibold text-primary hover:bg-primary hover:text-white"
-                  >
-                    <a href={emailHref}>
-                      <Mail className="mr-2 h-5 w-5" />
-                      Email Inquiry
-                    </a>
-                  </Button>
-                  <Button
-                    asChild
-                    size="lg"
-                    className="h-12 bg-primary px-6 font-semibold text-white hover:bg-primary/90"
-                  >
-                    <a href="#product-inquiry">Get a Quote</a>
-                  </Button>
-                </div>
-              </div>
             </div>
 
             <div className="w-full min-w-0 space-y-4">
@@ -309,30 +377,39 @@ export function ProductDetail({ product }: { product: ProductData }) {
                 </h1>
               </div>
 
+              {!isAccessory && product.voltageGuide && (
+                <div className="rounded-lg border border-primary/20 bg-primary/5 px-4 py-3">
+                  <p className="text-sm font-bold text-primary">
+                    {product.voltageGuide.referenceRatios.length > 0
+                      ? "Reference voltage examples"
+                      : product.voltageGuide.highSideLabel}
+                  </p>
+                  <ul className="mt-2 flex flex-wrap gap-2">
+                    {(product.voltageGuide.referenceRatios.length > 0
+                      ? product.voltageGuide.referenceRatios
+                      : product.voltageGuide.highSideOptions
+                    ).map((voltage) => (
+                      <li
+                        key={voltage}
+                        className="rounded-md border border-primary/20 bg-white px-2.5 py-1 text-xs font-semibold text-primary sm:text-sm"
+                      >
+                        {formatReferenceRatio(voltage)}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                    Preliminary enquiry references. Final voltage arrangement and equipment ratings
+                    require project and supplier technical review.
+                  </p>
+                </div>
+              )}
+
               <div>
                 <h2 className="mb-3 text-xl font-bold text-primary">Product Overview</h2>
                 <p className="leading-relaxed text-muted-foreground">{product.fullDescriptionEn}</p>
               </div>
 
-              <QuickSpecificationsCard rows={quickSpecifications} />
-
-              {product.downloadableDatasheet && (
-                <div className="rounded-xl border border-border bg-white p-4 shadow-sm">
-                  <a
-                    href={product.downloadableDatasheet.href}
-                    download={product.downloadableDatasheet.fileName}
-                    className="inline-flex items-center gap-2 font-semibold text-primary underline-offset-4 hover:underline"
-                  >
-                    <Download className="h-5 w-5" aria-hidden="true" />
-                    Download preliminary reference datasheet (PDF, R2)
-                  </a>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Preliminary selection information. Final guaranteed values and documents are confirmed for each project.
-                  </p>
-                </div>
-              )}
-
-              <div className="lg:hidden">
+              <div className="pt-2">
                 <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                   Key Features
                 </h3>
@@ -346,7 +423,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
                 </ul>
               </div>
 
-              <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:flex-wrap lg:hidden">
+              <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:flex-wrap">
                 <Button
                   asChild
                   size="lg"
@@ -382,10 +459,45 @@ export function ProductDetail({ product }: { product: ProductData }) {
               </div>
             </div>
           </div>
+
+          <div className="mt-8 space-y-4">
+            <QuickSpecificationsCard rows={quickSpecifications} isAccessory={isAccessory} />
+
+            {!isAccessory && product.voltageGuide && (
+              <a
+                href="#voltage-selection"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+              >
+                See voltage and capacity options
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            )}
+
+            {product.downloadableDatasheet && (
+              <div className="rounded-xl border border-border bg-white p-4 shadow-sm">
+                <a
+                  href={product.downloadableDatasheet.href}
+                  download={product.downloadableDatasheet.fileName}
+                  className="inline-flex items-center gap-2 font-semibold text-primary underline-offset-4 hover:underline"
+                >
+                  <Download className="h-5 w-5" aria-hidden="true" />
+                  Download preliminary reference datasheet (PDF, R2)
+                </a>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Preliminary selection information. Final guaranteed values and documents are
+                  confirmed for each project.
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
       <DetailedSpecifications
+        productId={product.id}
+        productName={productName}
+        voltageGuide={product.voltageGuide}
+        capacitySizes={product.standardSizes}
         table={product.detailedSpecTable}
         regionalSpecifications={product.regionalSpecifications}
         technicalNotes={product.technicalNotes}
@@ -583,11 +695,19 @@ const applicabilityLabels: Array<[keyof NonNullable<DetailedSpecTable["applicabi
   ];
 
 function DetailedSpecifications({
+  productId,
+  productName,
+  voltageGuide,
+  capacitySizes,
   table,
   regionalSpecifications,
   technicalNotes,
   isAccessory,
 }: {
+  productId: string;
+  productName: string;
+  voltageGuide?: VoltageGuideData;
+  capacitySizes: string[];
   table?: DetailedSpecTable;
   regionalSpecifications: QuickSpecification[];
   technicalNotes: string[];
@@ -615,9 +735,41 @@ function DetailedSpecifications({
             : "The following selection data covers common 50 Hz and 60 Hz transformer configurations. Final voltage ratio, utility interface and guaranteed performance are confirmed against the destination-country specification."}
         </p>
 
-        <h3 className="mb-3 mt-7 text-lg font-bold text-primary">
-          Project Selection Guide
-        </h3>
+        {!isAccessory && voltageGuide && (
+          <VoltageSelectionGuide guide={voltageGuide} capacitySizes={capacitySizes} />
+        )}
+
+        {!isAccessory && (
+          <figure
+            id="technical-diagram"
+            className="mt-8 overflow-hidden rounded-xl border border-border bg-secondary/20"
+          >
+            <div className="border-b border-border bg-white px-5 py-4 sm:px-6">
+              <h3 className="text-lg font-bold text-primary">Conceptual Configuration Diagram</h3>
+              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                Read the equipment flow alongside the preliminary selection parameters below.
+              </p>
+            </div>
+            <div className="bg-white p-3 sm:p-6">
+              <img
+                src={`/images/technical/${productId}.svg`}
+                alt={`Conceptual configuration of ${productName}; not an approved engineering drawing`}
+                width={1200}
+                height={760}
+                loading="lazy"
+                decoding="async"
+                className="mx-auto h-auto w-full max-w-[1100px]"
+              />
+            </div>
+            <figcaption className="border-t border-border px-5 py-4 text-sm leading-relaxed text-muted-foreground sm:px-6">
+              Illustration only; not to scale or for construction. It does not specify dimensions,
+              terminal positions, wiring or guaranteed performance. The project-specific datasheet
+              and approved drawings govern the final equipment.
+            </figcaption>
+          </figure>
+        )}
+
+        <h3 className="mb-3 mt-7 text-lg font-bold text-primary">Project Selection Guide</h3>
         <div className="overflow-hidden rounded-xl border border-border">
           <table className="w-full table-fixed border-separate border-spacing-0">
             <thead>

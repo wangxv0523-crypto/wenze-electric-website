@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-label="High-voltage power transformer, conceptual technical schematic, not to scale">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M 24 0 L 0 0 0 24" fill="none" stroke="#dfe9f0" stroke-width="1"/></pattern>
+    <linearGradient id="steel" x2="0" y2="1"><stop stop-color="#f5f9fc"/><stop offset="1" stop-color="#dae7ef"/></linearGradient>
+    <style>
+      .ink{stroke:#214763;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .fine{stroke:#4c718a;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .part{fill:url(#steel);stroke:#214763;stroke-width:4;stroke-linejoin:round}
+      .warm{fill:#fff0dc;stroke:#b96b19;stroke-width:3}
+      .call{stroke:#ed962d;stroke-width:2.5;fill:none;stroke-linecap:round}
+      .dot{fill:#ed962d}
+      .label{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#214763}
+      .small{font-family:Arial,sans-serif;font-size:17px;fill:#5e7385}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="#f7fafc"/>
+  <rect x="42" y="143" width="1116" height="523" rx="20" fill="#fff" stroke="#d7e3eb" stroke-width="2"/>
+  <rect x="58" y="159" width="1084" height="491" rx="12" fill="url(#grid)"/>
+  <text x="62" y="59" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#ed962d">WENZE  /  TECHNICAL REFERENCE 05</text>
+  <text x="62" y="111" font-family="Arial,sans-serif" font-size="36" font-weight="700" fill="#17324e">High-voltage power transformer</text>
+  <text x="62" y="713" font-family="Arial,sans-serif" font-size="18" fill="#60788b">Conceptual schematic · Not to scale · Arrangement and dimensions depend on the approved project drawing.</text>
+<g aria-label="Simplified three-winding high-voltage transformer">
+    <rect x="311" y="341" width="490" height="220" rx="7" class="part"/>
+    <path d="M298 341h516l-18-23H317z" class="part"/>
+    <path d="M334 561v18m441-18v18M322 580h468" class="ink"/>
+    <g class="warm">
+      <path d="M409 317l-16-53 7-20h35l7 20-16 53z"/>
+      <path d="M521 317l-16-53 7-20h35l7 20-16 53z"/>
+      <path d="M633 317l-16-53 7-20h35l7 20-16 53z"/>
+      <path d="M710 318l-8-29 5-13h26l5 13-8 29z"/>
+    </g>
+    <path d="M418 243v-58m112 58v-58m112 58v-58m79 91v-49M399 200h38m74 0h38m74 0h38" class="ink"/>
+    <rect x="738" y="226" width="136" height="33" rx="16" class="part"/>
+    <path d="M771 259v59M342 356h430" class="fine"/>
+    <rect x="333" y="385" width="92" height="112" rx="5" class="part"/>
+    <circle cx="379" cy="417" r="22" fill="#fff" stroke="#214763" stroke-width="3"/>
+    <path d="M379 396v21l14 9" class="fine"/>
+    <rect x="458" y="407" width="84" height="101" rx="5" class="part"/>
+    <path d="M478 430h43m-43 19h31" class="fine"/>
+    <path d="M820 347v208m21-208v208m21-208v208m21-208v208m21-208v208" class="ink"/>
+    <path d="M807 359h111m-111 42h111m-111 42h111m-111 42h111m-111 42h111" class="fine"/>
+  </g>
+  <path d="M262 241h113l22-37" class="call"/><circle cx="397" cy="204" r="5" class="dot"/><text x="96" y="235" class="label">HV bushings</text>
+  <path d="M877 283h-105l-41 5" class="call"/><circle cx="731" cy="288" r="5" class="dot"/><text x="885" y="290" class="label">Other terminals</text>
+  <path d="M263 432h42l29-15" class="call"/><circle cx="334" cy="417" r="5" class="dot"/><text x="96" y="427" class="label">Tap changer*</text>
+  <path d="M915 468h-37l-22-14" class="call"/><circle cx="856" cy="454" r="5" class="dot"/><text x="922" y="474" class="label">Cooling bank</text>
+  <text x="96" y="613" class="small">* Three-winding / OLTC layout shown for discussion only; approved drawings govern.</text>
+</svg>

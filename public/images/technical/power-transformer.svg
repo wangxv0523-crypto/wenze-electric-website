@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-label="Power transformer, conceptual technical schematic, not to scale">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M 24 0 L 0 0 0 24" fill="none" stroke="#dfe9f0" stroke-width="1"/></pattern>
+    <linearGradient id="steel" x2="0" y2="1"><stop stop-color="#f5f9fc"/><stop offset="1" stop-color="#dae7ef"/></linearGradient>
+    <style>
+      .ink{stroke:#214763;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .fine{stroke:#4c718a;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .part{fill:url(#steel);stroke:#214763;stroke-width:4;stroke-linejoin:round}
+      .warm{fill:#fff0dc;stroke:#b96b19;stroke-width:3}
+      .call{stroke:#ed962d;stroke-width:2.5;fill:none;stroke-linecap:round}
+      .dot{fill:#ed962d}
+      .label{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#214763}
+      .small{font-family:Arial,sans-serif;font-size:17px;fill:#5e7385}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="#f7fafc"/>
+  <rect x="42" y="143" width="1116" height="523" rx="20" fill="#fff" stroke="#d7e3eb" stroke-width="2"/>
+  <rect x="58" y="159" width="1084" height="491" rx="12" fill="url(#grid)"/>
+  <text x="62" y="59" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#ed962d">WENZE  /  TECHNICAL REFERENCE 04</text>
+  <text x="62" y="111" font-family="Arial,sans-serif" font-size="36" font-weight="700" fill="#17324e">Power transformer</text>
+  <text x="62" y="713" font-family="Arial,sans-serif" font-size="18" fill="#60788b">Conceptual schematic · Not to scale · Arrangement and dimensions depend on the approved project drawing.</text>
+<g aria-label="Simplified oil-immersed power transformer">
+    <rect x="336" y="326" width="452" height="215" rx="7" class="part"/>
+    <path d="M322 326h479l-22-25H344z" class="part"/>
+    <path d="M360 541v20h405v-20M382 560v19m349-19v19M364 581h383" class="ink"/>
+    <path d="M378 341v184m35-184v184m35-184v184m35-184v184" class="fine" opacity=".4"/>
+    <path d="M491 301v-44m93 44v-44m93 44v-44" class="ink"/>
+    <g class="warm"><path d="M478 258l-10-39 7-17h33l8 17-11 39z"/><path d="M571 258l-10-39 7-17h33l8 17-11 39z"/><path d="M664 258l-10-39 7-17h33l8 17-11 39z"/></g>
+    <path d="M608 301v-62h21v-25h113" class="fine"/>
+    <rect x="742" y="194" width="126" height="35" rx="17" class="part"/>
+    <path d="M764 229v72M807 336v196m22-196v196m22-196v196m22-196v196m22-196v196" class="ink"/>
+    <path d="M788 340h126m-126 35h126m-126 35h126m-126 35h126m-126 35h126m-126 35h126" class="fine"/>
+    <rect x="676" y="381" width="84" height="109" rx="5" class="part"/>
+    <path d="M694 406h48m-48 17h30" class="fine"/>
+  </g>
+  <path d="M252 236h158l50-20" class="call"/><circle cx="460" cy="216" r="5" class="dot"/><text x="96" y="230" class="label">HV / LV bushings</text>
+  <path d="M880 188h-21l-30 9" class="call"/><circle cx="829" cy="197" r="5" class="dot"/><text x="889" y="194" class="label">Conservator*</text>
+  <path d="M272 460h52l18-20" class="call"/><circle cx="342" cy="440" r="5" class="dot"/><text x="96" y="455" class="label">Main tank</text>
+  <path d="M920 465h-26l-22-12" class="call"/><circle cx="872" cy="453" r="5" class="dot"/><text x="928" y="472" class="label">Radiator bank</text>
+  <text x="96" y="613" class="small">* Conservator, cooling and control equipment vary by configuration.</text>
+</svg>

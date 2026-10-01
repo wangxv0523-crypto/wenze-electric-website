@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-label="Compact substation, conceptual technical schematic, not to scale">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M 24 0 L 0 0 0 24" fill="none" stroke="#dfe9f0" stroke-width="1"/></pattern>
+    <linearGradient id="steel" x2="0" y2="1"><stop stop-color="#f5f9fc"/><stop offset="1" stop-color="#dae7ef"/></linearGradient>
+    <style>
+      .ink{stroke:#214763;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .fine{stroke:#4c718a;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .part{fill:url(#steel);stroke:#214763;stroke-width:4;stroke-linejoin:round}
+      .warm{fill:#fff0dc;stroke:#b96b19;stroke-width:3}
+      .call{stroke:#ed962d;stroke-width:2.5;fill:none;stroke-linecap:round}
+      .dot{fill:#ed962d}
+      .label{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#214763}
+      .small{font-family:Arial,sans-serif;font-size:17px;fill:#5e7385}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="#f7fafc"/>
+  <rect x="42" y="143" width="1116" height="523" rx="20" fill="#fff" stroke="#d7e3eb" stroke-width="2"/>
+  <rect x="58" y="159" width="1084" height="491" rx="12" fill="url(#grid)"/>
+  <text x="62" y="59" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#ed962d">WENZE  /  TECHNICAL REFERENCE 06</text>
+  <text x="62" y="111" font-family="Arial,sans-serif" font-size="36" font-weight="700" fill="#17324e">Compact substation</text>
+  <text x="62" y="713" font-family="Arial,sans-serif" font-size="18" fill="#60788b">Conceptual schematic · Not to scale · Arrangement and dimensions depend on the approved project drawing.</text>
+<g aria-label="Simplified three-compartment enclosure">
+    <path d="M242 311l66-56h587l67 56z" class="part"/>
+    <rect x="260" y="312" width="684" height="250" rx="7" class="part"/>
+    <path d="M260 325h684M485 325v237m229-237v237" class="ink"/>
+    <rect x="280" y="345" width="184" height="191" rx="4" fill="#f9fbfd" stroke="#4c718a" stroke-width="2.5"/>
+    <rect x="507" y="345" width="185" height="191" rx="4" fill="#f9fbfd" stroke="#4c718a" stroke-width="2.5"/>
+    <rect x="736" y="345" width="186" height="191" rx="4" fill="#f9fbfd" stroke="#4c718a" stroke-width="2.5"/>
+    <path d="M298 377h148m-148 22h148m-148 22h148" class="fine"/>
+    <rect x="305" y="445" width="133" height="62" rx="5" class="warm"/>
+    <path d="M326 463v25m33-25v25m33-25v25" class="fine"/>
+    <rect x="530" y="383" width="137" height="121" rx="9" class="part"/>
+    <path d="M551 395v97m26-97v97m26-97v97m26-97v97m26-97v97" class="fine"/>
+    <path d="M556 382v-28m42 28v-28m42 28v-28" class="ink"/>
+    <g class="warm"><circle cx="556" cy="349" r="7"/><circle cx="598" cy="349" r="7"/><circle cx="640" cy="349" r="7"/></g>
+    <path d="M756 379h146m-146 34h146m-146 34h146" class="fine"/>
+    <g class="warm"><rect x="759" y="474" width="38" height="33" rx="4"/><rect x="809" y="474" width="38" height="33" rx="4"/><rect x="859" y="474" width="38" height="33" rx="4"/></g>
+    <path d="M300 563v17m604-17v17M289 580h627" class="ink"/>
+  </g>
+  <path d="M262 219h-4l52 38" class="call"/><circle cx="310" cy="257" r="5" class="dot"/><text x="96" y="213" class="label">Protective enclosure</text>
+  <path d="M173 461h85l27-11" class="call"/><circle cx="285" cy="450" r="5" class="dot"/><text x="95" y="455" class="label">HV section</text>
+  <path d="M889 230h-170l-65 26" class="call"/><circle cx="654" cy="256" r="5" class="dot"/><text x="897" y="236" class="label">Transformer bay</text>
+  <path d="M1012 455h-79l-24-12" class="call"/><circle cx="909" cy="443" r="5" class="dot"/><text x="1019" y="461" class="label">LV section</text>
+  <text x="96" y="613" class="small">Compartment order, transformer type and protection scheme are project-specific.</text>
+</svg>

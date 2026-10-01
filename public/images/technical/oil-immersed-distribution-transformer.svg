@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-label="Oil-immersed distribution transformer, conceptual technical schematic, not to scale">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M 24 0 L 0 0 0 24" fill="none" stroke="#dfe9f0" stroke-width="1"/></pattern>
+    <linearGradient id="steel" x2="0" y2="1"><stop stop-color="#f5f9fc"/><stop offset="1" stop-color="#dae7ef"/></linearGradient>
+    <style>
+      .ink{stroke:#214763;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .fine{stroke:#4c718a;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+      .part{fill:url(#steel);stroke:#214763;stroke-width:4;stroke-linejoin:round}
+      .warm{fill:#fff0dc;stroke:#b96b19;stroke-width:3}
+      .call{stroke:#ed962d;stroke-width:2.5;fill:none;stroke-linecap:round}
+      .dot{fill:#ed962d}
+      .label{font-family:Arial,sans-serif;font-size:20px;font-weight:700;fill:#214763}
+      .small{font-family:Arial,sans-serif;font-size:17px;fill:#5e7385}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="#f7fafc"/>
+  <rect x="42" y="143" width="1116" height="523" rx="20" fill="#fff" stroke="#d7e3eb" stroke-width="2"/>
+  <rect x="58" y="159" width="1084" height="491" rx="12" fill="url(#grid)"/>
+  <text x="62" y="59" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#ed962d">WENZE  /  TECHNICAL REFERENCE 01</text>
+  <text x="62" y="111" font-family="Arial,sans-serif" font-size="36" font-weight="700" fill="#17324e">Oil-immersed distribution transformer</text>
+  <text x="62" y="713" font-family="Arial,sans-serif" font-size="18" fill="#60788b">Conceptual schematic · Not to scale · Arrangement and dimensions depend on the approved project drawing.</text>
+<g aria-label="Simplified transformer tank and accessories">
+    <path d="M400 279h379l-21 24H421z" class="part"/>
+    <rect x="427" y="301" width="327" height="238" rx="8" class="part"/>
+    <path d="M446 539v20m289-20v20M420 560h350" class="ink"/>
+    <path d="M459 312v216m32-216v216m32-216v216m32-216v216M626 312v216m32-216v216m32-216v216m32-216v216" class="fine" opacity=".32"/>
+    <path d="M389 313v215m-17-215v215m-17-206v197m-17-181v163m-17-145v127m68-165h38m-38 31h38m-38 31h38m-38 31h38m-38 31h38m-38 31h38" class="ink"/>
+    <path d="M779 313v215m17-215v215m17-206v197m17-181v163m17-145v127m-93-164h25m-25 31h42m-42 31h59m-59 31h76m-76 31h93m-93 31h93" class="ink"/>
+    <path d="M493 279v-22m98 22v-22m98 22v-22" class="ink"/>
+    <g class="warm"><path d="M481 255l-9-32 6-15h27l7 15-9 32z"/><path d="M579 255l-9-32 6-15h27l7 15-9 32z"/><path d="M677 255l-9-32 6-15h27l7 15-9 32z"/></g>
+    <path d="M469 222h46m52 0h46m52 0h46" class="fine"/>
+    <rect x="622" y="322" width="100" height="63" rx="5" fill="#f8fbfd" stroke="#4c718a" stroke-width="2"/>
+    <path d="M642 342h60m-60 15h45" class="fine"/>
+    <circle cx="714" cy="402" r="11" fill="#fff" stroke="#214763" stroke-width="3"/>
+    <path d="M714 391v11l6 5" class="fine"/>
+  </g>
+  <path d="M252 238h143l70-20" class="call"/><circle cx="465" cy="218" r="5" class="dot"/><text x="96" y="232" class="label">HV bushings</text>
+  <path d="M886 275h-90l-49 27" class="call"/><circle cx="747" cy="302" r="5" class="dot"/><text x="892" y="281" class="label">Tank cover</text>
+  <path d="M187 468h108l39-56" class="call"/><circle cx="334" cy="412" r="5" class="dot"/><text x="96" y="464" class="label">Cooling fins</text>
+  <path d="M875 457h-97l-45-55" class="call"/><circle cx="733" cy="402" r="5" class="dot"/><text x="883" y="464" class="label">Oil gauge*</text>
+  <text x="96" y="613" class="small">* Accessories and terminal layout vary by specification.</text>
+</svg>

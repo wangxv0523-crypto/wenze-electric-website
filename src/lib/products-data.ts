@@ -47,6 +47,16 @@ export interface ProductFaqItem {
   answer: string;
 }
 
+export interface ProductVoltageGuide {
+  intro: string;
+  highSideLabel: string;
+  highSideOptions: string[];
+  lowSideLabel: string;
+  lowSideOptions: string[];
+  referenceRatios: string[];
+  note: string;
+}
+
 export interface Product {
   id: string;
   icon: React.ElementType;
@@ -78,6 +88,7 @@ export interface Product {
     standards: string;
   };
   regionalSpecifications: QuickSpecification[];
+  voltageGuide?: ProductVoltageGuide;
   features: Array<{ zh: string; en: string }>;
   productDescription?: string;
   descriptionBullets?: Array<{ zh: string; en: string }>;
@@ -135,7 +146,7 @@ const lossTechnicalNotes = [
 const internationalTechnicalNotes = [
   "For international projects, confirm the destination country and local utility because nominal voltage, frequency, earthing arrangement and insulation coordination vary by network.",
   "Declare maximum ambient temperature, installation altitude, humidity, coastal or salt-pollution exposure, seismic requirements and indoor or outdoor service before the final design is approved.",
-  "Reference configurations include 11 kV, 20 kV, 22 kV, 33 kV and 0.4/0.415 kV at 50 Hz or 60 Hz. Final frequency, voltage ratio and insulation coordination must be confirmed against the destination-country utility and approved project specification.",
+  "Provide the nominal network voltage, each required rated winding voltage, frequency, earthing and insulation-coordination requirements for project review. Voltage examples on one product page do not establish available ratios for another product.",
 ];
 
 function createProductFaq(productName: string, applicableStandards: string): ProductFaqItem[] {
@@ -268,6 +279,15 @@ export const products: Product[] = [
       insulationMedium: "Transformer oil",
       tappingRange: "To be confirmed in the approved technical datasheet",
       standards: "IEC 60076",
+    },
+    voltageGuide: {
+      intro: "Five preliminary project HV/LV pairs are listed in the current R2 reference datasheet. They are enquiry examples, not a list of approved catalogue models.",
+      highSideLabel: "MV network voltage in listed examples",
+      highSideOptions: ["10 kV", "11 kV", "20 kV", "22 kV", "33 kV"],
+      lowSideLabel: "LV value in listed examples",
+      lowSideOptions: ["0.4 kV", "0.415 kV"],
+      referenceRatios: ["10 / 0.4 kV", "11 / 0.415 kV", "20 / 0.4 kV", "22 / 0.415 kV", "33 / 0.415 kV"],
+      note: "The broader 6–35 kV selection range does not establish every voltage pair. Confirm rated winding voltages, no-load LV voltage, taps, insulation level and guaranteed losses in the supplier-approved project datasheet.",
     },
     regionalSpecifications: [
       { label: "Rated Capacity Range", value: "30–2500 kVA" },
@@ -686,6 +706,15 @@ export const products: Product[] = [
       tappingRange: "To be confirmed in the approved technical datasheet",
       standards: "IEC 60076-11",
     },
+    voltageGuide: {
+      intro: "Five preliminary project HV/LV pairs are listed in the current R2 reference datasheet. They are enquiry examples, not a list of approved catalogue models.",
+      highSideLabel: "MV network voltage in listed examples",
+      highSideOptions: ["10 kV", "11 kV", "20 kV", "22 kV", "33 kV"],
+      lowSideLabel: "LV value in listed examples",
+      lowSideOptions: ["0.4 kV", "0.415 kV"],
+      referenceRatios: ["10 / 0.4 kV", "11 / 0.415 kV", "20 / 0.4 kV", "22 / 0.415 kV", "33 / 0.415 kV"],
+      note: "The broader 6–35 kV selection range does not establish every voltage pair. The 6–11 kV / 0.4 kV, 50 Hz model data under technical review must not be applied to 22/33 kV or 60 Hz enquiries. Final winding voltages and performance require the supplier-approved datasheet.",
+    },
     regionalSpecifications: [
       { label: "Rated Capacity Range", value: "125–2500 kVA" },
       {
@@ -734,7 +763,7 @@ export const products: Product[] = [
       },
     ],
     productDescription:
-      "适用于室内变电站、数据中心、医院等对防火要求高的场所，常见 11/22/33 kV 与 0.4/0.415 kV 配置按项目技术要求确认，符合 IEC 60076-11 标准。",
+      "适用于室内变电站、数据中心、医院等对防火要求高的场所。常见 11/22/33 kV 与 0.4/0.415 kV 配置按项目技术要求确认，相关设计与试验依据 IEC 60076-11 及项目规范核定。",
     descriptionBullets: [
       {
         zh: "F级/H级环氧树脂绝缘，防火性能按项目确认",
@@ -1075,13 +1104,22 @@ export const products: Product[] = [
     specs: {
       voltage: "11 / 22 / 33 kV or project-specific",
       capacity: "5–167 kVA",
-      secondaryVoltage: "230/400 V, 240/415 V or 120/240 V",
+      secondaryVoltage: "Single-phase output by utility specification",
       frequency: "50 Hz / 60 Hz",
       phase: "Single Phase",
       cooling: "ONAN",
       insulationMedium: "Transformer oil",
       tappingRange: "To be confirmed in the approved technical datasheet",
       standards: "IEC 60076 / IEEE C57.12.20 / applicable utility requirements",
+    },
+    voltageGuide: {
+      intro: "The existing page names three common incoming utility voltage classes for single-phase pole-mounted enquiries. No fixed secondary voltage or terminal scheme has been verified for a Wenze model.",
+      highSideLabel: "Common incoming utility classes",
+      highSideOptions: ["11 kV", "22 kV", "33 kV"],
+      lowSideLabel: "Single-phase secondary",
+      lowSideOptions: ["By utility connection and approved terminals"],
+      referenceRatios: [],
+      note: "13.2/13.8 kV and 34.5 kV systems require design review. Specify whether the primary is phase-to-neutral or phase-to-phase, and provide the required secondary two-wire or centre-tapped three-wire arrangement. Three-phase service notation must not be used as this unit's winding rating.",
     },
     regionalSpecifications: [
       { label: "Rated Capacity Range", value: "5–167 kVA" },
@@ -1092,7 +1130,7 @@ export const products: Product[] = [
       },
       {
         label: "Secondary Voltage",
-        value: "230/400 V, 240/415 V or 120/240 V according to the local distribution system",
+        value: "Single-phase secondary voltage and terminal arrangement confirmed against the local utility specification",
       },
       {
         label: "Frequency",
@@ -1148,7 +1186,7 @@ export const products: Product[] = [
     ],
     customizationOptions: [
       "Rated capacity and primary voltage",
-      "Secondary voltage, including 230/400 V, 240/415 V and 120/240 V arrangements",
+      "Single-phase secondary voltage and terminal configuration by utility specification",
       "Frequency and single-phase network requirements",
       "Copper or aluminum winding",
       "Tank finish and corrosion protection",
@@ -1156,7 +1194,11 @@ export const products: Product[] = [
       "Protection accessories where required",
       "Applicable IEC 60076, IEEE C57.12.20 or utility project requirements",
     ],
-    quotationRequirements: [...quotationRequirements],
+    quotationRequirements: [
+      ...quotationRequirements,
+      "Whether the primary rating is phase-to-neutral or phase-to-phase",
+      "Required secondary two-wire or centre-tapped three-wire terminal arrangement",
+    ],
     faq: createProductFaq(
       "Pole Mounted Transformer",
       "IEC 60076, IEEE C57.12.20 or applicable utility requirements",
@@ -1177,7 +1219,7 @@ export const products: Product[] = [
       rows: [
         { label: "Capacity", value: "5–167 kVA" },
         { label: "Primary Voltage", value: "11 kV / 22 kV / 33 kV or utility-specific" },
-        { label: "Secondary Voltage", value: "230/400 V, 240/415 V or 120/240 V" },
+        { label: "Secondary Voltage", value: "Project-specific single-phase output; confirm terminals in the approved datasheet" },
         { label: "Frequency", value: "50 Hz / 60 Hz" },
         { label: "Phase", value: "Single Phase" },
         { label: "Cooling", value: "ONAN" },
@@ -1234,6 +1276,15 @@ export const products: Product[] = [
       insulationMedium: "Transformer oil",
       tappingRange: "To be confirmed in the approved technical datasheet",
       standards: "IEC 60076",
+    },
+    voltageGuide: {
+      intro: "The current site records these as typical international RFQ examples. They are not a standard model list or a confirmation of manufacturing capability for every ratio.",
+      highSideLabel: "Incoming voltages in example RFQs",
+      highSideOptions: ["33 kV", "66 kV", "69 kV", "110 kV", "115 kV"],
+      lowSideLabel: "Other winding voltages in example RFQs",
+      lowSideOptions: ["11 kV", "13.8 kV", "22 kV", "34.5 kV"],
+      referenceRatios: ["33 / 11 kV", "66 / 11 kV", "69 / 13.8 kV", "110 / 22 kV", "115 / 34.5 / 13.8 kV"],
+      note: "Read each full pair or three-winding set as one enquiry example; the voltage chips are not freely interchangeable. Capacity, winding arrangement, vector group, tapping, insulation and guaranteed values require project and supplier technical review.",
     },
     regionalSpecifications: [
       {
@@ -1318,7 +1369,14 @@ export const products: Product[] = [
       "Insulating medium and accessory package",
       "Applicable IEC or project-specific requirements",
     ],
-    quotationRequirements: [...quotationRequirements],
+    quotationRequirements: [
+      ...quotationRequirements,
+      "Single-line diagram and required two- or three-winding arrangement",
+      "Required MVA rating and load or expansion profile",
+      "Tapping range and voltage-regulation scheme",
+      "Target impedance and guaranteed loss limits",
+      "Insulation levels and short-circuit duty",
+    ],
     faq: createProductFaq("Power Transformer", "IEC 60076 or applicable project requirements"),
     relatedProductSlugs: [
       "high-voltage-power-transformer",
@@ -1337,7 +1395,7 @@ export const products: Product[] = [
       "High voltage power transformer manufacturer in China for utility substations, 110 kV-class projects and industrial grid connections.",
     shortDescription: "110 kV 三绕组有载调压电力变压器，适用于公用电网和大型工业供电项目。",
     shortDescriptionEn:
-      "110 kV three-winding OLTC power transformer for utility substations and large industrial grid connections.",
+      "Three-winding OLTC power transformer for utility substations and large industrial grid connections.",
     fullDescription:
       "本产品页面展示 110 kV 三绕组有载调压电力变压器的典型参考范围，最终配置以项目技术协议和确认图纸为准。",
     fullDescriptionEn:
@@ -1362,6 +1420,15 @@ export const products: Product[] = [
       insulationMedium: "Transformer oil",
       tappingRange: "To be confirmed in the approved technical datasheet",
       standards: "IEC 60076",
+    },
+    voltageGuide: {
+      intro: "This page presents a 110 kV-class, three-winding OLTC reference concept. Its secondary and tertiary rated voltages have not been established as fixed Wenze configurations.",
+      highSideLabel: "Reference grid class",
+      highSideOptions: ["110 kV class"],
+      lowSideLabel: "Secondary and tertiary windings",
+      lowSideOptions: ["By grid study and approved single-line diagram"],
+      referenceRatios: [],
+      note: "Provide all three required winding rated voltages, earthing and vector group, OLTC range and insulation-coordination requirements. The system's nominal 110 kV class is not a substitute for the equipment's insulation rating or approved winding voltages.",
     },
     regionalSpecifications: [
       { label: "Reference Capacity Range", value: "6.3–63 MVA" },
@@ -1515,6 +1582,15 @@ export const products: Product[] = [
       tappingRange: "To be confirmed for the selected transformer",
       standards: "IEC 62271-202 / IEC 60076",
     },
+    voltageGuide: {
+      intro: "The current R2 preliminary datasheet lists seven incoming MV classes and two outgoing LV values for project selection. The final substation is configured to its single-line diagram.",
+      highSideLabel: "Incoming MV classes for project review",
+      highSideOptions: ["6 kV", "10 kV", "11 kV", "20 kV", "22 kV", "33 kV", "35 kV"],
+      lowSideLabel: "Outgoing LV values for project review",
+      lowSideOptions: ["0.4 kV", "0.415 kV"],
+      referenceRatios: [],
+      note: "The two lists must not be freely paired into a guaranteed model list. Confirm the transformer rating and winding voltages, MV switchgear class, LV board rating, protection scheme and site conditions in the approved project documents.",
+    },
     regionalSpecifications: [
       { label: "Transformer Capacity Range", value: "315–2500 kVA" },
       {
@@ -1563,7 +1639,7 @@ export const products: Product[] = [
       { zh: "支持项目定制", en: "Project-Specific Configuration" },
     ],
     productDescription:
-      "适用于工业、商业、基础设施及新能源项目的一体化配电解决方案，符合 IEC 62271-202 与 IEC 60076。",
+      "适用于工业、商业、基础设施及新能源项目的一体化配电解决方案。设备配置及适用标准应按 IEC 62271-202、IEC 60076 与项目规范核定。",
     descriptionBullets: [
       {
         zh: "高压、变压器和低压单元集成设计",
@@ -1686,9 +1762,9 @@ export const products: Product[] = [
       "MV equipment class Um 7.2 / 12 / 17.5 / 24 / 36 kV",
       "Higher voltage by project",
     ],
-    image: "/images/products/transformer-bushings-connectors.png",
-    cardImage: "/images/products/transformer-bushings-connectors.png",
-    detailImage: "/images/products/transformer-bushings-connectors.png",
+    image: "/images/products/transformer-bushings-connectors.webp",
+    cardImage: "/images/products/transformer-bushings-connectors.webp",
+    detailImage: "/images/products/transformer-bushings-connectors.webp",
     specs: {
       voltage:
         "Equipment class Um <= 1.1 / 7.2 / 12 / 17.5 / 24 / 36 kV; matched to the local grid",
@@ -1828,9 +1904,9 @@ export const products: Product[] = [
     fullDescriptionEn:
       "Protection and monitoring devices support transformer condition indication, alarm and trip functions. Device type, mounting interface, contact arrangement, enclosure protection and pressure setting are confirmed against the transformer tank design and approved electrical schematic.",
     standardSizes: ["Buchholz relay", "Pressure relief device", "MOG / OTI / WTI"],
-    image: "/images/products/transformer-protection-monitoring.png",
-    cardImage: "/images/products/transformer-protection-monitoring.png",
-    detailImage: "/images/products/transformer-protection-monitoring.png",
+    image: "/images/products/transformer-protection-monitoring.webp",
+    cardImage: "/images/products/transformer-protection-monitoring.webp",
+    detailImage: "/images/products/transformer-protection-monitoring.webp",
     specs: {
       voltage: "Auxiliary and contact circuit by project",
       capacity: "Oil-immersed transformer / OLTC duty",
@@ -1966,9 +2042,9 @@ export const products: Product[] = [
     fullDescriptionEn:
       "Tap changer equipment is selected for transformer voltage regulation, maintenance and retrofit projects. DETC or OLTC type, contact arrangement, step range, motor-drive controls and mechanical interface must match the transformer winding design and approved control scheme.",
     standardSizes: ["DETC components", "OLTC components", "Motor drive and control panels"],
-    image: "/images/products/transformer-tap-changers-controls.png",
-    cardImage: "/images/products/transformer-tap-changers-controls.png",
-    detailImage: "/images/products/transformer-tap-changers-controls.png",
+    image: "/images/products/transformer-tap-changers-controls.webp",
+    cardImage: "/images/products/transformer-tap-changers-controls.webp",
+    detailImage: "/images/products/transformer-tap-changers-controls.webp",
     specs: {
       voltage: "Regulation range by transformer winding design",
       capacity: "DETC / OLTC selected by transformer rating",
@@ -2098,9 +2174,9 @@ export const products: Product[] = [
     fullDescriptionEn:
       "Transformer cooling-system components include radiator banks, cooling fans, oil pumps, valves and related controls. Selection is based on transformer heat-loss duty, cooling mode, auxiliary supply, interface dimensions, insulating-fluid review and site ambient conditions.",
     standardSizes: ["Radiator bank", "Cooling fan set", "Oil pump and cooling controls"],
-    image: "/images/products/transformer-cooling-system-components.png",
-    cardImage: "/images/products/transformer-cooling-system-components.png",
-    detailImage: "/images/products/transformer-cooling-system-components.png",
+    image: "/images/products/transformer-cooling-system-components.webp",
+    cardImage: "/images/products/transformer-cooling-system-components.webp",
+    detailImage: "/images/products/transformer-cooling-system-components.webp",
     specs: {
       voltage: "Fan and pump auxiliary supply by project",
       capacity: "Radiator, fan and pump sizing by heat-loss duty",
@@ -2235,9 +2311,9 @@ export const products: Product[] = [
     fullDescriptionEn:
       "Conservator and oil-preservation accessories are selected to control moisture ingress, support oil-level indication and maintain the oil system of an oil-immersed transformer. Breather size, air-cell material, gauge interface, valve and flange dimensions are matched to the existing conservator arrangement.",
     standardSizes: ["Silica-gel breather", "Oil level indication", "Air cell and conservator fittings"],
-    image: "/images/products/transformer-conservator-breathers-oil-accessories.png",
-    cardImage: "/images/products/transformer-conservator-breathers-oil-accessories.png",
-    detailImage: "/images/products/transformer-conservator-breathers-oil-accessories.png",
+    image: "/images/products/transformer-conservator-breathers-oil-accessories.webp",
+    cardImage: "/images/products/transformer-conservator-breathers-oil-accessories.webp",
+    detailImage: "/images/products/transformer-conservator-breathers-oil-accessories.webp",
     specs: {
       voltage: "N/A - oil preservation accessory",
       capacity: "Breather, air cell and gauge sized by conservator design",
@@ -2374,9 +2450,9 @@ export const products: Product[] = [
     fullDescriptionEn:
       "Transformer maintenance and repair spare parts support planned servicing, breakdown repair and export spare packages. Material compatibility, thread and flange dimensions, gasket profile and part identification are verified against the transformer model, approved drawing and bill of materials.",
     standardSizes: ["Single replacement item", "Repair kit", "Scheduled maintenance spare package"],
-    image: "/images/products/transformer-maintenance-spares.png",
-    cardImage: "/images/products/transformer-maintenance-spares.png",
-    detailImage: "/images/products/transformer-maintenance-spares.png",
+    image: "/images/products/transformer-maintenance-spares.webp",
+    cardImage: "/images/products/transformer-maintenance-spares.webp",
+    detailImage: "/images/products/transformer-maintenance-spares.webp",
     specs: {
       voltage: "N/A - replacement items by equipment interface",
       capacity: "Single item, repair kit or maintenance package",
@@ -2532,15 +2608,15 @@ export function getQuickSpecifications(product: Pick<Product, "id" | "specs" | "
   }
 
   const specifications: Array<QuickSpecification | undefined> = [
-    { label: "Rated Capacity", value: product.specs.capacity },
-    { label: "Primary Voltage", value: product.specs.voltage },
+    { label: "Capacity / Selection Range", value: product.specs.capacity },
+    { label: "Primary / HV Voltage", value: product.specs.voltage },
     product.specs.secondaryVoltage
-      ? { label: "Secondary Voltage", value: product.specs.secondaryVoltage }
+      ? { label: "Secondary / LV Voltage", value: product.specs.secondaryVoltage }
       : undefined,
     { label: "Frequency", value: product.specs.frequency },
     product.specs.phase ? { label: "Phase", value: product.specs.phase } : undefined,
     product.specs.vectorGroup
-      ? { label: "Vector Group", value: product.specs.vectorGroup }
+      ? { label: "Vector Group (Reference)", value: product.specs.vectorGroup }
       : undefined,
     { label: "Cooling Method", value: product.specs.cooling },
     product.specs.insulationMedium
@@ -2549,7 +2625,7 @@ export function getQuickSpecifications(product: Pick<Product, "id" | "specs" | "
     product.specs.tappingRange
       ? { label: "Tapping Range", value: product.specs.tappingRange }
       : undefined,
-    { label: "Applicable Standard", value: product.specs.standards },
+    { label: "Standard / Project Basis", value: product.specs.standards },
   ];
 
   return specifications.filter((specification): specification is QuickSpecification =>

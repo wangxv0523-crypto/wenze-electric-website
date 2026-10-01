@@ -32,9 +32,9 @@ const accessories = products.filter((product) => !transformers.includes(product)
 const catalog = [...transformers, ...accessories];
 const documents = catalog.filter((product) => product.downloadableDatasheet);
 const pageUrl = absoluteUrl("/transformer-solutions");
-const pageTitle = "Transformers, Substations & Accessories | Wenze Electric";
+const pageTitle = "Transformer Voltage Options & Products | Wenze Electric";
 const pageDescription =
-  "Explore six transformer and substation categories plus accessories and spare parts. Send project specifications to Wenze Electric in China for a quotation.";
+  "Compare preliminary transformer voltage pairs and incoming voltage classes across six product categories. Review capacities, diagrams and accessories before sending project requirements.";
 
 function inquiryText(product?: Product) {
   return [
@@ -219,6 +219,9 @@ function TransformerSolutionsPage() {
             <a href="#transformers" className="hover:underline">
               Transformers &amp; Substations
             </a>
+            <a href="#voltage-options" className="hover:underline">
+              Find by Voltage
+            </a>
             <a href="#accessories" className="hover:underline">
               Accessories &amp; Spares
             </a>
@@ -253,12 +256,67 @@ function TransformerSolutionsPage() {
         </section>
 
         <section
+          id="voltage-options"
+          className="scroll-mt-44 border-y border-border bg-secondary/40 py-14 sm:py-16"
+        >
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+              02 / Find by voltage
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+              Transformer voltage options by product type
+            </h2>
+            <p className="mt-4 max-w-4xl leading-7 text-muted-foreground">
+              Use the voltage in your project enquiry to locate a product page with
+              capacity references, diagrams and technical questions. These are preliminary enquiry
+              values, not an approved list of rated winding voltages or ready-to-order models.
+            </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {transformers.map((product) => {
+                const guide = product.voltageGuide;
+                if (!guide) return null;
+
+                const hasPairs = guide.referenceRatios.length > 0;
+                const values = hasPairs ? guide.referenceRatios : guide.highSideOptions;
+
+                return (
+                  <a
+                    key={product.id}
+                    href={`/products/${product.id}#voltage-selection`}
+                    className="group rounded-xl border border-border bg-white p-5 shadow-sm transition-colors hover:border-primary/40"
+                  >
+                    <h3 className="text-base font-bold text-primary group-hover:underline">
+                      {product.titleEn}
+                    </h3>
+                    <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      {hasPairs ? "Enquiry voltage pairs / sets" : guide.highSideLabel}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold leading-6 text-foreground">
+                      {values.map((value) => value.replace(" / ", "/")).join(", ")}
+                    </p>
+                    {!hasPairs && (
+                      <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                        {guide.lowSideLabel}: {guide.lowSideOptions.join(", ")}
+                      </p>
+                    )}
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                      Review voltage and capacity details
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section
           id="accessories"
           className="scroll-mt-44 border-y border-border bg-secondary/40 py-14 sm:py-16"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-              02 / Components &amp; maintenance
+              03 / Components &amp; maintenance
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-primary sm:text-4xl">
               Accessories &amp; spare parts
@@ -284,7 +342,7 @@ function TransformerSolutionsPage() {
           <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
-                03 / Technical documents
+                04 / Technical documents
               </p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-primary">
                 Start with the right information.
