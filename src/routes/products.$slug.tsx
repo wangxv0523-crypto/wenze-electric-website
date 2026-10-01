@@ -52,9 +52,9 @@ const voltageSearchMetadata: Record<string, { title: string; description: string
       "Compact substation project references: 6, 10, 11, 20, 22, 33 or 35 kV incoming and 0.4/0.415 kV outgoing. Final pairing follows the approved single-line diagram.",
   },
   "transformer-bushings-connectors": {
-    title: "Transformer Bushing Models & Dimension Drawings | Wenze Electric",
+    title: "Transformer Bushings & Terminal Connectors | Wenze Electric",
     description:
-      "Browse supplier catalog photos, outline drawings and searchable model references for BRDLW, BF, BJL, BDF and FTG transformer bushings. Confirm exact dimensions by part code.",
+      "Explore selected BRDW, BRDLW, BJL and BJLW transformer bushing catalog drawings. Terminal connector fit and dimensions require project drawings and supplier confirmation.",
   },
   "transformer-conservator-breathers-oil-accessories": {
     title: "Transformer Breathers & Oil Valves: Models and Drawings | Wenze",

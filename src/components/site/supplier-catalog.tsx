@@ -4,12 +4,10 @@ import { yachenCatalogPages, type YachenCatalogPage } from "@/lib/yachen-catalog
 
 const catalogGroups = {
   bushings: [
-    { id: "high-voltage-bushings", title: "High-voltage oil-paper and resin-paper bushings", first: 5, last: 12 },
-    { id: "low-voltage-bushings", title: "Low-voltage and regional-standard bushings", first: 13, last: 33 },
-    { id: "resin-bushings", title: "Epoxy and resin dry-type bushings", first: 34, last: 51 },
+    { id: "transformer-bushings", title: "Transformer Bushings", first: 6, last: 18 },
   ],
   "conservator-breathers-oil-accessories": [
-    { id: "transformer-valves", title: "Transformer oil-system valves", first: 51, last: 54 },
+    { id: "transformer-valves", title: "Transformer oil-system valves", first: 52, last: 54 },
     { id: "transformer-breathers", title: "Valve variants and transformer breathers", first: 55, last: 56 },
   ],
 } as const;
@@ -17,7 +15,6 @@ const catalogGroups = {
 type CatalogSection = keyof typeof catalogGroups;
 
 const mixedPageAlts: Record<number, string> = {
-  51: "Hebei Yachen 2026 catalog page 51: TG1-40.5 kV epoxy wall bushing and brass flange gate valves with outline and mounting dimensions",
   55: "Hebei Yachen 2026 catalog page 55: vacuum eccentric butterfly valves and XS1/XS2 transformer breathers with outline dimensions and model tables",
   56: "Hebei Yachen 2026 catalog page 56: XS3 silica-gel breathers and MX1 maintenance-free breathers with outline dimensions and model tables",
 };
@@ -48,26 +45,26 @@ function PageCard({
       : seriesLabels.join(" / ");
   const imageAlt = mixedPageAlts[pdfPage] ?? entries[0].imageAlt;
   const isDensePage = entries.length > 6;
+  const modelColumns = entries.length > 1 ? "sm:grid-cols-2 xl:grid-cols-3" : "";
 
   return (
-    <article className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
-      <div className="border-b border-border bg-secondary/30 px-5 py-4">
-        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-          Source catalog · PDF page {pdfPage} · printed pages {printedPages}
+    <article className="overflow-hidden rounded-2xl border border-primary/15 bg-white shadow-sm">
+      <div className="border-l-4 border-accent bg-primary px-5 py-4 text-white sm:px-6">
+        <p className="text-xs font-semibold uppercase tracking-wide text-white/75">
+          Selected model reference · {entries.length} {entries.length === 1 ? "model group" : "model groups"}
         </p>
-        <h4 className="mt-1 text-lg font-bold leading-snug text-primary">
+        <h4 className="mt-1 text-lg font-bold leading-snug text-white">
           {cardTitle}
         </h4>
       </div>
-      <div className={isDensePage ? "flex flex-col" : "grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"}>
-        <div className={isDensePage ? "order-last grid gap-3 p-5 sm:grid-cols-2 lg:grid-cols-3" : "order-last space-y-5 p-5 lg:order-first"}>
+      <div className={`grid gap-3 p-4 sm:p-5 ${modelColumns}`}>
           {entries.map((entry, entryIndex) => (
             <div
               key={`${pdfPage}-${entry.series}-${entryIndex}`}
-              className={isDensePage ? "rounded-lg border border-border bg-secondary/10 p-3" : entryIndex > 0 ? "border-t border-border pt-5" : ""}
+              className="rounded-xl border border-primary/10 bg-slate-50/70 p-4"
             >
               {entries.length > 1 && (
-                <h5 className="mb-2 font-semibold text-primary">
+                <h5 className="mb-2 border-b border-primary/10 pb-2 font-semibold text-primary">
                   {isDensePage ? entry.modelIdentifiers[0] ?? entry.series : entry.series}
                 </h5>
               )}
@@ -84,7 +81,7 @@ function PageCard({
               {entry.specs.length > 0 && (
                 <dl className="mt-3 grid gap-2 text-sm">
                   {entry.specs.map((spec) => (
-                    <div key={`${spec.label}-${spec.value}`} className="grid gap-1 border-t border-border/70 pt-2 sm:grid-cols-[minmax(0,34%)_minmax(0,1fr)]">
+                    <div key={`${spec.label}-${spec.value}`} className="grid gap-1 border-t border-primary/10 pt-2 sm:grid-cols-[minmax(0,34%)_minmax(0,1fr)]">
                       <dt className="font-semibold text-primary">{spec.label}</dt>
                       <dd className="break-words leading-relaxed text-foreground">{spec.value}</dd>
                     </div>
@@ -98,12 +95,12 @@ function PageCard({
               )}
             </div>
           ))}
-        </div>
-        <figure className={isDensePage ? "order-first border-b border-border bg-slate-50 p-4" : "order-first border-b border-border bg-slate-50 p-4 lg:order-last lg:border-b-0 lg:border-l"}>
+      </div>
+      <figure className="flex flex-col gap-4 border-t border-primary/10 bg-secondary/40 p-4 sm:flex-row sm:items-center sm:p-5">
           <button
             type="button"
             onClick={() => onExpand(pdfPage, imageAlt)}
-            className="group relative block w-full overflow-hidden rounded-lg border border-border bg-white outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="group relative block w-full shrink-0 overflow-hidden rounded-lg border border-primary/20 bg-white p-1 shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-primary sm:w-80"
             aria-label={`Enlarge original catalog drawing and product photo from PDF page ${pdfPage}`}
           >
             <img
@@ -113,18 +110,22 @@ function PageCard({
               height={1140}
               loading="lazy"
               decoding="async"
-              className="h-auto w-full"
+              className="h-auto w-full rounded-sm"
+              style={{ filter: "grayscale(1) sepia(1) saturate(2.4) hue-rotate(185deg) contrast(1.14)" }}
             />
-            <span className="absolute bottom-2 right-2 inline-flex items-center gap-1 rounded-md bg-primary/90 px-2.5 py-1.5 text-xs font-semibold text-white">
+            <span className="absolute bottom-2 right-2 inline-flex items-center gap-1 rounded-md bg-primary px-2.5 py-1.5 text-xs font-semibold text-white shadow-sm">
               <Expand className="h-3.5 w-3.5" aria-hidden="true" />
-              Enlarge drawing
+              View drawing
             </span>
           </button>
-          <figcaption className="mt-2 text-xs leading-relaxed text-muted-foreground">
-            Original supplier product photos, outline drawings and dimension tables. Enlarge to match the complete model or part code before selection.
+          <figcaption className="max-w-xl text-sm leading-relaxed text-foreground/80">
+            <span className="block font-bold text-primary">Photo and dimension drawing</span>
+            Preview shown in Wenze blue. Open the full-size original to check the product photo, complete part code and dimension table.
+            <span className="mt-1 block text-xs text-muted-foreground">
+              Hebei Yachen Electric 2026 supplier catalog · PDF page {pdfPage} · printed pages {printedPages}
+            </span>
           </figcaption>
-        </figure>
-      </div>
+      </figure>
     </article>
   );
 }
@@ -170,11 +171,13 @@ export function SupplierCatalog({ productId }: { productId: string }) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-bold text-primary">
           {section === "bushings"
-            ? "Transformer Bushing Models, Photos & Dimension Drawings"
+            ? "Transformer Bushings & Terminal Connectors"
             : "Transformer Valve & Breather Models, Photos & Dimension Drawings"}
         </h2>
         <p className="mt-3 max-w-4xl text-sm leading-relaxed text-foreground/80">
-          Model references and original dimension drawings below come from the Hebei Yachen Electric 2026 supplier catalog. They support preliminary searching and enquiries; they are not a Wenze stock list or approved drawings for a specific project. Confirm the complete part code, rated duty, mounting interface and dimensions with the supplier before ordering or installation.
+          {section === "bushings"
+            ? "This page covers two products: transformer bushings and terminal connectors. The selected bushing examples below include model references and source dimension drawings from the Hebei Yachen Electric 2026 catalog. Terminal connectors are selected separately to match the approved bushing and conductor interface."
+            : "Selected model references and dimension drawings below come from the Hebei Yachen Electric 2026 supplier catalog. They support preliminary enquiries; they are not a Wenze stock list or approved project drawings. Confirm the complete part code and mounting dimensions before ordering."}
         </p>
         <nav className="mt-5 flex flex-wrap gap-2" aria-label="Catalog product families">
           {catalogGroups[section].map((group) => (
@@ -186,6 +189,14 @@ export function SupplierCatalog({ productId }: { productId: string }) {
               {group.title}
             </a>
           ))}
+          {section === "bushings" && (
+            <a
+              href="#terminal-connectors"
+              className="rounded-full border border-primary/20 bg-white px-3 py-1.5 text-xs font-semibold text-primary hover:border-primary hover:bg-primary/5"
+            >
+              Terminal Connectors
+            </a>
+          )}
         </nav>
 
         <div className="mt-10 space-y-12">
@@ -197,9 +208,17 @@ export function SupplierCatalog({ productId }: { productId: string }) {
             if (pageNumbers.length === 0) return null;
             return (
               <div key={group.id} id={group.id} className="scroll-mt-24">
+                {section === "bushings" && (
+                  <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-accent">Product 01</p>
+                )}
                 <h3 className="mb-5 border-b border-border pb-3 text-xl font-bold text-primary">
                   {group.title}
                 </h3>
+                {section === "bushings" && (
+                  <p className="mb-5 max-w-4xl text-sm leading-relaxed text-muted-foreground">
+                    Selected oil-paper and porcelain bushing examples show how voltage class, rated current and mounting dimensions vary by model. Match the full part code and source drawing to the transformer before selection.
+                  </p>
+                )}
                 <div className="space-y-6">
                   {pageNumbers.map((pdfPage) => (
                     <PageCard
@@ -214,6 +233,59 @@ export function SupplierCatalog({ productId }: { productId: string }) {
             );
           })}
         </div>
+
+        {section === "bushings" && (
+          <div id="terminal-connectors" className="mt-12 scroll-mt-24">
+            <h3 className="mb-5 border-b border-border pb-3 text-xl font-bold text-primary">
+              Terminal Connectors
+            </h3>
+            <article className="overflow-hidden rounded-2xl border border-primary/15 bg-white shadow-sm lg:grid lg:grid-cols-[minmax(0,38fr)_minmax(0,62fr)]">
+              <figure className="relative min-h-72 overflow-hidden bg-primary/5 lg:min-h-0">
+                <img
+                  src="/images/products/transformer-bushings-connectors.webp"
+                  alt="Illustrative copper and aluminium transformer terminal connector forms"
+                  width={1600}
+                  height={1200}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full origin-bottom-right scale-[2.2] object-cover"
+                />
+                <figcaption className="absolute bottom-0 left-0 right-0 bg-primary/90 px-4 py-2 text-xs font-medium text-white">
+                  Representative connection forms; final product follows the approved interface drawing.
+                </figcaption>
+              </figure>
+              <div className="p-5 sm:p-7">
+                <p className="text-xs font-semibold uppercase tracking-wide text-accent">Product 02</p>
+                <h4 className="mt-1 text-lg font-bold text-primary">Transformer Terminal Connectors</h4>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/80">
+                  Copper or aluminium terminal connectors join the transformer bushing to the specified cable or busbar. Their dimensions and current duty depend on the complete bushing and conductor assembly.
+                </p>
+                <h5 className="mt-5 text-sm font-bold text-primary">Information needed to match a connector</h5>
+                <ul className="mt-3 grid gap-2 text-sm text-foreground sm:grid-cols-2">
+                  {[
+                    "Conductor material and cross-section",
+                    "Bushing stud or terminal-pad dimensions",
+                    "Bolt-hole diameter, pitch and orientation",
+                    "Required continuous current and surface finish",
+                  ].map((item) => (
+                    <li key={item} className="rounded-lg border border-primary/10 bg-secondary/40 px-3 py-2">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                  The bushing supplier catalog does not provide a standalone terminal-connector model table. A connector model, rating and dimension drawing are confirmed against the project drawing before quotation.
+                </p>
+                <a
+                  href="#product-inquiry"
+                  className="mt-5 inline-flex rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary/90"
+                >
+                  Send connection drawing for review
+                </a>
+              </div>
+            </article>
+          </div>
+        )}
       </div>
 
       {expandedImage && (
