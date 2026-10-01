@@ -20,6 +20,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ProductInquiryForm } from "@/components/site/product-inquiry-form";
+import { SupplierCatalog } from "@/components/site/supplier-catalog";
 import {
   getProductBySlug,
   getQuickSpecifications,
@@ -473,6 +474,17 @@ export function ProductDetail({ product }: { product: ProductData }) {
               </a>
             )}
 
+            {(product.id === "transformer-bushings-connectors" ||
+              product.id === "transformer-conservator-breathers-oil-accessories") && (
+              <a
+                href="#supplier-catalog"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+              >
+                See catalog models, product photos and dimension drawings
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            )}
+
             {product.downloadableDatasheet && (
               <div className="rounded-xl border border-border bg-white p-4 shadow-sm">
                 <a
@@ -503,6 +515,8 @@ export function ProductDetail({ product }: { product: ProductData }) {
         technicalNotes={product.technicalNotes}
         isAccessory={isAccessory}
       />
+
+      <SupplierCatalog productId={product.id} />
 
       <section className="border-t border-border bg-secondary/20 py-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
