@@ -54,12 +54,12 @@ const voltageSearchMetadata: Record<string, { title: string; description: string
   "transformer-bushings-connectors": {
     title: "Transformer Bushings & Terminal Connectors | Wenze Electric",
     description:
-      "Explore selected BRDW, BRDLW, BJL and BJLW transformer bushing catalog drawings. Terminal connector fit and dimensions require project drawings and supplier confirmation.",
+      "Compare searchable BRDW, BRDLW, BJL and BJLW transformer bushing outline dimensions by model. Terminal connector fit and final dimensions require an approved project drawing.",
   },
   "transformer-conservator-breathers-oil-accessories": {
-    title: "Transformer Breathers & Oil Valves: Models and Drawings | Wenze",
+    title: "Transformer Breathers & Oil Valves: Dimensions | Wenze",
     description:
-      "Compare XS1, XS2, XS3 and MX1 breather references plus transformer oil valve models, photos and dimension drawings from a supplier catalog. Confirm each interface before ordering.",
+      "Compare searchable outline dimensions for selected transformer oil valves and XS1, XS2, XS3 and MX1 breathers. Confirm final models and interfaces before ordering.",
   },
 };
 
