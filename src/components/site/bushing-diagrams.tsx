@@ -158,7 +158,7 @@ export function OilPaperBushingDiagram({ row, className }: DiagramProps) {
         <circle cx="829" cy="205" r="3.5" fill={orange} />
         <circle cx="782" cy="158" r="3.5" fill={orange} />
         <VerticalDimension x={903} y1={105} y2={211} extensionRight={875} label={dimensionLabel("D", row)} labelSide="left" labelY={77} />
-        <text x="829" y="248" textAnchor="middle" fill="#55758b" fontSize="11">Mounting details: see dimension tables</text>
+        <text x="829" y="248" textAnchor="middle" fill="#55758b" fontSize="11">Mounting details: see table</text>
       </svg>
     </DiagramFrame>
   );
