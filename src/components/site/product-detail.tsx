@@ -505,6 +505,8 @@ export function ProductDetail({ product }: { product: ProductData }) {
         </div>
       </section>
 
+      <SupplierCatalog productId={product.id} />
+
       <DetailedSpecifications
         productId={product.id}
         productName={productName}
@@ -515,8 +517,6 @@ export function ProductDetail({ product }: { product: ProductData }) {
         technicalNotes={product.technicalNotes}
         isAccessory={isAccessory}
       />
-
-      <SupplierCatalog productId={product.id} />
 
       <section className="border-t border-border bg-secondary/20 py-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
