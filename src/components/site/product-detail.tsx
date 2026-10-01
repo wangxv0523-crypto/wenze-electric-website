@@ -480,7 +480,7 @@ export function ProductDetail({ product }: { product: ProductData }) {
                 href="#supplier-catalog"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-primary underline-offset-4 hover:underline"
               >
-                See model and outline dimension tables
+                See outline drawings and dimension tables
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             )}

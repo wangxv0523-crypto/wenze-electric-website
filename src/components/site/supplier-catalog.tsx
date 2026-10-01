@@ -1,14 +1,57 @@
+import { useState } from "react";
+import { OilPaperBushingDiagram, PorcelainBushingDiagram } from "@/components/site/bushing-diagrams";
+import { OilAccessoryDiagram } from "@/components/site/oil-accessory-diagrams";
 import { bushingDimensionTables } from "@/lib/bushing-dimensions";
 import { oilDimensionTables } from "@/lib/oil-dimensions";
 import type { ReferenceDimensionTable } from "@/lib/reference-dimensions";
 
 function DimensionTable({ table }: { table: ReferenceDimensionTable }) {
+  const [selectedRowIndex, setSelectedRowIndex] = useState(0);
+  const bushingDiagram = table.id === "oil-paper-outline"
+    ? "oil-paper"
+    : table.id === "bjl-porcelain"
+      ? "BJL"
+      : table.id === "bjlw-porcelain"
+        ? "BJLW"
+        : null;
+  const oilDiagram = table.id.startsWith("valve-") || table.id.startsWith("breather-");
+  const selectedRow = table.rows[selectedRowIndex];
+
   return (
     <article id={table.id} className="scroll-mt-24 overflow-hidden rounded-2xl border border-primary/15 bg-white shadow-sm">
       <div className="border-l-4 border-accent bg-primary px-5 py-4 text-white sm:px-6">
         <h4 className="text-lg font-bold leading-snug">{table.title}</h4>
         {table.intro && <p className="mt-1 text-sm leading-relaxed text-white/80">{table.intro}</p>}
       </div>
+      {bushingDiagram && (
+        <div className="space-y-4 border-b border-primary/10 bg-secondary/20 p-4 sm:p-5">
+          <div className="flex flex-wrap items-center gap-3">
+            <label htmlFor={`${table.id}-model`} className="text-sm font-semibold text-primary">
+              Select a reference configuration for the drawing
+            </label>
+            <select
+              id={`${table.id}-model`}
+              value={selectedRowIndex}
+              onChange={(event) => setSelectedRowIndex(Number(event.target.value))}
+              className="min-w-0 max-w-full rounded-lg border border-primary/25 bg-white px-3 py-2 text-sm text-primary"
+            >
+              {table.rows.map((row, index) => (
+                <option key={`${table.id}-option-${index}`} value={index}>
+                  {row.model}{row.variant ? ` — ${row.variant}` : ""}
+                </option>
+              ))}
+            </select>
+          </div>
+          {bushingDiagram === "oil-paper" && <OilPaperBushingDiagram row={selectedRow} />}
+          {bushingDiagram === "BJL" && <PorcelainBushingDiagram variant="BJL" row={selectedRow} />}
+          {bushingDiagram === "BJLW" && <PorcelainBushingDiagram variant="BJLW" row={selectedRow} />}
+        </div>
+      )}
+      {oilDiagram && (
+        <div className="border-b border-primary/10 bg-secondary/20 p-4 sm:p-5">
+          <OilAccessoryDiagram tableId={table.id} />
+        </div>
+      )}
       <p className="px-4 pt-4 text-xs font-medium text-muted-foreground sm:px-5">
         Dimensions are in millimetres unless the column says otherwise. Scroll the table sideways to see every field.
       </p>
@@ -79,8 +122,8 @@ export function SupplierCatalog({ productId }: { productId: string }) {
         </h2>
         <p className="mt-3 max-w-4xl text-sm leading-relaxed text-foreground/80">
           {isBushingPage
-            ? "This page covers two products: transformer bushings and terminal connectors. The tables below give searchable, preliminary bushing outline dimensions by model. Terminal connectors are matched separately to the approved bushing and conductor interface."
-            : "Searchable outline dimensions below help compare selected transformer oil valves and breathers. Confirm the exact connection, model and final dimensions against an approved project drawing before ordering."}
+            ? "This page covers two products: transformer bushings and terminal connectors. Original outline schematics identify the dimension symbols, while searchable tables give preliminary bushing dimensions by model. Terminal connectors are matched separately to the approved bushing and conductor interface."
+            : "Original outline schematics and searchable dimension tables help compare selected transformer oil valves and breathers. Confirm the exact connection, model and final dimensions against an approved project drawing before ordering."}
         </p>
         <nav className="mt-5 flex flex-wrap gap-2" aria-label="Product families on this page">
           <a href={isBushingPage ? "#transformer-bushings" : "#transformer-valves"} className="rounded-full border border-primary/20 bg-white px-3 py-1.5 text-xs font-semibold text-primary hover:border-primary hover:bg-primary/5">
