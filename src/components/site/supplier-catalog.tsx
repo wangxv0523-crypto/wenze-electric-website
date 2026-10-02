@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { OilPaperBushingDiagram, PorcelainBushingDiagram } from "@/components/site/bushing-diagrams";
 import { OilAccessoryDiagram } from "@/components/site/oil-accessory-diagrams";
 import { bushingDimensionTables } from "@/lib/bushing-dimensions";
@@ -7,6 +8,7 @@ import type { ReferenceDimensionTable } from "@/lib/reference-dimensions";
 
 function DimensionTable({ table }: { table: ReferenceDimensionTable }) {
   const [selectedRowIndex, setSelectedRowIndex] = useState(0);
+  const initiallyOpen = ["oil-paper-outline", "valve-brass-flanged-ball", "breather-xs1"].includes(table.id);
   const bushingDiagram = table.id === "oil-paper-outline"
     ? "oil-paper"
     : table.id === "bjl-porcelain"
@@ -16,13 +18,22 @@ function DimensionTable({ table }: { table: ReferenceDimensionTable }) {
         : null;
   const oilDiagram = table.id.startsWith("valve-") || table.id.startsWith("breather-");
   const selectedRow = table.rows[selectedRowIndex];
+  const hasDiagram = Boolean(bushingDiagram || oilDiagram);
+  const DimensionsContainer = hasDiagram ? "details" : "div";
 
   return (
-    <article id={table.id} className="scroll-mt-24 overflow-hidden rounded-2xl border border-primary/15 bg-white shadow-sm">
-      <div className="border-l-4 border-accent bg-primary px-5 py-4 text-white sm:px-6">
-        <h4 className="text-lg font-bold leading-snug">{table.title}</h4>
-        {table.intro && <p className="mt-1 text-sm leading-relaxed text-white/80">{table.intro}</p>}
-      </div>
+    <details id={table.id} open={initiallyOpen} className="group scroll-mt-24 overflow-hidden rounded-2xl border border-primary/15 bg-white shadow-sm">
+      <summary className="flex cursor-pointer list-none items-center gap-3 px-4 py-3.5 marker:hidden hover:bg-secondary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary sm:px-5 [&::-webkit-details-marker]:hidden">
+        <span className="min-w-0 flex-1">
+          <span className="block text-base font-bold leading-snug text-primary sm:text-lg">{table.title}</span>
+          <span className="mt-1 flex min-w-0 items-baseline gap-2 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+            <span className="shrink-0 font-semibold text-primary/70">{table.rows.length} reference {table.rows.length === 1 ? "row" : "rows"}</span>
+            {table.intro && <span className="min-w-0 truncate">{table.intro}</span>}
+          </span>
+        </span>
+        <ChevronDown aria-hidden="true" className="h-5 w-5 shrink-0 text-primary transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="border-t border-primary/10">
       {bushingDiagram && (
         <div className="space-y-4 border-b border-primary/10 bg-secondary/20 p-4 sm:p-5">
           <div className="flex flex-wrap items-center gap-3">
@@ -52,6 +63,13 @@ function DimensionTable({ table }: { table: ReferenceDimensionTable }) {
           <OilAccessoryDiagram tableId={table.id} />
         </div>
       )}
+      <DimensionsContainer className={hasDiagram ? "group/dimensions" : undefined}>
+        {hasDiagram && (
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-primary marker:hidden hover:bg-secondary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary sm:px-5 [&::-webkit-details-marker]:hidden">
+            <span>View full model dimensions ({table.rows.length} {table.rows.length === 1 ? "row" : "rows"})</span>
+            <ChevronDown aria-hidden="true" className="h-4 w-4 shrink-0 transition-transform group-open/dimensions:rotate-180" />
+          </summary>
+        )}
       <p className="px-4 pt-4 text-xs font-medium text-muted-foreground sm:px-5">
         Dimensions are in millimetres unless the column says otherwise. Scroll the table sideways to see every field.
       </p>
@@ -102,7 +120,9 @@ function DimensionTable({ table }: { table: ReferenceDimensionTable }) {
           {table.notes.map((note) => <p key={note} className="mt-1 first:mt-0">{note}</p>)}
         </div>
       )}
-    </article>
+      </DimensionsContainer>
+      </div>
+    </details>
   );
 }
 
@@ -117,13 +137,11 @@ export function SupplierCatalog({ productId }: { productId: string }) {
   return (
     <section id="supplier-catalog" className="border-t border-border bg-secondary/20 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold text-primary">
-          {isBushingPage ? "Transformer Bushings & Terminal Connectors" : "Transformer Oil Valves & Breathers"}
-        </h2>
+        <h2 className="text-2xl font-bold text-primary">Drawings & Reference Dimensions</h2>
         <p className="mt-3 max-w-4xl text-sm leading-relaxed text-foreground/80">
           {isBushingPage
-            ? "This page covers two products: transformer bushings and terminal connectors. Original outline schematics identify the dimension symbols, while searchable tables give preliminary bushing dimensions by model. Terminal connectors are matched separately to the approved bushing and conductor interface."
-            : "Original outline schematics and searchable dimension tables help compare selected transformer oil valves and breathers. Confirm the exact connection, model and final dimensions against an approved project drawing before ordering."}
+            ? "Open a bushing type to compare its outline drawing and model dimensions; terminal connectors require an approved interface drawing."
+            : "Open a valve or breather type for its outline drawing and model dimensions; check final details against the approved project drawing."}
         </p>
         <nav className="mt-5 flex flex-wrap gap-2" aria-label="Product families on this page">
           <a href={isBushingPage ? "#transformer-bushings" : "#transformer-valves"} className="rounded-full border border-primary/20 bg-white px-3 py-1.5 text-xs font-semibold text-primary hover:border-primary hover:bg-primary/5">
@@ -139,7 +157,7 @@ export function SupplierCatalog({ productId }: { productId: string }) {
             <div id="transformer-bushings" className="mt-10 scroll-mt-24">
               <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-accent">Product 01</p>
               <h3 className="mb-5 border-b border-border pb-3 text-xl font-bold text-primary">Transformer Bushings</h3>
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {bushingDimensionTables.map((table) => <DimensionTable key={table.id} table={table} />)}
               </div>
             </div>
@@ -190,13 +208,13 @@ export function SupplierCatalog({ productId }: { productId: string }) {
             {valveTables.length > 0 && (
               <div id="transformer-valves" className="mt-10 scroll-mt-24">
                 <h3 className="mb-5 border-b border-border pb-3 text-xl font-bold text-primary">Transformer Oil Valves</h3>
-                <div className="space-y-6">{valveTables.map((table) => <DimensionTable key={table.id} table={table} />)}</div>
+                <div className="space-y-3">{valveTables.map((table) => <DimensionTable key={table.id} table={table} />)}</div>
               </div>
             )}
             {breatherTables.length > 0 && (
               <div id="transformer-breathers" className="mt-12 scroll-mt-24">
                 <h3 className="mb-5 border-b border-border pb-3 text-xl font-bold text-primary">Transformer Breathers</h3>
-                <div className="space-y-6">{breatherTables.map((table) => <DimensionTable key={table.id} table={table} />)}</div>
+                <div className="space-y-3">{breatherTables.map((table) => <DimensionTable key={table.id} table={table} />)}</div>
               </div>
             )}
           </>
