@@ -25,7 +25,7 @@ export function Hero() {
     <section className="relative min-h-[780px] overflow-hidden py-12 sm:py-14 lg:flex lg:h-[780px] lg:items-center lg:py-10">
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/substation-hero.webp"
+          src="/images/substation-hero-plant.webp"
           alt=""
           width={1920}
           height={1440}
