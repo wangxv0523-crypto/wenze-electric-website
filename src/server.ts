@@ -37,9 +37,27 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   });
 }
 
+function redirectToCanonicalHost(request: Request): Response | null {
+  const url = new URL(request.url);
+  if (url.hostname !== "wenzepower.com" && url.hostname !== "www.wenzepower.com") {
+    return null;
+  }
+  if (url.protocol === "https:" && url.hostname === "www.wenzepower.com") {
+    return null;
+  }
+
+  url.protocol = "https:";
+  url.hostname = "www.wenzepower.com";
+  url.port = "";
+  return Response.redirect(url, 308);
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const redirect = redirectToCanonicalHost(request);
+      if (redirect) return redirect;
+
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);

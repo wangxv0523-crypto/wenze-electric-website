@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Wenze Electric',
   legalName: 'Shandong Wenze Electric Co., Ltd.',
-  url: 'https://www.wenzepower.com',
+  url: 'https://www.wenzepower.com/',
   email: 'sales@wenzepower.com',
   phone: '+86 159 0534 2405',
   whatsappNumber: '8615905342405',

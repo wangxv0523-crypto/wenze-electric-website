@@ -149,35 +149,97 @@ const internationalTechnicalNotes = [
   "Provide the nominal network voltage, each required rated winding voltage, frequency, earthing and insulation-coordination requirements for project review. Voltage examples on one product page do not establish available ratios for another product.",
 ];
 
+const transformerSelectionFaqs: Record<string, ProductFaqItem[]> = {
+  "Oil Immersed Distribution Transformer": [
+    {
+      question: "What voltage ratios are shown for oil-immersed distribution transformers?",
+      answer:
+        "The preliminary examples are 10/0.4, 11/0.415, 20/0.4, 22/0.415 and 33/0.415 kV. They are enquiry examples, not approved catalogue models. Confirm both rated winding voltages, taps and insulation level in the project datasheet.",
+    },
+    {
+      question: "What capacity and cooling range is listed for the oil-immersed unit?",
+      answer:
+        "The page lists 30–2500 kVA for preliminary selection and ONAN oil cooling. Final losses, dimensions, weight and accessories require a supplier-approved model datasheet and drawing.",
+    },
+    {
+      question: "What should I send for an 11 kV or 33 kV distribution transformer enquiry?",
+      answer:
+        "Send the exact HV and LV winding voltages, kVA, 50/60 Hz frequency, phase, vector group, tapping range, installation conditions and utility specification. A network voltage alone does not define the finished transformer.",
+    },
+  ],
+  "Dry Type Transformer": [
+    {
+      question: "Which dry-type transformer voltage and capacity examples are listed?",
+      answer:
+        "The preliminary range is 125–2500 kVA with 6–35 kV primary and 0.4/0.415 kV secondary references. Listed voltage pairs are enquiry examples; 22/33 kV or 60 Hz performance must not be inferred from 6–11 kV, 50 Hz data under review.",
+    },
+    {
+      question: "How are AN and AF cooling selected for a cast-resin transformer?",
+      answer:
+        "AN and AF are listed cooling options. State the required continuous and fan-assisted duty, enclosure and ventilation conditions; the approved design must confirm ratings, losses, sound level and dimensions.",
+    },
+  ],
+  "Pole Mounted Transformer": [
+    {
+      question: "What ratings are listed for the single-phase pole-mounted transformer?",
+      answer:
+        "The page lists 5–167 kVA and 11, 22 or 33 kV incoming utility classes for preliminary review. No fixed secondary voltage or terminal arrangement is verified; both follow the local utility specification.",
+    },
+    {
+      question: "Is the pole transformer primary connected phase-to-neutral or phase-to-phase?",
+      answer:
+        "Either connection must be specified by the utility. Provide the actual primary winding voltage and the required two-wire or centre-tapped three-wire secondary arrangement; a three-phase network label is not the single-phase winding rating.",
+    },
+  ],
+  "Power Transformer": [
+    {
+      question: "Is there a fixed MVA or voltage ratio for the power transformer?",
+      answer:
+        "No fixed catalogue rating is published on this page. The listed voltage ratios are examples of past enquiry types, not freely interchangeable models. Capacity and every winding voltage require project and supplier technical review.",
+    },
+    {
+      question: "What information is needed to assess a two- or three-winding power transformer?",
+      answer:
+        "Provide the single-line diagram, load profile, all rated winding voltages, vector group, earthing, tapping and cooling requirements, plus insulation coordination and site conditions. Guaranteed losses and dimensions follow the approved datasheet.",
+    },
+  ],
+  "High Voltage Power Transformer": [
+    {
+      question: "Does 110 kV class identify every winding voltage of this transformer?",
+      answer:
+        "No. The page shows a 110 kV-class, three-winding OLTC reference concept and a preliminary 6.3–63 MVA range. Secondary and tertiary voltages, equipment insulation rating and final capacity must come from the grid study and approved design.",
+    },
+    {
+      question: "What is needed to specify the 110 kV-class OLTC transformer?",
+      answer:
+        "Send all three rated winding voltages, earthing and vector group, required OLTC range, cooling duty, insulation coordination and single-line diagram. Final losses, sound level, weight and dimensions are confirmed on approved documents.",
+    },
+  ],
+  "Compact Substation": [
+    {
+      question: "What voltage and transformer capacity ranges are shown for compact substations?",
+      answer:
+        "The preliminary page lists 6–35 kV incoming classes, 0.4/0.415 kV outgoing references and 315–2500 kVA transformer capacity. These lists do not guarantee every voltage pairing or a complete standard substation model.",
+    },
+    {
+      question: "What determines the final MV and LV equipment in a compact substation?",
+      answer:
+        "The approved single-line diagram sets transformer winding voltages, MV switchgear class, LV board current, short-circuit duty, protection, feeder count and metering. Enclosure and transformer type also depend on site conditions.",
+    },
+  ],
+};
+
 function createProductFaq(productName: string, applicableStandards: string): ProductFaqItem[] {
   return [
+    ...transformerSelectionFaqs[productName],
     {
-      question: "What information is required for transformer selection?",
-      answer: `Please provide the required capacity, primary and secondary voltage, frequency, phase, vector group, installation environment, quantity and applicable standard for the ${productName}.`,
+      question: `Which standards apply to the ${productName}?`,
+      answer: `The project can be reviewed against ${applicableStandards}. The final standard, tests and guaranteed values must be agreed in the technical specification.`,
     },
     {
-      question: "Can the voltage ratio be customized?",
+      question: "When are the final datasheet and outline drawing confirmed?",
       answer:
-        "Voltage ratio and tapping requirements can be reviewed against the project specification. The final design is subject to the approved technical agreement.",
-    },
-    {
-      question: "Are copper and aluminum windings available?",
-      answer:
-        "Winding conductor options depend on the product rating, design review and project requirements. Please identify the preferred conductor in the inquiry.",
-    },
-    {
-      question: "Which standards can the transformer be designed to meet?",
-      answer: `The design can be reviewed against ${applicableStandards} and other applicable project requirements. The final standard scope must be confirmed in the technical agreement.`,
-    },
-    {
-      question: "What technical documents can be provided?",
-      answer:
-        "Available technical documents depend on the final project specification and contract requirements.",
-    },
-    {
-      question: "How is the transformer packed for export?",
-      answer:
-        "The packing method is selected according to the equipment configuration, transport route and agreed contract requirements.",
+        "The published values support preliminary selection. Model-specific dimensions, weight, losses and documents are confirmed against the supplier-approved datasheet, drawing and contract scope.",
     },
   ];
 }
@@ -208,27 +270,98 @@ const accessoryTechnicalNotes = [
   "For each project, confirm ambient temperature, humidity, coastal or salt-pollution exposure, indoor or outdoor service, and local utility requirements before final selection.",
 ];
 
+const accessorySelectionFaqs: Record<string, ProductFaqItem[]> = {
+  "Transformer Bushings & Terminal Connectors": [
+    {
+      question: "Which voltage classes are shown for transformer bushings?",
+      answer:
+        "The page lists preliminary equipment voltage classes Um ≤1.1, 7.2, 12, 17.5, 24 and 36 kV. Um is not the nominal network voltage. Select the class using the utility's insulation coordination and approved bushing specification.",
+    },
+    {
+      question: "Which measurements are needed to replace a transformer bushing?",
+      answer:
+        "Provide the existing drawing or measured flange, bolt pattern, gasket seat, conductor and oil-side length, plus rated current, creepage requirement and transformer nameplate. A photo or voltage class alone cannot confirm interchangeability.",
+    },
+    {
+      question: "Can a terminal connector be selected from its voltage rating alone?",
+      answer:
+        "No. The connector must also match continuous current, stud or palm size, hole pattern, conductor direction and available phase spacing. Confirm the complete interface on the approved drawing.",
+    },
+  ],
+  "Transformer Protection & Monitoring Devices": [
+    {
+      question: "Which transformer protection and monitoring devices are covered?",
+      answer:
+        "The page covers Buchholz relays, pressure relief devices, magnetic oil gauges and oil or winding temperature indicators. Confirm the required alarm or trip function against the protection and control schematic.",
+    },
+    {
+      question: "What is needed to replace a pressure relief device or Buchholz relay?",
+      answer:
+        "Provide the existing device label, tank or pipe drawing, flange dimensions, contact logic and wiring. A pressure relief device also needs the tank-approved operating pressure and discharge arrangement; settings are not universal.",
+    },
+  ],
+  "Transformer Tap Changers & Control Panels": [
+    {
+      question: "How do I identify the required DETC or OLTC replacement?",
+      answer:
+        "Send the transformer and tap changer nameplates, winding and tap-position data, mechanism photo, contact-part identification, control schematic and mounting drawing. DETC and OLTC parts are not interchangeable by appearance.",
+    },
+    {
+      question: "Can an OLTC motor-drive or control panel use any site supply?",
+      answer:
+        "No. Confirm motor and control voltage, phase, 50/60 Hz frequency where AC is used, terminal wiring, interlocks and local or remote control requirements against the approved schematic.",
+    },
+  ],
+  "Transformer Cooling System Components": [
+    {
+      question: "How are radiator, fan and oil-pump requirements determined?",
+      answer:
+        "Cooling duty follows transformer losses, ambient temperature and the required ONAN, ONAF or OFAF mode. Send the thermal calculation and radiator or pipework drawing; fan and pump ratings are model-specific.",
+    },
+    {
+      question: "What must match when replacing a transformer radiator or fan set?",
+      answer:
+        "Check radiator flange pitch, valves, pipework and mounting space. For fans or pumps, also provide supply voltage, phase, frequency, rotation, flow or head and control sequence as applicable.",
+    },
+  ],
+  "Transformer Conservator, Breathers & Oil Accessories": [
+    {
+      question: "Does a silica-gel breather have a transformer voltage rating?",
+      answer:
+        "A breather is selected for oil-system breathing duty, not by transformer voltage. Provide conservator volume, connection size, mounting arrangement, site humidity and the required maintenance interval.",
+    },
+    {
+      question: "How are an oil-level gauge or conservator air cell matched?",
+      answer:
+        "For a gauge, confirm dial range, flange or thread, viewing position and alarm contacts. For an air cell, confirm conservator dimensions, material and compatibility with the actual insulating fluid and approved drawing.",
+    },
+  ],
+  "Transformer Maintenance & Repair Spare Parts": [
+    {
+      question: "Which transformer maintenance spares can be reviewed?",
+      answer:
+        "The page covers individual gaskets, seals, valves, fittings and hardware, or an agreed repair or planned-maintenance kit. Send the item list, quantity, transformer model and part identification.",
+    },
+    {
+      question: "Is a photo enough to order a replacement seal or gasket?",
+      answer:
+        "No. Match the gasket profile, mating dimensions, material, insulating-fluid compatibility and service temperature to the approved drawing or bill of materials. A similar-looking part may not fit or seal correctly.",
+    },
+  ],
+};
+
 function createAccessoryFaq(productName: string): ProductFaqItem[] {
   return [
+    ...accessorySelectionFaqs[productName],
     {
-      question: `How is compatibility for ${productName} confirmed?`,
+      question: `How is replacement compatibility for ${productName} confirmed?`,
       answer:
-        "Please provide the transformer model, serial number, nameplate photo, existing part number and interface drawing or dimensions. Our engineering team reviews these details before confirming a replacement or retrofit item.",
+        "Provide the transformer model and serial number, nameplate, existing part label and interface drawing or measurements. Electrical duty, materials and wiring are checked where applicable before a replacement is confirmed.",
     },
     {
-      question: "Are replacement accessories universal across transformer brands?",
+      question: "Can an accessory for one transformer brand fit another?",
       answer:
-        "No. Electrical duty, mechanical interface, material compatibility and control wiring can differ by transformer design. Final selection must be based on the approved drawing and technical review.",
-    },
-    {
-      question: "Can parts be supplied for tropical or coastal sites?",
-      answer:
-        "Yes. Please identify humidity, temperature, salt-pollution and outdoor exposure conditions so that enclosure protection, coating and material selection can be reviewed for the site.",
-    },
-    {
-      question: "Which documents can be provided before ordering?",
-      answer:
-        "Available documents can include a technical datasheet, outline or interface drawing, wiring diagram where applicable, material statement and inspection record, subject to the selected item and contract scope.",
+        "Do not assume so. Match the applicable electrical duty, mechanical interface, material and control wiring to the approved drawings and selected item datasheet.",
     },
   ];
 }
